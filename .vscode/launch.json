@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Stake HFV tokens and earn rewards securely on Ethereum. Choose your duration and claim high-yield APY.">
+    <title>HFV Staking Launch</title>
+    <link rel="icon" href="./hfv-logo.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
+    <style>
+      body {
+        background: linear-gradient(to bottom, #000000, #0f0f0f);
+      }
+      .glow {
+        filter: drop-shadow(0 0 20px #32f89a);
+      }
+    </style>
+  </head>
+  <body class="text-green-400 font-sans">
+    <main class="min-h-screen flex flex-col items-center justify-center text-center px-4">
+      <img src="./hfv-logo.png" alt="HFV Logo" class="w-24 h-24 mb-4 glow rounded-full" />
+      <h1 class="text-4xl md:text-6xl font-bold mb-4">Stake HFV. Earn Rewards.</h1>
+      <p class="text-lg md:text-xl max-w-2xl mb-8">
+        Choose your lock-up duration and grow your tokens with high-yield APY. Fully secure, auto-rewarded, and on-chain.
+      </p>
+      <a
+        href="https://hfv-staking-dapp.netlify.app"
+        class="bg-gradient-to-r from-green-400 to-teal-500 hover:from-green-300 hover:to-teal-400 text-black font-semibold py-3 px-8 rounded-lg shadow-lg transition"
+      >
+        Launch Staking DApp
+      </a>
+
+      <section class="mt-16 grid gap-8 md:grid-cols-3 w-full max-w-5xl">
+        <div>
+          <h3 class="text-xl font-bold mb-2">Connect Wallet</h3>
+          <p>Start by connecting MetaMask or WalletConnect to use the staking system.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-2">Select Duration</h3>
+          <p>Stake for 21 days, 3 months, 6 months, or 1 year. Earn higher rewards for longer locks.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-2">Earn and Claim</h3>
+          <p>Rewards calculated using HFV × 0.4 × 17.38 formula. Claim when stake matures.</p>
+        </div>
+      </section>
+
+      <footer class="mt-16 text-sm text-green-600">
+        <p>HFV Token is deployed on Ethereum | Audited & Transparent</p>
+        <p>
+          <a href="https://github.com/VTHash/hfv-staking-dapp" class="underline">View Source on GitHub</a>
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>
