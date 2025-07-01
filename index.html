@@ -1,35 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<link rel="stylesheet" href="/styles.css" />
+
   <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>HFV Landing Page</title>
-        <style>
-            body {
-                  margin: 0;
-                        background-color: #020617;
-                              color: #e2e8f0;
-                                    display: flex;
-                                          flex-direction: column;
-                                                align-items: center;
-                                                      justify-content: center;
-                                                            height: 100vh;
-                                                                  font-family: sans-serif;
-                                                                      }
-                                                                          img {
-                                                                                width: 120px;
-                                                                                      height: 120px;
-                                                                                            border-radius: 9999px;
-                                                                                                  box-shadow: 0 0 10px limegreen;
-                                                                                                      }
-                                                                                                          h1 {
-                                                                                                                font-size: 2rem;
-                                                                                                                      margin-top: 1rem;
-                                                                                                                          }
-                                                                                                                            </style>
-                                                                                                                            </head>
-                                                                                                                            <body>
-                                                                                                                              <img src="./hfv-logo.png" alt="HFV Logo" />
-                                                                                                                                <h1>HFV — The Staking Revolution</h1>
-                                                                                                                                </body>
-                                                                                                                                </html>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HFV</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <img src="hfv-logo.png" alt="HFV Logo" class="logo" />
+    <nav>
+      <button class="btn-launch">Launch DApp</button>
+      <button class="btn-menu">&#x2630;</button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>HFV Staking Protocol</h1>
+    <p>Secure • Transparent • Decentralized</p>
+    <button class="btn-launch-large">Launch DApp</button>
+  </section>
+
+  <section class="feature">
+    <h2>Transparent</h2>
+    <p>All transactions and smart contracts are verifiable on-chain with full audit logs.</p>
+  </section>
+
+  <section class="feature">
+    <h2>Open Source</h2>
+    <p>Developers worldwide can audit and contribute via our GitHub repo.</p>
+    <a href="#" class="btn-secondary">GitHub</a>
+  </section>
+
+  <section class="feature">
+    <h2>Decentralized</h2>
+    <p>No single entity controls funds. Governance and staking are community-led.</p>
+    <a href="#" class="btn-secondary">Node Operators</a>
+  </section>
+
+  <section class="feature">
+    <h2>Governance</h2>
+    <p>Token holders vote on proposals and protocol upgrades.</p>
+    <a href="#" class="btn-secondary">Governance Process</a>
+  </section>
+
+  <section class="whitepaper">
+    <h2>Whitepaper</h2>
+    <iframe src="whitepaper.pdf" frameborder="0"></iframe>
+  </section>
+
+  <section class="py-16 bg-white text-black px-4 md:px-20" id="whitepaper">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-3xl md:text-5xl font-bold text-center mb-8">HFV Whitepaper</h2>
+
+    <article class="space-y-8 text-lg leading-relaxed">
+      <section>
+        <h3 class="text-2xl font-semibold mb-2">Introduction</h3>
+        <p>
+          HFV is a decentralized staking protocol deployed on Ethereum. It empowers holders to earn sustainable yield by locking their HFV tokens for predefined durations. This whitepaper outlines the tokenomics, staking mechanics, reward structure, and roadmap.
+        </p>
+      </section>
+
+      <section>
+        <h3 class="text-2xl font-semibold mb-2">Tokenomics</h3>
+        <ul class="list-disc list-inside ml-4">
+          <li>Total Supply: 100,000,000 HFV</li>
+          <li>Staking Allocation: 40%</li>
+          <li>Presale & Liquidity: 30%</li>
+          <li>Community & Ecosystem: 20%</li>
+          <li>Team & Dev Fund: 10% (vested over 24 months)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3 class="text-2xl font-semibold mb-2">Staking Durations</h3>
+        <p>
+          Users can choose between four staking durations, with rewards compounding based on lock length:
+        </p>
+        <ul class="list-disc list-inside ml-4">
+          <li>21 Days – Base APY</li>
+          <li>3 Months – 2× Base APY</li>
+          <li>6 Months – 3× Base APY</li>
+          <li>12 Months – 5× Base APY</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3 class="text-2xl font-semibold mb-2">Reward Formula</h3>
+        <p>
+          Staking rewards are calculated using:
+        </p>
+        <pre class="bg-gray-100 p-4 rounded-md overflow-x-auto"><code>Rewards = HFV_Staked × 0.4 × Multiplier × 17.38</code></pre>
+        <p>
+          The multiplier depends on the staking duration, incentivizing longer lockups.
+        </p>
+      </section>
+
+      <section>
+        <h3 class="text-2xl font-semibold mb-2">Transparency & Security</h3>
+        <ul class="list-disc list-inside ml-4">
+          <li>Fully audited staking smart contracts</li>
+          <li>Open-source repository on GitHub</li>
+          <li>Live staking analytics dashboard</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3 class="text-2xl font-semibold mb-2">Roadmap</h3>
+        <ul class="list-disc list-inside ml-4">
+          <li>✅ Token & Staking Contract Deployment</li>
+          <li>✅ Launch Staking DApp</li>
+          <li>🛠️ Analytics Dashboard</li>
+          <li>📈 Governance DAO</li>
+          <li>🌐 Ecosystem Partnerships</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</section>
+<footer class="footer">
+    <p>&copy; 2025 HFV Protocol — Built with passion.</p>
+  </footer>
+</body>
+</html>
