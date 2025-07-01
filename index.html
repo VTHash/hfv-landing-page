@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <link rel="stylesheet" href="./styles.css" />
+  <img src="hfv-logo.png" alt="HFV Logo" class="logo" />
+
+<!-- Later down the page -->
+<button class="launch-button" onclick="window.open('https://hfv-staking.netlify.app', '_blank')">Launch DApp</button>
+
+<!-- Each section of whitepaper: -->
+<section class="section">
+  <h2>Transparent</h2>
+  <p>HFV ensures all staking rewards are trackable and open-source, enabling real-time analytics and accountability...</p>
+</section>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Stake HFV tokens and earn rewards securely on Ethereum. Transparent. Open Source. Auto-yield.">
@@ -122,7 +132,81 @@
       <h2>Advanced Reward Model</h2>
       <p>Staking rewards are calculated using the HFV × 0.4 × 17.38 formula. Select from 21-day, 3-month, 6-month, or 12-month lockups with increasing APY tiers.</p>
     </section>
+<section class="mt-16 px-4 py-12 bg-white text-black rounded-2xl shadow-xl max-w-4xl mx-auto text-center">
+  <img src="/hfv-logo.png" alt="HFV Logo" class="w-20 h-20 mx-auto mb-6 rounded-full glow-pulse" />
+  <h2 class="text-3xl font-bold mb-6 text-green-600">Staking Reward Calculator</h2>
 
+  <div class="mb-4 text-left">
+    <label for="amount" class="block mb-2 font-semibold">HFV Amount to Stake</label>
+    <input
+      type="number"
+      id="amount"
+      class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+      placeholder="Enter HFV tokens"
+      oninput="updateRewards()"
+    />
+  </div>
+
+  <div class="mb-4 text-left">
+    <label for="duration" class="block mb-2 font-semibold">Select Lock Duration</label>
+    <select
+      id="duration"
+      class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+      onchange="updateRewards()"
+    >
+      <option value="21">21 Days - 36.5% APY</option>
+      <option value="90">3 Months - 52.0% APY</option>
+      <option value="180">6 Months - 86.0% APY</option>
+      <option value="365">12 Months - 139.7% APY</option>
+    </select>
+  </div>
+
+  <div id="result" class="mt-6 text-lg text-green-700 font-semibold">Estimated HFV Reward: 0.00 HFV</div>
+</section>
+
+<style>
+  .glow-pulse {
+    animation: glowPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+    0% {
+      box-shadow: 0 0 5px #32f89a, 0 0 10px #32f89a;
+    }
+    50% {
+      box-shadow: 0 0 20px #32f89a, 0 0 40px #32f89a;
+    }
+    100% {
+      box-shadow: 0 0 5px #32f89a, 0 0 10px #32f89a;
+    }
+  }
+</style>
+
+<script>
+  function updateRewards() {
+    const amount = parseFloat(document.getElementById('amount').value);
+    const duration = parseInt(document.getElementById('duration').value);
+
+    if (isNaN(amount) || amount <= 0) {
+      document.getElementById('result').innerText = 'Estimated HFV Reward: 0.00 HFV';
+      return;
+    }
+
+    let apy = 0;
+    switch (duration) {
+      case 21: apy = 36.5; break;
+      case 90: apy = 52.0; break;
+      case 180: apy = 86.0; break;
+      case 365: apy = 139.7; break;
+    }
+
+    const yearlyReward = amount * (apy / 100);
+    const earned = (yearlyReward / 365) * duration;
+
+    document.getElementById('result').innerText =
+      `Estimated HFV Reward: ${earned.toFixed(2)} HFV`;
+  }
+</script>
     <footer>
       <p>© 2025 HFV Protocol · Built with precision · <a href="https://github.com/VTHash/hfv-staking-dapp" target="_blank">View GitHub</a></p>
     </footer>
