@@ -5,6 +5,21 @@
   <title>HFV Token | Whitepaper</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
+    @media (max-width: 600px) {
+  section p {
+    font-size: 0.9rem;
+    word-break: break-word;
+  }
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+  .back-button {
+    bottom: 10px;
+    right: 10px;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
     body { background: #0b0b0b; color: #e0e0e0; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
     section { padding: 2rem; margin: 1rem auto; max-width: 900px; background: #111; border-radius: 12px; box-shadow: 0 0 16px rgba(0,255,140,0.2); animation: fadeIn 1s ease-in-out; }
     h2, h3 { color: #32f89a; text-align: center; animation: glowPulse 3s infinite ease-in-out; }
@@ -61,14 +76,18 @@
   <h2>Token Distribution</h2>
   <canvas id="tokenChart"></canvas>
 </section><section>
-  <section class="rgb-glow">
-  <h2>🔐 Staking Mechanism</h2>
-  <p>
-    HFV uses a time-based staking structure that rewards long-term commitment with increasing APY tiers. Staking durations include 21 days, 3 months, 6 months, and 12 months. Smart contracts enforce lock durations and transparently calculate rewards based on a fixed multiplier model.
+  <h2>Staking Mechanism</h2>
+  <p>You earn if you hold. If you sell, others earn. Staking duration options:</p>
+  <ul>
+    <li>21 Days (1× Multiplier)</li>
+    <li>3 Months (3× Multiplier)</li>
+    <li>6 Months (6× Multiplier)</li>
+    <li>12 Months (12× Multiplier)</li>
+  </ul>
+  <p><strong>Reward Formula:</strong><br>
+     HFV × 0.4 × 17.38 × Multiplier = Total Reward
   </p>
-  <p><strong>Formula:</strong> <code>(HFV x 0.4 x 17.38 x Tier Multiplier)</code></p>
-  <p><em>Example:</em> Staking 120 HFV for 3 months: 120 × 0.4 × 17.38 × 3 = <strong>2506.56 HFV</strong></p>
-</section>
+</section><section>
   <h2>Managed Funds (MF)</h2>
   <p>All transaction fees are routed to Managed Funds (MF), which redistribute to the PSF. 15% of tokens are locked from the start of ICO. App, team, and marketing funds are also locked.</p>
 </section><section>
@@ -113,10 +132,18 @@ const ctx = document.getElementById('tokenChart');
 new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ['Private Sale (3%)','Presale (18%)','PSF (15%)','Team (18%)','Airdrop (15%)','ICO/Exchange (31%)'],
+    labels: ['Private Sale','Presale','PSF','Team/Dev','Airdrop','ICO/Exchange'],
     datasets: [{
       data: [3,18,15,18,15,31],
-      backgroundColor: ['#00ffc3','#32f89a','#4df9c2','#3affc1','#00ffd5','#5affc0'],
+      backgroundColor: [
+        '#FF6B6B', // Private Sale – Red
+        '#FFD93D', // Presale – Yellow
+        '#6BCB77', // PSF – Green
+        '#4D96FF', // Team – Blue
+        '#9D4EDD', // Airdrop – Purple
+        '#FF9F1C' // ICO/Exchange – Orange
+      ],
+      borderColor: '#0b0b0b',
       borderWidth: 2,
       hoverOffset: 20
     }]
@@ -126,10 +153,7 @@ new Chart(ctx, {
     plugins: {
       legend: { position: 'bottom', labels: { color: '#e0e0e0' } }
     },
-    animation: {
-      animateRotate: true,
-      duration: 1200
-    }
+    animation: { animateRotate: true, duration: 1200 }
   }
 });
 </script></body>
