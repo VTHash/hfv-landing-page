@@ -1,204 +1,210 @@
-<!DOCTYPE html><html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Stake HFV tokens and earn rewards securely on Ethereum. Choose your duration and calculate real-time staking APY.">
-    <title>HFV Staking | Decentralized & Transparent</title>
-    <link rel="icon" href="/hfv-logo.png" />
-    <link rel="stylesheet" href="/styles.css" />
-    <style>
-      body {
-        background: #ffffff;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color: #111;
-        margin: 0;
-        padding: 0;
-      }header {
-    text-align: center;
-    padding: 3rem 1rem 2rem;
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Stake HFV tokens and earn rewards securely on Ethereum. Choose your duration and calculate real-time staking APY.">
+  <title>HFV Staking | Decentralized & Transparent</title>
+  <link rel="icon" href="./hfv-logo.png" />
+  <style>
+    body {
+      background: #0b0b0b;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      background-color: #111;
+    }
+    .logo {
+      width: 64px;
+      height: 64px;
+      animation: pulse-glow 2.5s infinite;
+      transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+    }
+    .logo:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 14px #32f89a);
+    }
+    .launch-button {
+      display: inline-block;
+      background: linear-gradient(to right, #32f89a, #7dfccd);
+      color: #000;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 18px #32f89a80;
+      transition: all 0.3s ease-in-out;
+      text-decoration: none;
+      animation: pulse-glow 2.5s infinite;
+    }
+    .launch-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 24px #32f89a;
+    }
+    section {
+      padding: 2rem;
+      max-width: 900px;
+      margin: 0 auto 2rem;
+      text-align: center;
+      background-color: #1a1a1a;
+      border-radius: 12px;
+    }
+    .calculator {
+      background: #121212;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 0 12px #a6ffdf40;
+    }
+    .result {
+      margin-top: 1rem;
+      font-weight: bold;
+      color: #00ff88;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.875rem;
+      color: #888;
+      padding: 2rem 0;
+      background-color: #0d0d0d;
+    }
+    @keyframes pulse-glow {
+      0% { filter: drop-shadow(0 0 0px #32f89a); }
+      50% { filter: drop-shadow(0 0 10px #32f89a); }
+      100% { filter: drop-shadow(0 0 0px #32f89a); }
+    }
+    .glow {
+      animation: glowPulse 2s infinite ease-in-out;
+    }
+    @keyframes glowPulse {
+      0% { text-shadow: 0 0 8px #00ff88, 0 0 16px #00ff88; }
+      50% { text-shadow: 0 0 16px #00ff88, 0 0 32px #00ff88; }
+      100% { text-shadow: 0 0 8px #00ff88, 0 0 16px #00ff88; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="./hfv-logo.png" alt="HFV Logo" class="logo" />
+    <h1>Stake HFV. Earn Rewards.</h1>
+    <p>Secure, Transparent & High-Yield Staking — Powered by Ethereum</p>
+    <a href="https://hfv-staking-dapp.netlify.app" class="launch-button">Launch DApp</a>
+  </header>
 
-  .logo {
-    width: 64px;
-    height: 64px;
-    animation: pulse-glow 2.5s infinite;
-  }
+  <section>
+    <h2>Advanced HFV Staking Calculator</h2>
+    <p>Enter HFV amount and select your lock-up duration to calculate your potential rewards.</p>
+    <div class="calculator">
+      <label>Amount to Stake (HFV): <input type="number" id="amount" placeholder="e.g. 1000" /></label><br/><br/>
+      <label>Select Duration:
+        <select id="duration">
+          <option value="1">21 Days</option>
+          <option value="3">3 Months</option>
+          <option value="6">6 Months</option>
+          <option value="12">12 Months</option>
+        </select>
+      </label><br/><br/>
+      <button onclick="calculateReward()">Calculate</button>
+      <p class="result" id="result"></p>
+    </div>
+  </section>
 
-  .launch-button {
-    display: inline-block;
-    background: linear-gradient(to right, #32f89a, #7dfccd);
-    color: #000;
-    font-weight: 600;
-    padding: 1rem 2rem;
-    border-radius: 12px;
-    box-shadow: 0 0 18px #32f89a80;
-    transition: all 0.3s ease-in-out;
-    text-decoration: none;
-  }
-  .launch-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 24px #32f89a;
-  }
+  <section>
+    <h3>Transparent. Open Source. Scalable.</h3>
+    <p>HFV token contracts are deployed on Ethereum. All staking logic is on-chain and public.</p>
+  </section>
 
-  section {
-    padding: 2rem;
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-  }
+  <section>
+    <h2>Estimate Your HFV Rewards</h2>
+    <label for="hfvAmount">HFV Amount</label><br />
+    <input id="hfvAmount" type="number" placeholder="Enter amount to stake" oninput="updateRewards()" /><br /><br />
+    <label for="lockDuration">Select Lock Duration</label><br />
+    <select id="lockDuration" onchange="updateRewards()">
+      <option value="1">21 Days (1× Multiplier)</option>
+      <option value="3">3 Months (3× Multiplier)</option>
+      <option value="6">6 Months (6× Multiplier)</option>
+      <option value="12">12 Months (12× Multiplier)</option>
+    </select>
+    <div class="text-center">
+      <p>Estimated Reward:</p>
+      <div id="rewardOutput" class="text-3xl font-bold glow">0 HFV</div>
+    </div>
+  </section>
 
-  .calculator {
-    background: #f0fdf6;
-    padding: 2rem;
-    border-radius: 16px;
-    margin-top: 2rem;
-    box-shadow: 0 0 12px #a6ffdf60;
-  }
+  <section style="background-color: #0e0e0e;">
+    <h2 style="color: #00ff84;">Join the HFV Community on Discord</h2>
+    <iframe
+      src="https://discord.com/widget?id=1389893654394703943&theme=dark"
+      width="100%" height="400"
+      allowtransparency="true" frameborder="0"
+      sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+    </iframe>
+  </section>
 
-  .result {
-    margin-top: 1rem;
-    font-weight: bold;
-    color: #0c944c;
-  }
+  <section style="background-color: #0b0b0b; text-align: center;">
+    <h2 style="color: #00ff88;">🔍 HFV GitHub Repository</h2>
+    <iframe
+      src="https://ghbtns.com/github-btn.html?user=VTHash&repo=hfv-staking-dapp&type=star&count=true&size=large"
+      frameborder="0" scrolling="0" width="170" height="30"
+      title="GitHub Star Button" style="margin-bottom: 1rem;">
+    </iframe><br/>
+    <iframe
+      src="https://github.com/VTHash/hfv-staking-dapp"
+      style="width: 100%; max-width: 960px; height: 500px; border: 1px solid #444; border-radius: 8px;"
+      title="HFV GitHub Repo">
+    </iframe>
+  </section>
 
-  footer {
-    text-align: center;
-    font-size: 0.875rem;
-    color: #999;
-    margin-top: 3rem;
-    padding-bottom: 2rem;
-  }
+  <footer>
+    <p>© 2025 HFV Token. All rights reserved.</p>
+  </footer>
 
-  @keyframes pulse-glow {
-    0% { filter: drop-shadow(0 0 0px #32f89a); }
-    50% { filter: drop-shadow(0 0 10px #32f89a); }
-    100% { filter: drop-shadow(0 0 0px #32f89a); }
-  }
-</style>
+  <script>
+    function updateRewards() {
+      const amount = parseFloat(document.getElementById('hfvAmount').value) || 0;
+      const multiplier = parseInt(document.getElementById('lockDuration').value) || 1;
+      const reward = amount * 0.4 * 17.38 * multiplier;
+      document.getElementById('rewardOutput').innerText = reward.toFixed(2) + ' HFV';
+    }
 
-  </head>
-  <body>
-    <header>
-      <img src="/hfv-logo.png" alt="HFV Logo" class="logo" />
-      <h1>Stake HFV. Earn Rewards.</h1>
-      <p>Secure, Transparent & High-Yield Staking — Powered by Ethereum</p>
-      <a href="https://hfv-staking-dapp.netlify.app" class="launch-button">Launch DApp</a>
-    </header><section>
-  <h2>Advanced HFV Staking Calculator</h2>
-  <p>Enter HFV amount and select your lock-up duration to calculate your potential rewards.</p>
-  <div class="calculator">
-    <label>
-      Amount to Stake (HFV):
-      <input type="number" id="amount" placeholder="e.g. 1000" />
-    </label>
-    <br /><br />
-    <label>
-      Select Duration:
-      <select id="duration">
-        <option value="1">21 Days</option>
-        <option value="3">3 Months</option>
-        <option value="6">6 Months</option>
-        <option value="12">12 Months</option>
-      </select>
-    </label>
-    <br /><br />
-    <button onclick="calculateReward()">Calculate</button>
-    <p class="result" id="result"></p>
+    function calculateReward() {
+      const amount = parseFloat(document.getElementById('amount').value);
+      const duration = parseInt(document.getElementById('duration').value);
+      if (!isNaN(amount) && !isNaN(duration)) {
+        const baseRate = 0.4 * 17.38;
+        const reward = amount * baseRate * duration;
+        document.getElementById('result').textContent = `Estimated Reward: ${reward.toFixed(2)} HFV`;
+      } else {
+        document.getElementById('result').textContent = 'Please enter valid inputs.';
+      }
+    }
+  </script>
+<section style="background-color: #0b0b0b; text-align: center; padding: 3rem 1rem;">
+  <h2 style="color: #00ff88;">🔗 Verified HFV Contracts</h2>
+  <p>Click below to view official HFVToken and Staking smart contracts on multiple verification platforms.</p>
+  
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-top: 2rem;">
+    
+    <div style="text-align: center;">
+      <img src="./hfv-logo.png" alt="HFV Logo" style="width: 48px; height: 48px; animation: pulse-glow 2s infinite;" />
+      <p style="margin-top: 0.5rem;">HFV Token</p>
+      <a href="https://blockscout.com/eth/mainnet/address/0x6094425D76F9E4436CEBf2d13d588F91e65a02B3/contracts" target="_blank" style="color: #32f89a; text-decoration: none;">Blockscout</a><br/>
+      <a href="https://sourcify.dev/server/contracts/full_match/1/0x6094425D76F9E4436CEBf2d13d588F91e65a02B3" target="_blank" style="color: #32f89a;">Sourcify</a><br/>
+      <a href="https://routescan.io/mainnet/address/0x6094425D76F9E4436CEBf2d13d588F91e65a02B3" target="_blank" style="color: #32f89a;">Routescan</a>
+    </div>
+
+    <div style="text-align: center;">
+      <img src="./hfv-logo.png" alt="HFV Logo" style="width: 48px; height: 48px; animation: pulse-glow 2s infinite;" />
+      <p style="margin-top: 0.5rem;">HFV Staking</p>
+      <a href="https://blockscout.com/eth/mainnet/address/0xb13b1A04E5fbC29A036480bBc504d6fb13B1c6De/contracts" target="_blank" style="color: #32f89a;">Blockscout</a><br/>
+      <a href="https://sourcify.dev/server/contracts/full_match/1/0xb13b1A04E5fbC29A036480bBc504d6fb13B1c6De" target="_blank" style="color: #32f89a;">Sourcify</a><br/>
+      <a href="https://routescan.io/mainnet/address/0xb13b1A04E5fbC29A036480bBc504d6fb13B1c6De" target="_blank" style="color: #32f89a;">Routescan</a>
+    </div>
+
   </div>
 </section>
-
-<section>
-  <h3>Transparent. Open Source. Scalable.</h3>
-  <p>HFV token contracts are deployed on Ethereum. All staking logic is on-chain and public.</p>
-</section>
-<section class="mt-16 max-w-2xl w-full mx-auto bg-white bg-opacity-5 p-6 rounded-xl shadow-lg backdrop-blur-lg border border-green-400">
-  <h2 class="text-2xl font-bold mb-4 text-green-300">Estimate Your HFV Rewards</h2>
-
-  <label for="hfvAmount" class="block mb-2 text-green-200">HFV Amount</label>
-  <input
-    id="hfvAmount"
-    type="number"
-    placeholder="Enter amount to stake"
-    class="w-full p-3 rounded-md mb-4 bg-black bg-opacity-40 text-green-100 border border-green-500 focus:outline-none focus:ring-2 focus:ring-green-400 shadow-inner"
-    oninput="updateRewards()"
-  />
-
-  <label for="lockDuration" class="block mb-2 text-green-200">Select Lock Duration</label>
-  <select
-    id="lockDuration"
-    class="w-full p-3 rounded-md bg-black bg-opacity-40 text-green-100 border border-green-500 focus:outline-none focus:ring-2 focus:ring-green-400 shadow-inner mb-6"
-    onchange="updateRewards()"
-  >
-    <option value="1">21 Days (1× Multiplier)</option>
-    <option value="3">3 Months (3× Multiplier)</option>
-    <option value="6">6 Months (6× Multiplier)</option>
-    <option value="12">12 Months (12× Multiplier)</option>
-  </select>
-
-  <div class="text-center">
-    <p class="text-xl text-green-300 mb-1">Estimated Reward:</p>
-    <div id="rewardOutput" class="text-3xl font-bold text-green-500 glow pulse">0 HFV</div>
-  </div>
-</section>
-
-<script>
-  function updateRewards() {
-    const amount = parseFloat(document.getElementById('hfvAmount').value) || 0;
-    const multiplier = parseInt(document.getElementById('lockDuration').value) || 1;
-    const reward = amount * 0.4 * 17.38 * multiplier;
-    document.getElementById('rewardOutput').innerText = reward.toFixed(2) + ' HFV';
-  }
-</script>
-
-<style>
-  .glow {
-    animation: glowPulse 2s infinite ease-in-out;
-  }
-
-  @keyframes glowPulse {
-    0% {
-      text-shadow: 0 0 8px #00ff88, 0 0 16px #00ff88;
-    }
-    50% {
-      text-shadow: 0 0 16px #00ff88, 0 0 32px #00ff88;
-    }
-    100% {
-      text-shadow: 0 0 8px #00ff88, 0 0 16px #00ff88;
-    }
-  }
-</style>
-<!-- HFV Discord Community Widget -->
-<section style="padding: 2rem 0; background-color: #0e0e0e;">
-  <h2 style="text-align: center; color: #00ff84; font-size: 1.5rem; margin-bottom: 1rem;">
-    Join the HFV Community on Discord
-  </h2>
-
-  <iframe
-    src="https://discord.com/widget?id=1389893654394703943&theme=dark"
-    width="100%"
-    height="400"
-    allowtransparency="true"
-    frameborder="0"
-    sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
-  </iframe>
-</section>
-<footer>
-  <p>© 2025 HFV Token. All rights reserved. | <a href="https://github.com/VTHash/hfv-staking-dapp">View Source</a></p>
-</footer>
-
-<script>
-  function calculateReward() {
-    const amount = parseFloat(document.getElementById('amount').value);
-    const duration = parseInt(document.getElementById('duration').value);
-    if (!isNaN(amount) && !isNaN(duration)) {
-      const baseRate = 0.4 * 17.38; // base for 21 days
-      const reward = amount * baseRate * duration;
-      document.getElementById('result').textContent = `Estimated Reward: ${reward.toFixed(2)} HFV`;
-    } else {
-      document.getElementById('result').textContent = 'Please enter valid inputs.';
-    }
-  }
-</script>
-
-  </body>
+</body>
 </html>
