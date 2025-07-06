@@ -1,34 +1,69 @@
 <!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="HFV Token Whitepaper - Tokenomics, Staking, DAO Proposals, and Roadmap." />
   <title>HFV Whitepaper</title>
-  <link rel="icon" href="./hfv-logo.png">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body { background: #0b0b0b; color: #e0e0e0; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; line-height: 1.6; }
-    header { text-align: center; padding: 3rem 1rem 2rem; background: #111; }
-    .logo { width: 64px; height: 64px; animation: pulse-glow 2.5s infinite; }
-    h1, h2, h3 { text-align: center; margin-top: 2rem; }
-    h2.section-heading { padding: 1rem; background: rgba(50,248,154,0.1); border-radius: 8px; box-shadow: 0 0 12px #32f89a80; text-shadow: 0 0 6px #32f89a, 0 0 10px #32f89a; color: #00ffae; }
-    section { max-width: 900px; margin: 2rem auto; background: #121212; padding: 2rem; border-radius: 12px; box-shadow: 0 0 12px #32f89a40; }
-    a.button { display: inline-block; margin: 2rem auto 0; padding: 0.8rem 1.5rem; background: linear-gradient(to right, #32f89a, #00ff84); color: #000; font-weight: bold; border-radius: 8px; text-decoration: none; box-shadow: 0 0 16px #32f89a80; transition: transform .3s; }
-    a.button:hover { transform: scale(1.05); box-shadow: 0 0 20px #32f89a; }
-    footer { text-align: center; font-size: 0.9rem; padding: 2rem 1rem; background: #111; color: #888; }
-    @keyframes pulse-glow { 0%,100%{filter:drop-shadow(0 0 0px #32f89a);} 50%{filter:drop-shadow(0 0 12px #32f89a);} }
+    body {
+      background: #0a0a0a;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    header {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      border-bottom: 4px solid #32f89a;
+    }
+    h1, h2, h3 {
+      color: #32f89a;
+      text-shadow: 0 0 8px #00ff88;
+    }
+    section {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background: rgba(20,20,20,0.8);
+      border: 2px solid;
+      border-image: linear-gradient(45deg, #32f89a, #7dfccd, #32f89a) 1;
+      border-radius: 16px;
+      box-shadow: 0 0 18px #32f89a40;
+      animation: borderGlow 6s ease-in-out infinite;
+    }
+    @keyframes borderGlow {
+      0% { box-shadow: 0 0 8px #00ff88; }
+      50% { box-shadow: 0 0 20px #00ff88aa; }
+      100% { box-shadow: 0 0 8px #00ff88; }
+    }
+    canvas {
+      width: 100% !important;
+      max-width: 600px;
+      margin: 2rem auto;
+      display: block;
+    }
+    a {
+      color: #00ff88;
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
   <header>
-    <img src="./hfv-logo.png" alt="HFV Logo" class="logo">
-    <h1 class="glow">HFV Protocol Whitepaper</h1>
+    <h1>📜 HFV Whitepaper</h1>
+    <p>Transparent | Secure | Community-Driven</p>
   </header> <section data-aos="fade-up">
-    <h2 class="section-heading">🔹 Token Overview</h2>
-    <p><strong>Token Name:</strong> HFV<br>
-    <strong>Total Supply:</strong> 70,000,000 HFV<br>
-    <strong>Contract Address:</strong> <code>0x6094425D76F9E4436CEBf2d13d588F91e65a02B3</code></p>
-  </section> <section data-aos="fade-up">
-    <h2 class="section-heading">🔹 Token Distribution (Tokenomics)</h2>
+    <h2>🔹 Token Overview</h2>
+    <p>Name: <strong>HFV Token</strong></p>
+    <p>Total Supply: <strong>70,000,000 HFV</strong></p>
+    <p>Deployed on: <strong>Ethereum Mainnet</strong></p>
+  </section> <section data-aos="zoom-in">
+    <h2>🔹 Token Distribution</h2>
     <ul>
       <li>3% – Private Sale</li>
       <li>18% – Presale</li>
@@ -37,56 +72,69 @@
       <li>15% – Airdrop</li>
       <li>31% – ICO and Exchange</li>
       <li>13% – Staking Mechanism</li>
-      <li>10% – Airdrops for Holders</li>
+      <li>10% – Airdrops for holders</li>
       <li>10% – Crosschains</li>
     </ul>
+    <canvas id="tokenChart"></canvas>
   </section> <section data-aos="fade-up">
-    <h2 class="section-heading">🔹 Staking Mechanism</h2>
-    <p><strong>Lock Options:</strong> 21 Days, 3 Months, 6 Months, 12 Months</p>
-    <p><strong>Reward Formula:</strong></p>
-    <p><code>HFV Amount × 0.4 × 17.38 × Duration Multiplier</code></p>
-    <p><em>Where:</em><br>
-    - 0.4 is the base reward rate<br>
-    - 17.38 = 365 / 21 (annual multiplier)<br>
-    - Multiplier: 1 (21 Days), 3, 6, or 12</p>
-    <p><strong>Example:</strong> Staking 120 HFV for 3 months:<br>
-    <code>120 × 0.4 × 17.38 × 3 = 2,503.68 HFV</code></p>
-  </section> <section data-aos="fade-up">
-    <h2 class="section-heading">🔹 Managed Funds (MF) & PSF</h2>
+    <h2>🔹 Staking Mechanism</h2>
+    <p>You earn if you hold. If you sell, others earn.</p>
+    <p><strong>Reward Formula:</strong><br>
+    <code>HFV Amount × 0.4 × 17.38 × Multiplier</code></p>
+    <p><strong>Multiplier Options:</strong></p>
     <ul>
-      <li>All transfer fees go to Managed Funds (MF).</li>
-      <li>From MF, funds are directed to PSF (Protection Security Fund).</li>
-      <li>PSF and MF wallets are locked and publicly viewable.</li>
-      <li>15% of tokens permanently locked from ICO start.</li>
+      <li>1 = 21 Days</li>
+      <li>3 = 3 Months</li>
+      <li>6 = 6 Months</li>
+      <li>12 = 12 Months</li>
+    </ul>
+    <p><em>Example:</em> 120 HFV × 0.4 × 17.38 × 3 = <strong>2,503.68 HFV</strong></p>
+  </section> <section data-aos="fade-up">
+    <h2>🔹 Managed Funds (MF) & PSF</h2>
+    <ul>
+      <li>Fees go to Managed Funds (MF)</li>
+      <li>MF redistributes to PSF (Protection Security Funds)</li>
+      <li>PSF supports ecosystem protection, recovery, and future audits</li>
     </ul>
   </section> <section data-aos="fade-up">
-    <h2 class="section-heading">🔹 Vesting & Security</h2>
+    <h2>🔹 Vesting & Locks</h2>
     <ul>
-      <li>Team tokens are locked for 1 year.</li>
-      <li>After 1 year, only 2% released per month.</li>
-      <li>Smart contracts verified on Blockscout, Routescan, Sourcify.</li>
+      <li>Team tokens locked for 1 year</li>
+      <li>2% unlocked monthly after initial lock</li>
+      <li>15% permanently locked from ICO</li>
     </ul>
   </section> <section data-aos="zoom-in">
-    <h2 class="section-heading">🔹 Roadmap & Development</h2>
+    <h2>🔹 DAO Roadmap</h2>
     <ul>
-      <li>✅ Token Launch & Presale</li>
-      <li>✅ Staking DApp Live</li>
-      <li>🔄 DAO Expansion & Fund Governance</li>
-      <li>🔜 NFT Integration</li>
-      <li>🔜 Crosschain Bridge</li>
-      <li>🔜 HFV Mobile App</li>
+      <li><strong>Investment DAOs:</strong> Pool and deploy funds into vetted crypto or DeFi opportunities.</li>
+      <li><strong>Grant DAOs:</strong> Support mission-aligned projects with funding proposals.</li>
+      <li><strong>Social DAOs:</strong> Build HFV-driven communities around shared causes.</li>
+      <li><strong>Platform DAOs:</strong> Govern staking, treasury, and upgrade decisions collectively.</li>
     </ul>
-  </section> <section data-aos="fade-up">
-    <h2 class="section-heading">🔹 Future DAO Proposals</h2>
-    <ul>
-      <li><strong>Investment DAO:</strong> Pool and allocate treasury into aligned Web3 projects.</li>
-      <li><strong>Grant DAO:</strong> Fund builders and partners supporting the HFV ecosystem.</li>
-      <li><strong>Social DAO:</strong> Gamify and grow the HFV community around memes & culture.</li>
-      <li><strong>Platform DAO:</strong> Governance and upgrades for the HFV staking protocol.</li>
-    </ul>
-  </section> <div style="text-align: center; margin-top: 3rem;">
-    <a href="index.html" class="button">⬅️ Return to Homepage</a>
-  </div> <footer>
-    <p>© 2025 HFV Protocol. All rights reserved.</p>
-  </footer> <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> <script>AOS.init();</script></body>
+  </section> <section data-aos="zoom-in-up">
+    <h2>🔙 <a href="index.html">Return to Homepage</a></h2>
+  </section> <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script> <script>
+    AOS.init();
+    const ctx = document.getElementById('tokenChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: [
+          'Private Sale', 'Presale', 'PSF', 'Team/Dev', 'Airdrop', 'ICO', 'Staking', 'Holders Airdrop', 'Crosschains'
+        ],
+        datasets: [{
+          data: [3, 18, 15, 18, 15, 31, 13, 10, 10],
+          backgroundColor: [
+            '#32f89a', '#7dfccd', '#1ee8c0', '#2aeabc', '#a6ffe1', '#39f9b2', '#5dfdc4', '#2bf3a8', '#33ffcc'
+          ],
+          borderColor: '#0a0a0a'
+        }]
+      },
+      options: {
+        plugins: { legend: { labels: { color: '#e0e0e0' } } },
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
+  </script></body>
 </html>
