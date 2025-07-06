@@ -6,30 +6,23 @@
   <title>HFV Staking | Decentralized & Transparent</title>
   <link rel="icon" href="./hfv-logo.png" />
   <style>
-    :root {
-      color-scheme: dark light;
-    }
     body {
-      background: #0b0b0b;
-      color: #e0e0e0;
-      font-family: 'Segoe UI', sans-serif;
+      background: #ffffff;
+      color: #0a0a0a;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
     }
     header {
       text-align: center;
       padding: 3rem 1rem 2rem;
-      background: #111;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-bottom: 1px solid #2affc3;
+      background-color: #f4f4f4;
     }
     .logo {
       width: 64px;
       height: 64px;
       animation: pulse-glow 2.5s infinite;
-      transition: transform .3s, filter .3s;
+      transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
     }
     .logo:hover {
       transform: scale(1.05);
@@ -43,9 +36,9 @@
       padding: 1rem 2rem;
       border-radius: 12px;
       box-shadow: 0 0 18px #32f89a80;
+      transition: all 0.3s ease-in-out;
       text-decoration: none;
       animation: pulse-glow 2.5s infinite;
-      transition: all .3s;
     }
     .launch-button:hover {
       transform: scale(1.05);
@@ -54,101 +47,109 @@
     section {
       padding: 2rem;
       max-width: 900px;
-      margin: 2rem auto;
+      margin: 0 auto 2rem;
       text-align: center;
-      background: #1a1a1a;
-      border-radius: 16px;
-      border: 1px solid #2affc3;
-      box-shadow: 0 0 24px #00ff8855, 0 0 64px #00ff8844 inset;
-      transition: all 0.3s ease-in-out;
+      background-color: #f5f5f5;
+      border-radius: 12px;
     }
     .calculator {
-      background: rgba(25,25,25,0.8);
+      background: #eaeaea;
       padding: 2rem;
       border-radius: 16px;
-      border: 1px solid #2affc3;
-      box-shadow: 0 0 18px #32f89a50;
-      backdrop-filter: blur(6px);
+      box-shadow: 0 0 12px #a6ffdf40;
     }
-    .calculator:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 24px #32f89a99;
-    }
-    input, select {
-      display: block;
-      margin: 0.5rem auto;
-      width: 80%;
-      padding: 0.6rem;
-      border: 1px solid #2affc3;
-      border-radius: 8px;
-      background: #000;
-      color: #e0e0e0;
-    }
-    button {
+    .result {
       margin-top: 1rem;
-      padding: 0.6rem 1.5rem;
-      background: #00ff84;
-      border: none;
-      border-radius: 8px;
       font-weight: bold;
-      cursor: pointer;
-      transition: transform .3s, box-shadow .3s;
-    }
-    button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 18px #00ff84aa;
-    }
-    .result, #rewardOutput {
-      font-weight: bold;
-      color: #00ff88;
-      margin-top: 1rem;
-      font-size: 1.2rem;
-    }
-    .glow {
-      animation: glowPulse 2s infinite ease-in-out;
-    }
-    #social-links {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .social-item {
-      text-decoration: none;
-      color: #e0e0e0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: transform .3s, box-shadow .3s;
-    }
-    .social-item:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #32f89a80;
-    }
-    .social-item img {
-      width: 48px;
-      height: 48px;
-      margin-bottom: 0.5rem;
+      color: #00aa66;
     }
     footer {
       text-align: center;
       font-size: 0.875rem;
       color: #888;
       padding: 2rem 0;
-      background-color: #0d0d0d;
+      background-color: #f0f0f0;
     }
     @keyframes pulse-glow {
-      0%, 100% { filter: drop-shadow(0 0 0px #32f89a); }
+      0% { filter: drop-shadow(0 0 0px #32f89a); }
       50% { filter: drop-shadow(0 0 10px #32f89a); }
+      100% { filter: drop-shadow(0 0 0px #32f89a); }
+    }
+    .glow {
+      animation: glowPulse 2s infinite ease-in-out;
     }
     @keyframes glowPulse {
-      0%, 100% { filter: drop-shadow(0 0 4px #00ff88); }
-      50% { filter: drop-shadow(0 0 20px #00ff88); }
+      0% { text-shadow: 0 0 8px #00ff88, 0 0 16px #00ff88; }
+      50% { text-shadow: 0 0 16px #00ff88, 0 0 32px #00ff88; }
+      100% { text-shadow: 0 0 8px #00ff88, 0 0 16px #00ff88; }
     }
   </style>
 </head>
 <body>
-  <!-- body content remains unchanged -->
+  <header>
+    <img src="./hfv-logo.png" alt="HFV Logo" class="logo" />
+    <h1>Stake HFV. Earn Rewards.</h1>
+    <p>Secure, Transparent & High-Yield Staking — Powered by Ethereum</p>
+    <a href="https://hfv-staking-dapp.netlify.app" class="launch-button">Launch DApp</a>
+  </header>
+  <section>
+    <h2>Advanced HFV Staking Calculator</h2>
+    <p>Enter HFV amount and select your lock-up duration to calculate your potential rewards.</p>
+    <div class="calculator">
+      <label>Amount to Stake (HFV): <input type="number" id="amount" placeholder="e.g. 1000" /></label><br/><br/>
+      <label>Select Duration:
+        <select id="duration">
+          <option value="1">21 Days</option>
+          <option value="3">3 Months</option>
+          <option value="6">6 Months</option>
+          <option value="12">12 Months</option>
+        </select>
+      </label><br/><br/>
+      <button onclick="calculateReward()">Calculate</button>
+      <p class="result" id="result"></p>
+    </div>
+  </section>
+  <section>
+    <h3>Transparent. Open Source. Scalable.</h3>
+    <p>HFV token contracts are deployed on Ethereum. All staking logic is on-chain and public.</p>
+  </section>
+  <section>
+    <h2>Estimate Your HFV Rewards</h2>
+    <label for="hfvAmount">HFV Amount</label><br />
+    <input id="hfvAmount" type="number" placeholder="Enter amount to stake" oninput="updateRewards()" /><br /><br />
+    <label for="lockDuration">Select Lock Duration</label><br />
+    <select id="lockDuration" onchange="updateRewards()">
+      <option value="1">21 Days (1× Multiplier)</option>
+      <option value="3">3 Months (3× Multiplier)</option>
+      <option value="6">6 Months (6× Multiplier)</option>
+      <option value="12">12 Months (12× Multiplier)</option>
+    </select>
+    <div class="text-center">
+      <p>Estimated Reward:</p>
+      <div id="rewardOutput" class="text-3xl font-bold glow">0 HFV</div>
+    </div>
+  </section>
+  <footer>
+    <p>© 2025 HFV Token. All rights reserved.</p>
+  </footer>
+  <script>
+    function updateRewards() {
+      const amount = parseFloat(document.getElementById('hfvAmount').value) || 0;
+      const multiplier = parseInt(document.getElementById('lockDuration').value) || 1;
+      const reward = amount * 0.4 * 17.38 * multiplier;
+      document.getElementById('rewardOutput').innerText = reward.toFixed(2) + ' HFV';
+    }
+    function calculateReward() {
+      const amount = parseFloat(document.getElementById('amount').value);
+      const duration = parseInt(document.getElementById('duration').value);
+      if (!isNaN(amount) && !isNaN(duration)) {
+        const baseRate = 0.4 * 17.38;
+        const reward = amount * baseRate * duration;
+        document.getElementById('result').textContent = `Estimated Reward: ${reward.toFixed(2)} HFV`;
+      } else {
+        document.getElementById('result').textContent = 'Please enter valid inputs.';
+      }
+    }
+  </script>
 </body>
 </html>
