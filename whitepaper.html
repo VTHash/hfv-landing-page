@@ -63,6 +63,32 @@
       0%,100% { text-shadow: 0 0 8px #32f89a, 0 0 16px #32f89a; }
       50% { text-shadow: 0 0 16px #32f89a, 0 0 32px #32f89a; }
     }
+   @keyframes rgbGlowPulse {
+  0% {
+    box-shadow: 0 0 10px #ff00cc, 0 0 20px #3333ff, 0 0 30px #00ffcc;
+    border-color: #ff00cc;
+  }
+  50% {
+    box-shadow: 0 0 20px #00ffcc, 0 0 30px #ff00cc, 0 0 40px #3333ff;
+    border-color: #00ffcc;
+  }
+  100% {
+    box-shadow: 0 0 10px #3333ff, 0 0 20px #00ffcc, 0 0 30px #ff00cc;
+    border-color: #3333ff;
+  }
+}
+
+section {
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto 2rem;
+  text-align: center;
+  background: #1a1a1a;
+  border-radius: 12px;
+
+  border: 2px solid #00ffcc;
+  animation: rgbGlowPulse 3s infinite ease-in-out;
+}
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   </style>
 </head>
