@@ -2,115 +2,139 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HFV Whitepaper</title>
+  <title>HFV Token | Whitepaper</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #0b0b0b;
-      color: #e0e0e0;
-    }
-    section {
-      padding: 3rem 1.5rem;
-      max-width: 960px;
-      margin: 0 auto;
-      border-radius: 16px;
-      border: 1px solid #32f89a40;
-      box-shadow: 0 0 24px rgba(50, 248, 154, 0.15);
-      margin-bottom: 3rem;
-      animation: fadeInUp 1s ease-out;
-    }
-    h2 {
-      color: #00ffcc;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-    p {
-      line-height: 1.6;
+    body { background: #0b0b0b; color: #e0e0e0; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
+    section { padding: 2rem; margin: 1rem auto; max-width: 900px; background: #111; border-radius: 12px; box-shadow: 0 0 16px rgba(0,255,140,0.2); animation: fadeIn 1s ease-in-out; }
+    h2, h3 { color: #32f89a; text-align: center; animation: glowPulse 3s infinite ease-in-out; }
+    p, li { line-height: 1.6; }
+    canvas { max-width: 100%; }
+    .back-button {
+      display: inline-block;
+      margin: 2rem auto 0;
+      padding: 0.8rem 1.6rem;
+      background: linear-gradient(to right, #32f89a, #7dfccd);
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 0 18px #32f89a;
+      text-decoration: none;
+      transition: all 0.3s;
       text-align: center;
     }
-    .card-grid {
+    .back-button:hover { transform: scale(1.05); box-shadow: 0 0 28px #00ff88; }
+    .team-grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 1.5rem;
     }
-    .card {
+    .team-card {
       background: #1a1a1a;
-      padding: 1.5rem;
+      border: 2px solid #00ff88;
       border-radius: 12px;
-      border: 1px solid #32f89a50;
-      box-shadow: 0 0 10px #32f89a30;
-      flex: 1 1 240px;
-      max-width: 280px;
+      padding: 1rem;
+      width: 220px;
       text-align: center;
-      transition: all 0.3s ease;
+      box-shadow: 0 0 16px #00ff8855;
+      animation: fadeInUp 1s ease forwards;
     }
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #32f89a80;
-    }
-    .glow {
-      animation: glowPulse 2s infinite ease-in-out;
-    }
-    .back-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      padding: 0.75rem 1.5rem;
-      background: linear-gradient(135deg, #00ffcc, #32f89a);
-      color: #000;
-      border-radius: 12px;
-      font-weight: bold;
-      text-decoration: none;
-      box-shadow: 0 0 20px #32f89a80;
-      animation: pulse-glow 2s infinite;
-    }
-    @keyframes pulse-glow {
-      0% { box-shadow: 0 0 0px #32f89a; }
-      50% { box-shadow: 0 0 12px #32f89a; }
-      100% { box-shadow: 0 0 0px #32f89a; }
-    }
+    .team-card h4 { margin-bottom: 0.5rem; color: #00ffcc; }
+    .team-card p { font-size: 0.875rem; color: #bbb; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes glowPulse {
-      0%, 100% { border-color: #00ffcc; }
-      50% { border-color: #32f89a; }
+      0%,100% { text-shadow: 0 0 8px #32f89a, 0 0 16px #32f89a; }
+      50% { text-shadow: 0 0 16px #32f89a, 0 0 32px #32f89a; }
     }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   </style>
 </head>
-<body> <section>
-    <h2>Open Source Team – Powered by the Community</h2>
-    <p>HFV is an open-source initiative supported by a global network of professionals building in Web3.</p>
-    <div class="card-grid">
-      <div class="card glow">
-        <h3>AI Data Scientists</h3>
-        <p>Developing smart forecasting and analytics systems for HFV ecosystem growth.</p>
-      </div>
-      <div class="card glow">
-        <h3>Web3 Developers</h3>
-        <p>Building scalable smart contracts and DeFi infrastructure for trustless operations.</p>
-      </div>
-      <div class="card glow">
-        <h3>DApp Engineers</h3>
-        <p>Delivering staking interfaces and integrations with HFV token mechanics.</p>
-      </div>
-      <div class="card glow">
-        <h3>Community Leaders</h3>
-        <p>Engaging users, managing education, and fostering grassroots decentralization.</p>
-      </div>
-      <div class="card glow">
-        <h3>Social Media Influencers</h3>
-        <p>Amplifying HFV's vision across platforms and educating new members.</p>
-      </div>
-      <div class="card glow">
-        <h3>DAO Contributors</h3>
-        <p>Shaping governance proposals, funding rounds, and cross-chain expansion.</p>
-      </div>
+<body><section>
+  <h2>Token Overview</h2>
+  <p><strong>Name:</strong> HFV Token<br>
+     <strong>Total Supply:</strong> 70,000,000 HFV<br>
+     <strong>Contract Address:</strong> 0x6094425D76F9E4436CEBf2d13d588F91e65a02B3
+  </p>
+</section><section>
+  <h2>Token Distribution</h2>
+  <canvas id="tokenChart"></canvas>
+</section><section>
+  <h2>Staking Mechanism</h2>
+  <p>You earn if you hold. If you sell, others earn. Staking duration options:</p>
+  <ul>
+    <li>21 Days (1× Multiplier)</li>
+    <li>3 Months (3× Multiplier)</li>
+    <li>6 Months (6× Multiplier)</li>
+    <li>12 Months (12× Multiplier)</li>
+  </ul>
+  <p><strong>Reward Formula:</strong><br>
+     HFV × 0.4 × 17.38 × Multiplier = Total Reward
+  </p>
+</section><section>
+  <h2>Managed Funds (MF)</h2>
+  <p>All transaction fees are routed to Managed Funds (MF), which redistribute to the PSF. 15% of tokens are locked from the start of ICO. App, team, and marketing funds are also locked.</p>
+</section><section>
+  <h2>PSF (Protection Security Funds)</h2>
+  <p>Receives transaction fees and locked tokens. Ensures investor protection and funds for security mechanisms.</p>
+</section><section>
+  <h2>Roadmap & DAO Expansion</h2>
+  <ul>
+    <li><strong>Investment DAOs:</strong> Community-based project investment strategies</li>
+    <li><strong>Grant DAOs:</strong> Allocate funds to promising proposals</li>
+    <li><strong>Social DAOs:</strong> Organize for awareness and network growth</li>
+    <li><strong>Platform DAOs:</strong> Transparent protocol governance</li>
+  </ul>
+</section><section>
+  <h2>Team & Open Source Contributors</h2>
+  <div class="team-grid">
+    <div class="team-card">
+      <h4>AI Engineers</h4>
+      <p>Integrating machine learning insights for adaptive staking.</p>
     </div>
-  </section><a href="/" class="back-button">← Back to Home</a>
-
-</body>
+    <div class="team-card">
+      <h4>Web3 Devs</h4>
+      <p>Smart contracts, token engineering, protocol audits.</p>
+    </div>
+    <div class="team-card">
+      <h4>DApp Builders</h4>
+      <p>Frontends, staking calculators, analytics & dashboards.</p>
+    </div>
+    <div class="team-card">
+      <h4>Social Influencers</h4>
+      <p>Driving adoption through crypto-native education & reach.</p>
+    </div>
+    <div class="team-card">
+      <h4>DAO Operators</h4>
+      <p>Coordinating governance, transparency, and treasury allocations.</p>
+    </div>
+  </div>
+</section><div style="text-align:center;">
+  <a href="index.html" class="back-button">← Back to Homepage</a>
+</div><script>
+const ctx = document.getElementById('tokenChart');
+new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ['Private Sale (3%)','Presale (18%)','PSF (15%)','Team (18%)','Airdrop (15%)','ICO/Exchange (31%)'],
+    datasets: [{
+      data: [3,18,15,18,15,31],
+      backgroundColor: ['#00ffc3','#32f89a','#4df9c2','#3affc1','#00ffd5','#5affc0'],
+      borderWidth: 2,
+      hoverOffset: 20
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'bottom', labels: { color: '#e0e0e0' } }
+    },
+    animation: {
+      animateRotate: true,
+      duration: 1200
+    }
+  }
+});
+</script></body>
 </html>
