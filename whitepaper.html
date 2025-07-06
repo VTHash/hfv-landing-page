@@ -1,39 +1,60 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HFV Whitepaper</title>
   <link rel="icon" href="./hfv-logo.png" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body { background: #0b0b0b; color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
-    section { padding: 2rem; max-width: 900px; margin: 2rem auto; background: #111; border-radius: 12px; border: 2px solid #00ff88; box-shadow: 0 0 20px #00ff8844; animation: fadeInUp 1s ease-in-out; }
-    h2 { text-align: center; color: #00ff88; text-shadow: 0 0 10px #00ff88; }
-    .highlight { color: #00ff88; font-weight: bold; }
-    .token-chart, .staking-table { background: #1a1a1a; border-radius: 12px; padding: 1rem; margin-top: 1rem; }
-    canvas { max-width: 100%; }
-    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-    th, td { padding: 0.8rem; text-align: center; border-bottom: 1px solid #444; }
-    th { color: #00ff88; }
-    tr:hover { background: #222; }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    body { margin:0; background:#0b0b0b; color:#fff; font-family:'Segoe UI', sans-serif; }
+    h1 { text-align:center; margin:2rem 0; color:#00ffc3; text-shadow:0 0 10px #00ffc3; font-size:2.5rem; }
+    section { max-width:800px; margin:2rem auto; background:#111; border-radius:12px;
+                border:2px solid; padding:2rem; box-shadow:0 0 18px rgba(0,255,195,0.4);
+                animation:fadeInUp 1s ease both; }
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    h2 { text-align:center; margin-bottom:1rem; color:#00ffc3; text-shadow:0 0 6px #00ffc3; }
+    .token-chart { margin:1rem auto; width:380px; }
+    canvas { display:block; }
+    .staking-table { margin:1rem auto; width:100%; max-width:500px; }
+    th, td { padding:0.6rem; text-align:center; }
+    th { color:#00ffc3; }
+    .back-btn {
+      display:block; margin:2rem auto; padding:1rem 2rem;
+      background:linear-gradient(45deg,#32f89a,#00ffd5); color:#000;
+      font-weight:bold; border-radius:12px; text-decoration:none;
+      box-shadow:0 0 20px #00ffae80; animation:pulse-glow 2s infinite;
+    }
+    @keyframes pulse-glow { 0%,100%{box-shadow:0 0 10px #00ff88;}50%{box-shadow:0 0 24px #00ff88;} }
   </style>
 </head>
-<body> <section>
+<body>
+  <h1 data-aos="zoom-in">HFV Token Whitepaper</h1>
+
+  <section data-aos="fade-right">
     <h2>🔹 Token Overview</h2>
-    <p><span class="highlight">Token Name:</span> HFV<br />
-    <span class="highlight">Total Supply:</span> 70,000,000 HFV</p>
-  </section> <section>
+    <p><strong>Name:</strong> HFV Token</p>
+    <p><strong>Total Supply:</strong> 70,000,000 HFV</p>
+    <p><strong>Contract Address:</strong><br>
+       <code>0x6094425D76F9E4436CEBf2d13d588F91e65a02B3</code></p>
+    <p><strong>Network:</strong> Ethereum Mainnet</p>
+  </section>
+
+  <section data-aos="fade-left">
     <h2>🔹 Token Distribution</h2>
     <div class="token-chart">
-      <canvas id="tokenDistributionChart"></canvas>
+      <canvas id="tokenChart"></canvas>
     </div>
-  </section> <section>
+  </section>
+
+  <section data-aos="fade-up">
     <h2>🔹 Staking Mechanism</h2>
-    <p>The staking rewards are based on a multiplier system:</p>
+    <p>Rewards follow the landing page formula:</p>
     <div class="staking-table">
       <table>
         <thead>
-          <tr><th>Lock Duration</th><th>Multiplier</th><th>Formula Used</th></tr>
+          <tr><th>Lock Duration</th><th>Multiplier</th><th>Formula</th></tr>
         </thead>
         <tbody>
           <tr><td>21 Days</td><td>1×</td><td>HFV × 0.4 × 17.38 × Multiplier</td></tr>
@@ -43,55 +64,55 @@
         </tbody>
       </table>
     </div>
-  </section> <section>
+  </section>
+
+  <section data-aos="fade-right">
     <h2>🔹 PSF & Managed Funds</h2>
-    <p>Fees from transfers go to the Managed Funds wallet. From there, funds are distributed to PSF. 15% of all tokens are permanently locked at ICO start.</p>
-  </section> <section>
+    <p>All transfer fees go into MF, then stream to PSF for protocol protection. 15% of supply locked at ICO.</p>
+  </section>
+
+  <section data-aos="fade-left">
     <h2>🔹 DAO Use Cases</h2>
     <ul>
-      <li><span class="highlight">Investment DAOs:</span> Pooling funds to invest in projects</li>
-      <li><span class="highlight">Grant DAOs:</span> Funding aligned initiatives</li>
-      <li><span class="highlight">Social DAOs:</span> Communities around shared values</li>
-      <li><span class="highlight">Platform DAOs:</span> Governance over online protocols</li>
+      <li><strong>Investment DAO:</strong> Collective capital allocation</li>
+      <li><strong>Grant DAO:</strong> Supporting aligned developers</li>
+      <li><strong>Social DAO:</strong> Building vibrant HFV communities</li>
+      <li><strong>Platform DAO:</strong> Governing protocol upgrades</li>
     </ul>
-  </section> <section>
+  </section>
+
+  <section data-aos="zoom-in">
     <h2>🔹 Roadmap</h2>
     <ul>
-      <li>✅ Token & staking contract deployed</li>
+      <li>✅ Token & Staking contracts deployed</li>
       <li>✅ Whitepaper & landing page live</li>
-      <li>📌 Dashboard & DAO rollout</li>
-      <li>📌 HFV mobile dApp release</li>
+      <li>📌 DAO governance tools next</li>
+      <li>📌 Mobile app integration next</li>
     </ul>
-  </section> <section style="text-align:center;">
-    <a href="index.html" style="display:inline-block; margin-top:2rem; padding:1rem 2rem; color:#000; background:linear-gradient(90deg, #00ffcc, #00ffaa); border-radius:12px; box-shadow:0 0 20px #00ff88; text-decoration:none; font-weight:bold; animation:pulse-glow 2s infinite;">⬅️ Return to Homepage</a>
-  </section> <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <script>
-    const ctx = document.getElementById('tokenDistributionChart').getContext('2d');
-    const chart = new Chart(ctx, {
+  </section>
+
+  <a href="index.html" class="back-btn" data-aos="zoom-out">⬅️ Return to Homepage</a>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ once:true, duration:800 });
+    const ctx = document.getElementById('tokenChart').getContext('2d');
+    new Chart(ctx, {
       type: 'doughnut',
       data: {
-        labels: [
-          'Private Sale', 'Presale', 'PSF',
-          'Team and Developers', 'Airdrop', 'ICO and Exchange'
-        ],
-        datasets: [{
-          data: [3, 18, 15, 18, 15, 31],
-          backgroundColor: [
-            '#ff6384', '#36a2eb', '#ffce56',
-            '#4bc0c0', '#9966ff', '#ff9f40'
-          ],
-          hoverOffset: 20
+        labels: ['Private Sale','Presale','PSF','Team/Dev','Airdrop','ICO/Exchange'],
+        datasets:[{
+          data:[3,18,15,18,15,31],
+          backgroundColor:['#ff6384','#36a2eb','#ffce56','#4bc0c0','#9966ff','#ff9f40'],
+          hoverOffset: 24, spacing:8, borderRadius:8
         }]
       },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'bottom',
-            labels: { color: '#fff', padding: 20 }
-          },
-          tooltip: { enabled: true }
-        }
+      options:{
+        responsive:true,
+        animation:{animateRotate:true, duration:1200},
+        plugins:{legend:{position:'bottom', labels:{color:'#fff', padding:20}}}
       }
     });
-  </script></body>
+  </script>
+</body>
 </html>
