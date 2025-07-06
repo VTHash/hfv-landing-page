@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,47 +7,94 @@
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body { margin:0; background:#0b0b0b; color:#fff; font-family:'Segoe UI', sans-serif; }
-    h1 { text-align:center; margin:2rem 0; color:#00ffc3; text-shadow:0 0 10px #00ffc3; font-size:2.5rem; }
-    section { max-width:800px; margin:2rem auto; background:#111; border-radius:12px;
-                border:2px solid; padding:2rem; box-shadow:0 0 18px rgba(0,255,195,0.4);
-                animation:fadeInUp 1s ease both; }
-    @keyframes fadeInUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-    h2 { text-align:center; margin-bottom:1rem; color:#00ffc3; text-shadow:0 0 6px #00ffc3; }
-    .token-chart { margin:1rem auto; width:380px; }
-    canvas { display:block; }
-    .staking-table { margin:1rem auto; width:100%; max-width:500px; }
-    th, td { padding:0.6rem; text-align:center; }
-    th { color:#00ffc3; }
-    .back-btn {
-      display:block; margin:2rem auto; padding:1rem 2rem;
-      background:linear-gradient(45deg,#32f89a,#00ffd5); color:#000;
-      font-weight:bold; border-radius:12px; text-decoration:none;
-      box-shadow:0 0 20px #00ffae80; animation:pulse-glow 2s infinite;
+    body {
+      margin: 0;
+      background: #0b0b0b;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
     }
-    @keyframes pulse-glow { 0%,100%{box-shadow:0 0 10px #00ff88;}50%{box-shadow:0 0 24px #00ff88;} }
+    h1 {
+      text-align: center;
+      margin: 2rem 0;
+      color: #00ffc3;
+      text-shadow: 0 0 10px #00ffc3;
+      font-size: 2.5rem;
+    }
+    section {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: #111;
+      border-radius: 12px;
+      border: 2px solid;
+      padding: 2rem;
+      box-shadow: 0 0 18px rgba(0, 255, 195, 0.4);
+      animation: fadeInUp 1s ease both, borderGlow 4s infinite alternate;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes borderGlow {
+      0% { box-shadow: 0 0 8px #00ffc3, 0 0 16px #00ffc3; }
+      100% { box-shadow: 0 0 24px #00ffc3, 0 0 48px #00ffc3; }
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #00ffc3;
+      text-shadow: 0 0 6px #00ffc3;
+    }
+    .token-chart {
+      margin: 1rem auto;
+      width: 380px;
+    }
+    canvas {
+      display: block;
+    }
+    .staking-table {
+      margin: 1rem auto;
+      width: 100%;
+      max-width: 500px;
+    }
+    th, td {
+      padding: 0.6rem;
+      text-align: center;
+    }
+    th {
+      color: #00ffc3;
+    }
+    .back-btn {
+      display: block;
+      margin: 2rem auto;
+      padding: 1rem 2rem;
+      background: linear-gradient(45deg, #32f89a, #00ffd5);
+      color: #000;
+      font-weight: bold;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 0 20px #00ffae80;
+      animation: pulse-glow 2s infinite, borderGlow 4s infinite alternate;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 10px #00ff88; }
+      50% { box-shadow: 0 0 24px #00ff88; }
+    }
   </style>
 </head>
 <body>
-  <h1 data-aos="zoom-in">HFV Token Whitepaper</h1>
-
-  <section data-aos="fade-right">
+  <h1 data-aos="zoom-in">HFV Token Whitepaper</h1> <section data-aos="fade-right">
     <h2>🔹 Token Overview</h2>
     <p><strong>Name:</strong> HFV Token</p>
     <p><strong>Total Supply:</strong> 70,000,000 HFV</p>
     <p><strong>Contract Address:</strong><br>
        <code>0x6094425D76F9E4436CEBf2d13d588F91e65a02B3</code></p>
     <p><strong>Network:</strong> Ethereum Mainnet</p>
-  </section>
-
-  <section data-aos="fade-left">
+  </section> <section data-aos="fade-left">
     <h2>🔹 Token Distribution</h2>
     <div class="token-chart">
       <canvas id="tokenChart"></canvas>
     </div>
-  </section>
-
-  <section data-aos="fade-up">
+  </section> <section data-aos="fade-up">
     <h2>🔹 Staking Mechanism</h2>
     <p>Rewards follow the landing page formula:</p>
     <div class="staking-table">
@@ -64,14 +110,10 @@
         </tbody>
       </table>
     </div>
-  </section>
-
-  <section data-aos="fade-right">
+  </section> <section data-aos="fade-right">
     <h2>🔹 PSF & Managed Funds</h2>
     <p>All transfer fees go into MF, then stream to PSF for protocol protection. 15% of supply locked at ICO.</p>
-  </section>
-
-  <section data-aos="fade-left">
+  </section> <section data-aos="fade-left">
     <h2>🔹 DAO Use Cases</h2>
     <ul>
       <li><strong>Investment DAO:</strong> Collective capital allocation</li>
@@ -79,9 +121,7 @@
       <li><strong>Social DAO:</strong> Building vibrant HFV communities</li>
       <li><strong>Platform DAO:</strong> Governing protocol upgrades</li>
     </ul>
-  </section>
-
-  <section data-aos="zoom-in">
+  </section> <section data-aos="zoom-in">
     <h2>🔹 Roadmap</h2>
     <ul>
       <li>✅ Token & Staking contracts deployed</li>
@@ -89,12 +129,9 @@
       <li>📌 DAO governance tools next</li>
       <li>📌 Mobile app integration next</li>
     </ul>
-  </section>
+  </section><a href="index.html" class="back-btn" data-aos="zoom-out">⬅️ Return to Homepage</a>
 
-  <a href="index.html" class="back-btn" data-aos="zoom-out">⬅️ Return to Homepage</a>
-
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script> <script>
     AOS.init({ once:true, duration:800 });
     const ctx = document.getElementById('tokenChart').getContext('2d');
     new Chart(ctx, {
@@ -113,6 +150,5 @@
         plugins:{legend:{position:'bottom', labels:{color:'#fff', padding:20}}}
       }
     });
-  </script>
-</body>
+  </script></body>
 </html>
