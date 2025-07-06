@@ -3,131 +3,93 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HFV Whitepaper</title>
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="icon" href="./hfv-logo.png" />
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #0b0b0b;
-      color: #e0e0e0;
-    }
-    h1, h2, h3 {
-      text-align: center;
-      margin-top: 2rem;
-      color: #ffffff;
-      animation: glowText 2s infinite alternate;
-    }
-    section.glow-section {
-      padding: 2rem 1rem;
-      margin: 2rem auto;
-      border: 2px solid transparent;
-      border-radius: 12px;
-      background: #121212;
-      max-width: 900px;
-      box-shadow: 0 0 20px rgba(0, 255, 195, 0.4);
-      animation: rgbPulse 6s infinite ease-in-out;
-    }
-    @keyframes glowText {
-      0% { text-shadow: 0 0 8px #00ffc3, 0 0 16px #00ffc3; }
-      100% { text-shadow: 0 0 16px #00ffc3, 0 0 32px #00ffc3; }
-    }
-    @keyframes rgbPulse {
-      0% { border-color: #00ffc3; box-shadow: 0 0 10px #00ffc3; }
-      50% { border-color: #ff00f2; box-shadow: 0 0 20px #ff00f2; }
-      100% { border-color: #32f89a; box-shadow: 0 0 10px #32f89a; }
-    }
-    canvas {
-      display: block;
-      margin: 1rem auto;
-    }
-    .back-button {
-      display: block;
-      text-align: center;
-      margin: 2rem auto;
-      text-decoration: none;
-      background: linear-gradient(to right, #32f89a, #7dfccd);
-      padding: 1rem 2rem;
-      border-radius: 12px;
-      color: #000;
-      font-weight: bold;
-      width: fit-content;
-      animation: glowText 2s infinite alternate;
-    }
+    body { background: #0b0b0b; color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
+    section { padding: 2rem; max-width: 900px; margin: 2rem auto; background: #111; border-radius: 12px; border: 2px solid #00ff88; box-shadow: 0 0 20px #00ff8844; animation: fadeInUp 1s ease-in-out; }
+    h2 { text-align: center; color: #00ff88; text-shadow: 0 0 10px #00ff88; }
+    .highlight { color: #00ff88; font-weight: bold; }
+    .token-chart, .staking-table { background: #1a1a1a; border-radius: 12px; padding: 1rem; margin-top: 1rem; }
+    canvas { max-width: 100%; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { padding: 0.8rem; text-align: center; border-bottom: 1px solid #444; }
+    th { color: #00ff88; }
+    tr:hover { background: #222; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
-<body>
-  <h1 data-aos="fade-down">HFV Token Whitepaper</h1> <section class="glow-section" data-aos="fade-up">
-    <h2>Token Overview</h2>
-    <p><strong>Name:</strong> HFV Token</p>
-    <p><strong>Total Supply:</strong> 70,000,000 HFV</p>
-  </section> <section id="token-distribution" class="glow-section" data-aos="fade-up" style="padding-top: 2rem; padding-bottom: 2rem;">
-    <h2 style="margin-bottom: 1rem;">Token Distribution</h2>
-    <ul style="text-align:left; max-width:600px; margin: 0 auto;">
-      <li>3% – Private Sale</li>
-      <li>18% – Presale</li>
-      <li>15% – PSF (Protection Security Funds)</li>
-      <li>18% – Team and Developers</li>
-      <li>15% – Airdrop</li>
-      <li>31% – ICO and Exchange</li>
-      <li>13% – Staking Mechanism</li>
-      <li>30–40% – Strategic Sale</li>
-      <li>10% – Airdrops for holders</li>
-      <li>10% – Crosschains</li>
-    </ul>
-    <div style="max-width: 360px; margin: 2rem auto;">
-      <canvas id="tokenChart" width="300" height="300"></canvas>
+<body> <section>
+    <h2>🔹 Token Overview</h2>
+    <p><span class="highlight">Token Name:</span> HFV<br />
+    <span class="highlight">Total Supply:</span> 70,000,000 HFV</p>
+  </section> <section>
+    <h2>🔹 Token Distribution</h2>
+    <div class="token-chart">
+      <canvas id="tokenDistributionChart"></canvas>
     </div>
-  </section> <section class="glow-section" data-aos="fade-up">
-    <h2>Staking Mechanism</h2>
-    <p><strong>Hold to Earn:</strong> Rewards increase the longer you stake.</p>
-    <p><strong>Options:</strong> 3, 6, 12 month locks</p>
-    <p><strong>Reward Formula:</strong></p>
-    <pre style="text-align:left; max-width:600px; margin:0 auto;">HFV × 0.4 × 17.38 × Duration Multiplier</pre>
-    <p>Example: 120 HFV × 0.4 × 17.38 × 6 = 5012.16 HFV</p>
-  </section> <section class="glow-section" data-aos="fade-up">
-    <h2>Managed Funds (MF)</h2>
-    <p>All transaction fees go to MF. From MF, funds flow to PSF.</p>
-    <p>App development, team allocation, and marketing are locked.</p>
-    <p>15% of tokens locked at ICO launch.</p>
-  </section> <section class="glow-section" data-aos="fade-up">
-    <h2>Key Concepts</h2>
-    <ul style="text-align:left; max-width:600px; margin: 0 auto;">
-      <li><strong>PSF (Protection Security Funds):</strong> Receives fees, protects liquidity</li>
-      <li><strong>Team Vesting:</strong> 1 year lock; 2% released monthly post-lock</li>
+  </section> <section>
+    <h2>🔹 Staking Mechanism</h2>
+    <p>The staking rewards are based on a multiplier system:</p>
+    <div class="staking-table">
+      <table>
+        <thead>
+          <tr><th>Lock Duration</th><th>Multiplier</th><th>Formula Used</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>21 Days</td><td>1×</td><td>HFV × 0.4 × 17.38 × Multiplier</td></tr>
+          <tr><td>3 Months</td><td>3×</td><td>HFV × 0.4 × 17.38 × Multiplier</td></tr>
+          <tr><td>6 Months</td><td>6×</td><td>HFV × 0.4 × 17.38 × Multiplier</td></tr>
+          <tr><td>12 Months</td><td>12×</td><td>HFV × 0.4 × 17.38 × Multiplier</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section> <section>
+    <h2>🔹 PSF & Managed Funds</h2>
+    <p>Fees from transfers go to the Managed Funds wallet. From there, funds are distributed to PSF. 15% of all tokens are permanently locked at ICO start.</p>
+  </section> <section>
+    <h2>🔹 DAO Use Cases</h2>
+    <ul>
+      <li><span class="highlight">Investment DAOs:</span> Pooling funds to invest in projects</li>
+      <li><span class="highlight">Grant DAOs:</span> Funding aligned initiatives</li>
+      <li><span class="highlight">Social DAOs:</span> Communities around shared values</li>
+      <li><span class="highlight">Platform DAOs:</span> Governance over online protocols</li>
     </ul>
-  </section> <section class="glow-section" data-aos="fade-up">
-    <h2>Future DAO Proposals</h2>
-    <ul style="text-align:left; max-width:600px; margin: 0 auto;">
-      <li><strong>Investment DAOs:</strong> Collective fund management</li>
-      <li><strong>Grant DAOs:</strong> Funding aligned community projects</li>
-      <li><strong>Social DAOs:</strong> Organizing shared interest communities</li>
-      <li><strong>Platform DAOs:</strong> Governing protocols/platforms transparently</li>
+  </section> <section>
+    <h2>🔹 Roadmap</h2>
+    <ul>
+      <li>✅ Token & staking contract deployed</li>
+      <li>✅ Whitepaper & landing page live</li>
+      <li>📌 Dashboard & DAO rollout</li>
+      <li>📌 HFV mobile dApp release</li>
     </ul>
-  </section><a href="index.html" class="back-button">⬅️ Return to Homepage</a>
-
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> <script>
-    AOS.init();
-    const ctx = document.getElementById('tokenChart').getContext('2d');
-    new Chart(ctx, {
+  </section> <section style="text-align:center;">
+    <a href="index.html" style="display:inline-block; margin-top:2rem; padding:1rem 2rem; color:#000; background:linear-gradient(90deg, #00ffcc, #00ffaa); border-radius:12px; box-shadow:0 0 20px #00ff88; text-decoration:none; font-weight:bold; animation:pulse-glow 2s infinite;">⬅️ Return to Homepage</a>
+  </section> <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <script>
+    const ctx = document.getElementById('tokenDistributionChart').getContext('2d');
+    const chart = new Chart(ctx, {
       type: 'doughnut',
       data: {
-        labels: ["Private Sale", "Presale", "PSF", "Team", "Airdrop", "ICO", "Staking", "Strategic Sale", "Holder Airdrops", "Crosschains"],
+        labels: [
+          'Private Sale', 'Presale', 'PSF',
+          'Team and Developers', 'Airdrop', 'ICO and Exchange'
+        ],
         datasets: [{
-          data: [3, 18, 15, 18, 15, 31, 13, 35, 10, 10],
+          data: [3, 18, 15, 18, 15, 31],
           backgroundColor: [
-            "#32f89a", "#7dfccd", "#00ffc3", "#00ffaa",
-            "#39ffb4", "#72ffd8", "#23fcb1", "#00ff84",
-            "#45ffcc", "#00ffc3"
+            '#ff6384', '#36a2eb', '#ffce56',
+            '#4bc0c0', '#9966ff', '#ff9f40'
           ],
-          borderColor: "#0b0b0b",
-          borderWidth: 2
+          hoverOffset: 20
         }]
       },
       options: {
         responsive: true,
         plugins: {
-          legend: { labels: { color: "#e0e0e0" } }
+          legend: {
+            position: 'bottom',
+            labels: { color: '#fff', padding: 20 }
+          },
+          tooltip: { enabled: true }
         }
       }
     });
