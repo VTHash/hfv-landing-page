@@ -8,11 +8,25 @@
   <link rel="icon" href="./hfv-logo.png" />
   <style>
     body {
-      background: #0b0b0b;
-      color: #e0e0e0;
-      font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: #e0e0e0;
+      background: #0b0b0b;
+      overflow-x: hidden;
+      position: relative;
+    }
+    canvas#particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+    header, section, footer {
+      position: relative;
+      z-index: 1;
     }
     header {
       text-align: center;
@@ -44,6 +58,18 @@
     .launch-button:hover {
       transform: scale(1.05);
       box-shadow: 0 0 24px #32f89a;
+    }
+    .gradient-hover {
+      background: linear-gradient(90deg, #32f89a, #00e0ff, #ff00c8, #32f89a);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rgbPulse 6s ease infinite;
+      transition: transform 0.3s;
+    }
+    .gradient-hover:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 10px rgba(50, 248, 154, 0.6));
     }
     section {
       padding: 2rem;
@@ -123,32 +149,33 @@
       width: 48px;
       height: 48px;
       margin-bottom: 0.5rem;
-      transition: filter .3s;
-    }
-    .social-item:hover img {
-      filter: drop-shadow(0 0 14px #32f89a);
     }
     @keyframes pulse-glow {
-      0%,100% { filter: drop-shadow(0 0 0px #32f89a); }
+      0%, 100% { filter: drop-shadow(0 0 0px #32f89a); }
       50% { filter: drop-shadow(0 0 10px #32f89a); }
     }
     @keyframes glowPulse {
-      0%,100% { filter: drop-shadow(0 0 4px #00ff88); }
+      0%, 100% { filter: drop-shadow(0 0 4px #00ff88); }
       50% { filter: drop-shadow(0 0 20px #00ff88); }
+    }
+    @keyframes rgbPulse {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
   </style>
 </head>
 <body>
-
+  <canvas id="particles-js"></canvas>
   <header>
     <img src="./hfv-logo.png" alt="HFV Logo" class="logo" />
-    <h1>Stake HFV. Earn Rewards.</h1>
-    <p>Secure, Transparent & High-Yield Staking — Powered by Ethereum</p>
+    <h1 class="gradient-hover">Stake HFV. Earn Rewards.</h1>
+    <p class="gradient-hover">Secure, Transparent & High-Yield Staking — Powered by Ethereum</p>
     <a href="https://hfv-staking-dapp.netlify.app" class="launch-button">Launch DApp</a>
   </header>
 
   <section>
-    <h2>High‑Tech HFV Staking Calculator</h2>
+    <h2 class="gradient-hover">High‑Tech HFV Staking Calculator</h2>
     <div class="calculator">
       <label>Amount to Stake (HFV): <input type="number" id="amount" placeholder="e.g. 1000" /></label>
       <label>Select Duration:
@@ -165,7 +192,7 @@
   </section>
 
   <section>
-    <h2>Estimate Your HFV Rewards</h2>
+    <h2 class="gradient-hover">Estimate Your HFV Rewards</h2>
     <div class="calculator">
       <input id="hfvAmount" type="number" placeholder="Enter amount to stake" oninput="updateRewards()" />
       <select id="lockDuration" onchange="updateRewards()">
@@ -179,28 +206,32 @@
     </div>
   </section>
 
-  <section id="social-links">
-    <a href="https://discord.gg/Nq9v3JRp" class="social-item" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord" />
-      <span>Discord</span>
-    </a>
-    <a href="https://t.me/hfvtokencommunity" class="social-item" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
-      <span>Telegram</span>
-    </a>
-    <a href="https://x.com/hfvtoken" class="social-item" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="X" />
-      <span>X (Twitter)</span>
-    </a>
-    <a href="https://github.com/VTHash" class="social-item" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub" />
-      <span>GitHub</span>
-    </a>
+  <section>
+    <h2 class="gradient-hover">🌐 Follow HFV Official Channels</h2>
+    <div id="social-links">
+      <a href="https://discord.gg/Nq9v3JRp" class="social-item" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord" />
+        <span>Discord</span>
+      </a>
+      <a href="https://t.me/hfvtokencommunity" class="social-item" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
+        <span>Telegram</span>
+      </a>
+      <a href="https://x.com/hfvtoken" class="social-item" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="X" />
+        <span>X (Twitter)</span>
+      </a>
+      <a href="https://github.com/VTHash" class="social-item" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub" />
+        <span>GitHub</span>
+      </a>
+    </div>
   </section>
 
   <section>
-    <h2>✅ Verified HFV Contracts</h2>
+    <h2 class="gradient-hover">✅ Verified HFV Contracts</h2>
     <div id="social-links">
+      <!-- Token verification -->
       <a href="https://blockscout.com/eth/mainnet/address/0x6094425D76F9E4436CEBf2d13d588F91e65a02B3" class="social-item" target="_blank">
         <img src="./hfv-logo.png" alt="HFV Token" class="glow" />
         <span>Token @Blockscout</span>
@@ -213,6 +244,7 @@
         <img src="./hfv-logo.png" alt="HFV Token" class="glow" />
         <span>Token @Routescan</span>
       </a>
+      <!-- Staking verification -->
       <a href="https://blockscout.com/eth/mainnet/address/0xb13b1A04E5fbC29A036480bBc504d6fb13B1c6De" class="social-item" target="_blank">
         <img src="./hfv-logo.png" alt="HFV Staking" class="glow" />
         <span>Staking @Blockscout</span>
@@ -247,6 +279,39 @@
         document.getElementById('result').textContent = 'Please enter valid inputs.';
       }
     }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS(\"particles-js\", {
+      \"particles\": {
+        \"number\": { \"value\": 80 },
+        \"color\": { \"value\": \"#00ff88\" },
+        \"shape\": { \"type\": \"circle\" },
+        \"opacity\": { \"value\": 0.5 },
+        \"size\": { \"value\": 3 },
+        \"line_linked\": {
+          \"enable\": true,
+          \"distance\": 120,
+          \"color\": \"#32f89a\",
+          \"opacity\": 0.4,
+          \"width\": 1
+        },
+        \"move\": { \"enable\": true, \"speed\": 1.6 }
+      },
+      \"interactivity\": {
+        \"detect_on\": \"canvas\",
+        \"events\": {
+          \"onhover\": { \"enable\": true, \"mode\": \"repulse\" },
+          \"onclick\": { \"enable\": true, \"mode\": \"push\" },
+          \"resize\": true
+        },
+        \"modes\": {
+          \"repulse\": { \"distance\": 80, \"duration\": 0.4 },
+          \"push\": { \"particles_nb\": 4 }
+        }
+      },
+      \"retina_detect\": true
+    });
   </script>
 </body>
 </html>
