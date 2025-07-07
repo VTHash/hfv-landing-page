@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,22 +14,20 @@
       background: #0b0b0b;
       overflow-x: hidden;
     }
-    canvas#vortexCanvas {
-      position: absolute;
+    #vortexCanvas {
+      position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
       z-index: -1;
     }
-    .vortex-section {
-      position: relative;
-      height: 100vh;
+    header {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      height: 100vh;
       text-align: center;
     }
     .logo {
@@ -66,9 +63,63 @@
       transform: scale(1.05);
       filter: drop-shadow(0 0 10px rgba(50, 248, 154, 0.6));
     }
+    section {
+      padding: 2rem;
+      max-width: 900px;
+      margin: 0 auto 2rem;
+      text-align: center;
+      background: #1a1a1a;
+      border-radius: 12px;
+    }
+    .calculator {
+      background: rgba(25,25,25,0.8);
+      padding: 2rem;
+      border-radius: 16px;
+      border: 1px solid #2affc3;
+      box-shadow: 0 0 18px #32f89a50;
+      backdrop-filter: blur(6px);
+    }
+    input, select {
+      display: block;
+      margin: 0.5rem auto;
+      width: 70%;
+      padding: 0.5rem;
+      border: 1px solid #2affc3;
+      border-radius: 8px;
+      background: #000;
+      color: #e0e0e0;
+    }
+    button {
+      display: block;
+      margin: 1rem auto 0;
+      padding: 0.6rem 1.5rem;
+      background: #00ff84;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform .3s, box-shadow .3s;
+    }
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 18px #00ff84aa;
+    }
+    .result, #rewardOutput {
+      font-weight: bold;
+      color: #00ff88;
+      margin-top: 1rem;
+      font-size: 1.2rem;
+    }
+    .glow {
+      animation: glowPulse 2s infinite ease-in-out;
+    }
     @keyframes pulse-glow {
       0%, 100% { filter: drop-shadow(0 0 0px #32f89a); }
       50% { filter: drop-shadow(0 0 10px #32f89a); }
+    }
+    @keyframes glowPulse {
+      0%, 100% { filter: drop-shadow(0 0 4px #00ff88); }
+      50% { filter: drop-shadow(0 0 20px #00ff88); }
     }
     @keyframes rgbPulse {
       0% { background-position: 0% 50%; }
@@ -79,156 +130,365 @@
 </head>
 <body>
   <canvas id="vortexCanvas"></canvas>
-  <section class="vortex-section">
+  <header>
     <img src="./hfv-logo.png" alt="HFV Logo" class="logo" />
     <h1 class="gradient-hover">Stake HFV. Earn Rewards.</h1>
     <p class="gradient-hover">Secure, Transparent & High-Yield Staking — Powered by Ethereum</p>
     <a href="https://hfv-staking-dapp.netlify.app" class="launch-button">Launch DApp</a>
+  </header> <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Stake HFV tokens and earn rewards securely on Ethereum. Choose your duration and calculate real-time staking APY.">
+  <title>HFV Staking | Decentralized & Transparent</title>
+  <link rel="icon" href="./hfv-logo.png" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: #e0e0e0;
+      background: #0b0b0b;
+      overflow-x: hidden;
+      position: relative;
+    }
+    canvas#particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+    header, section, footer {
+      position: relative;
+      z-index: 1;
+    }
+    header {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      background: #111;
+    }
+    .logo {
+      width: 64px;
+      height: 64px;
+      animation: pulse-glow 2.5s infinite;
+      transition: transform .3s, filter .3s;
+    }
+    .logo:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 14px #32f89a);
+    }
+    .launch-button {
+      display: inline-block;
+      background: linear-gradient(to right, #32f89a, #7dfccd);
+      color: #000;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 18px #32f89a80;
+      text-decoration: none;
+      animation: pulse-glow 2.5s infinite;
+      transition: all .3s;
+    }
+    .launch-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 24px #32f89a;
+    }
+    .gradient-hover {
+      background: linear-gradient(90deg, #32f89a, #00e0ff, #ff00c8, #32f89a);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rgbPulse 6s ease infinite;
+      transition: transform 0.3s;
+    }
+    .gradient-hover:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 10px rgba(50, 248, 154, 0.6));
+    }
+    section {
+      padding: 2rem;
+      max-width: 900px;
+      margin: 0 auto 2rem;
+      text-align: center;
+      background: #1a1a1a;
+      border-radius: 12px;
+    }
+    .calculator {
+      background: rgba(25,25,25,0.8);
+      padding: 2rem;
+      border-radius: 16px;
+      border: 1px solid #2affc3;
+      box-shadow: 0 0 18px #32f89a50;
+      backdrop-filter: blur(6px);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .calculator:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 24px #32f89a99;
+    }
+    input, select {
+      display: block;
+      margin: 0.5rem auto;
+      width: 70%;
+      padding: 0.5rem;
+      border: 1px solid #2affc3;
+      border-radius: 8px;
+      background: #000;
+      color: #e0e0e0;
+    }
+    button {
+      display: block;
+      margin: 1rem auto 0;
+      padding: 0.6rem 1.5rem;
+      background: #00ff84;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform .3s, box-shadow .3s;
+    }
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 18px #00ff84aa;
+    }
+    .result, #rewardOutput {
+      font-weight: bold;
+      color: #00ff88;
+      margin-top: 1rem;
+      font-size: 1.2rem;
+    }
+    .glow {
+      animation: glowPulse 2s infinite ease-in-out;
+    }
+    #social-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .social-item {
+      text-decoration: none;
+      color: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .social-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #32f89a80;
+    }
+    .social-item img {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 0.5rem;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { filter: drop-shadow(0 0 0px #32f89a); }
+      50% { filter: drop-shadow(0 0 10px #32f89a); }
+    }
+    @keyframes glowPulse {
+      0%, 100% { filter: drop-shadow(0 0 4px #00ff88); }
+      50% { filter: drop-shadow(0 0 20px #00ff88); }
+    }
+    @keyframes rgbPulse {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles-js"></canvas>
+  <header>
+    <img src="./hfv-logo.png" alt="HFV Logo" class="logo" />
+    <h1 class="gradient-hover">Stake HFV. Earn Rewards.</h1>
+    <p class="gradient-hover">Secure, Transparent & High-Yield Staking — Powered by Ethereum</p>
+    <a href="https://hfv-staking-dapp.netlify.app" class="launch-button">Launch DApp</a>
+  </header>
+
+  <section>
+    <h2 class="gradient-hover">High‑Tech HFV Staking Calculator</h2>
+    <div class="calculator">
+      <label>Amount to Stake (HFV): <input type="number" id="amount" placeholder="e.g. 1000" /></label>
+      <label>Select Duration:
+        <select id="duration">
+          <option value="1">21 Days</option>
+          <option value="3">3 Months</option>
+          <option value="6">6 Months</option>
+          <option value="12">12 Months</option>
+        </select>
+      </label>
+      <button onclick="calculateReward()">Calculate</button>
+      <p class="result" id="result"></p>
+    </div>
   </section>
 
   <section>
-  <h2 class="gradient-hover">High‑Tech HFV Staking Calculator</h2>
-  <div class="calculator">
-    <label>Amount to Stake (HFV): <input type="number" id="amount" placeholder="e.g. 1000" /></label>
-    <label>Select Duration:
-      <select id="duration">
-        <option value="1">21 Days</option>
-        <option value="3">3 Months</option>
-        <option value="6">6 Months</option>
-        <option value="12">12 Months</option>
+    <h2 class="gradient-hover">Estimate Your HFV Rewards</h2>
+    <div class="calculator">
+      <input id="hfvAmount" type="number" placeholder="Enter amount to stake" oninput="updateRewards()" />
+      <select id="lockDuration" onchange="updateRewards()">
+        <option value="1">21 Days (×1)</option>
+        <option value="3">3 Months (×3)</option>
+        <option value="6">6 Months (×6)</option>
+        <option value="12">12 Months (×12)</option>
       </select>
-    </label>
-    <button onclick="calculateReward()">Calculate</button>
-    <p class="result" id="result"></p>
-  </div>
-</section>
+      <p>Estimated Reward:</p>
+      <div id="rewardOutput" class="glow">0 HFV</div>
+    </div>
+  </section>
 
-<section>
-  <h2 class="gradient-hover">Estimate Your HFV Rewards</h2>
-  <div class="calculator">
-    <input id="hfvAmount" type="number" placeholder="Enter amount to stake" oninput="updateRewards()" />
-    <select id="lockDuration" onchange="updateRewards()">
-      <option value="1">21 Days (×1)</option>
-      <option value="3">3 Months (×3)</option>
-      <option value="6">6 Months (×6)</option>
-      <option value="12">12 Months (×12)</option>
-    </select>
-    <p>Estimated Reward:</p>
-    <div id="rewardOutput" class="glow">0 HFV</div>
-  </div>
-</section>
+  <section>
+    <h2 class="gradient-hover">🌐 Follow HFV Official Channels</h2>
+    <div id="social-links">
+      <a href="https://discord.gg/Nq9v3JRp" class="social-item" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord" />
+        <span>Discord</span>
+      </a>
+      <a href="https://t.me/hfvtokencommunity" class="social-item" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
+        <span>Telegram</span>
+      </a>
+      <a href="https://x.com/hfvtoken" class="social-item" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="X" />
+        <span>X (Twitter)</span>
+      </a>
+      <a href="https://github.com/VTHash" class="social-item" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub" />
+        <span>GitHub</span>
+      </a>
+    </div>
+  </section>
 
-<section>
-  <h2 class="gradient-hover">🌐 Follow HFV Official Channels</h2>
-  <div id="social-links">
-    <a href="https://discord.gg/Nq9v3JRp" class="social-item" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord" />
-      <span>Discord</span>
-    </a>
-    <a href="https://t.me/hfvtokencommunity" class="social-item" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
-      <span>Telegram</span>
-    </a>
-    <a href="https://x.com/hfvtoken" class="social-item" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="X" />
-      <span>X (Twitter)</span>
-    </a>
-    <a href="https://github.com/VTHash" class="social-item" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub" />
-      <span>GitHub</span>
-    </a>
-  </div>
-</section>
-
-<section>
-  <h2 class="gradient-hover">✅ Verified HFV Contracts</h2>
-  <div id="social-links">
-    <!-- Token verification -->
-    <a href="https://blockscout.com/eth/mainnet/address/0x6094425D76F9E4436CEBf2d13d588F91e65a02B3" class="social-item" target="_blank">
-      <img src="./hfv-logo.png" alt="HFV Token" class="glow" />
-      <span>Token @Blockscout</span>
-    </a>
-    <a href="https://sourcify.dev/server/contracts/full_match/1/0x6094425D76F9E4436CEBf2d13d588F91e65a02B3" class="social-item" target="_blank">
-      <img src="./hfv-logo.png" alt="HFV Token" class="glow" />
-      <span>Token @Sourcify</span>
-    </a>
-    <a href="https://routescan.io/mainnet/address/0x6094425D76F9E4436CEBf2d13d588F91e65a02B3" class="social-item" target="_blank">
-      <img src="./hfv-logo.png" alt="HFV Token" class="glow" />
-      <span>Token @Routescan</span>
-    </a>
-    <!-- Staking verification -->
-    <a href="https://blockscout.com/eth/mainnet/address/0xb13b1A04E5fbC29A036480bBc504d6fb13B1c6De" class="social-item" target="_blank">
-      <img src="./hfv-logo.png" alt="HFV Staking" class="glow" />
-      <span>Staking @Blockscout</span>
-    </a>
-    <a href="https://sourcify.dev/server/contracts/full_match/1/0xb13b1A04E5fbC29A036480bBc504d6fb13B1c6De" class="social-item" target="_blank">
-      <img src="./hfv-logo.png" alt="HFV Staking" class="glow" />
-      <span>Staking @Sourcify</span>
-    </a>
-    <a href="https://routescan.io/mainnet/address/0xb13b1A04E5fbC29A036480bBc504d6fb13B1c6De" class="social-item" target="_blank">
-      <img src="./hfv-logo.png" alt="HFV Staking" class="glow" />
-      <span>Staking @Routescan</span>
-    </a>
-  </div>
-</section>
+  <section>
+    <h2 class="gradient-hover">✅ Verified HFV Contracts</h2>
+    <div id="social-links">
+      <!-- Token verification -->
+      <a href="https://blockscout.com/eth/mainnet/address/0x6094425D76F9E4436CEBf2d13d588F91e65a02B3" class="social-item" target="_blank">
+        <img src="./hfv-logo.png" alt="HFV Token" class="glow" />
+        <span>Token @Blockscout</span>
+      </a>
+      <a href="https://sourcify.dev/server/contracts/full_match/1/0x6094425D76F9E4436CEBf2d13d588F91e65a02B3" class="social-item" target="_blank">
+        <img src="./hfv-logo.png" alt="HFV Token" class="glow" />
+        <span>Token @Sourcify</span>
+      </a>
+      <a href="https://routescan.io/mainnet/address/0x6094425D76F9E4436CEBf2d13d588F91e65a02B3" class="social-item" target="_blank">
+        <img src="./hfv-logo.png" alt="HFV Token" class="glow" />
+        <span>Token @Routescan</span>
+      </a>
+      <!-- Staking verification -->
+      <a href="https://blockscout.com/eth/mainnet/address/0xb13b1A04E5fbC29A036480bBc504d6fb13B1c6De" class="social-item" target="_blank">
+        <img src="./hfv-logo.png" alt="HFV Staking" class="glow" />
+        <span>Staking @Blockscout</span>
+      </a>
+      <a href="https://sourcify.dev/server/contracts/full_match/1/0xb13b1A04E5fbC29A036480bBc504d6fb13B1c6De" class="social-item" target="_blank">
+        <img src="./hfv-logo.png" alt="HFV Staking" class="glow" />
+        <span>Staking @Sourcify</span>
+      </a>
+      <a href="https://routescan.io/mainnet/address/0xb13b1A04E5fbC29A036480bBc504d6fb13B1c6De" class="social-item" target="_blank">
+        <img src="./hfv-logo.png" alt="HFV Staking" class="glow" />
+        <span>Staking @Routescan</span>
+      </a>
+    </div>
+  </section>
 <section style="text-align: center; padding: 4rem 1rem;">
   <a href="whitepaper.html" class="launch-button glow">📜 Read the HFV Whitepaper</a>
 </section>
+  <footer>
+    <p>© 2025 HFV Token. All rights reserved.</p>
+  </footer>
 
-<footer>
-  <p>© 2025 HFV Token. All rights reserved.</p>
-</footer>
-
-<script>
-  function updateRewards() {
-    const a = parseFloat(document.getElementById('hfvAmount').value) || 0;
-    const m = parseInt(document.getElementById('lockDuration').value) || 1;
-    document.getElementById('rewardOutput').innerText = (a * 0.4 * 17.38 * m).toFixed(2) + ' HFV';
-  }
-  function calculateReward() {
-    const a = parseFloat(document.getElementById('amount').value);
-    const d = parseInt(document.getElementById('duration').value);
-    if (!isNaN(a) && !isNaN(d)) {
-      document.getElementById('result').textContent = 'Estimated Reward: ' + (a * 0.4 * 17.38 * d).toFixed(2) + ' HFV';
-    } else {
-      document.getElementById('result').textContent = 'Please enter valid inputs.';
+  <script>
+    function updateRewards() {
+      const a = parseFloat(document.getElementById('hfvAmount').value) || 0;
+      const m = parseInt(document.getElementById('lockDuration').value) || 1;
+      document.getElementById('rewardOutput').innerText = (a * 0.4 * 17.38 * m).toFixed(2) + ' HFV';
     }
-  }
-</script>
-
-<script>
-  const canvas = document.getElementById('vortexCanvas');
-  const ctx = canvas.getContext('2d');
-  let width = canvas.width = window.innerWidth;
-  let height = canvas.height = window.innerHeight;
-  const numDots = 160;
-  let angleOffset = 0;
-  function drawVortex() {
-    ctx.clearRect(0, 0, width, height);
-    const time = Date.now() * 0.002;
-    for (let i = 0; i < numDots; i++) {
-      const t = i / numDots;
-      const radius = t * Math.min(width, height) * 0.4;
-      const angle = angleOffset + t * Math.PI * 16;
-      const x = width / 2 + radius * Math.cos(angle);
-      const y = height / 2 + radius * Math.sin(angle);
-      const pulse = 0.6 + 0.4 * Math.sin(time + i * 0.3);
-      const size = 1.8 + 2.2 * pulse;
-      ctx.beginPath();
-      ctx.arc(x, y, size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(0, 255, 136, ${pulse})`;
-      ctx.shadowColor = '#00ff88';
-      ctx.shadowBlur = 10 * pulse;
-      ctx.fill();
+    function calculateReward() {
+      const a = parseFloat(document.getElementById('amount').value);
+      const d = parseInt(document.getElementById('duration').value);
+      if (!isNaN(a) && !isNaN(d)) {
+        document.getElementById('result').textContent = 'Estimated Reward: ' + (a * 0.4 * 17.38 * d).toFixed(2) + ' HFV';
+      } else {
+        document.getElementById('result').textContent = 'Please enter valid inputs.';
+      }
     }
-    angleOffset += 0.0015;
-    requestAnimationFrame(drawVortex);
-  }
-  drawVortex();
-  window.addEventListener('resize', () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  });
-</script>
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS(\"particles-js\", {
+      \"particles\": {
+        \"number\": { \"value\": 80 },
+        \"color\": { \"value\": \"#00ff88\" },
+        \"shape\": { \"type\": \"circle\" },
+        \"opacity\": { \"value\": 0.5 },
+        \"size\": { \"value\": 3 },
+        \"line_linked\": {
+          \"enable\": true,
+          \"distance\": 120,
+          \"color\": \"#32f89a\",
+          \"opacity\": 0.4,
+          \"width\": 1
+        },
+        \"move\": { \"enable\": true, \"speed\": 1.6 }
+      },
+      \"interactivity\": {
+        \"detect_on\": \"canvas\",
+        \"events\": {
+          \"onhover\": { \"enable\": true, \"mode\": \"repulse\" },
+          \"onclick\": { \"enable\": true, \"mode\": \"push\" },
+          \"resize\": true
+        },
+        \"modes\": {
+          \"repulse\": { \"distance\": 80, \"duration\": 0.4 },
+          \"push\": { \"particles_nb\": 4 }
+        }
+      },
+      \"retina_detect\": true
+    });
+  </script>
 </body>
+</html> <script>
+    const canvas = document.getElementById('vortexCanvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+    const numDots = 160;
+    let angleOffset = 0;
+
+    function drawVortex() {
+      ctx.clearRect(0, 0, width, height);
+      const time = Date.now() * 0.002;
+      for (let i = 0; i < numDots; i++) {
+        const t = i / numDots;
+        const radius = t * Math.min(width, height) * 0.4;
+        const angle = angleOffset + t * Math.PI * 16;
+        const x = width / 2 + radius * Math.cos(angle);
+        const y = height / 2 + radius * Math.sin(angle);
+        const pulse = 0.6 + 0.4 * Math.sin(time + i * 0.3);
+        const size = 1.8 + 2.2 * pulse;
+
+        ctx.beginPath();
+        ctx.arc(x, y, size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 255, 136, ${pulse})`;
+        ctx.shadowColor = '#00ff88';
+        ctx.shadowBlur = 10 * pulse;
+        ctx.fill();
+      }
+      angleOffset += 0.0015;
+      requestAnimationFrame(drawVortex);
+    }
+
+    drawVortex();
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+  </script></body>
 </html>
