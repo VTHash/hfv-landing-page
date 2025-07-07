@@ -14,71 +14,62 @@
       color: #e0e0e0;
       background: #0b0b0b;
       overflow-x: hidden;
-      position: relative;
     }
-    canvas#particles-js {
-      position: fixed;
+
+    header.hero-vortex {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      background-color: black;
+    }
+
+    #vortexCanvas {
+      position: absolute;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
-    }
-    header, section, footer {
-      position: relative;
+      width: 100%;
+      height: 100%;
       z-index: 1;
     }
-    header {
+
+    .center-logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120px;
+      z-index: 3;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 4;
       text-align: center;
-      padding: 3rem 1rem 2rem;
-      background: #111;
+      top: 55%;
+      transform: translateY(-50%);
     }
-    .logo {
-      width: 64px;
-      height: 64px;
-      animation: pulse-glow 2.5s infinite;
-      transition: transform .3s, filter .3s;
+
+    .hero-content h1 {
+      font-size: 3rem;
+      color: #00ff88;
+      text-shadow: 0 0 10px #00ff88;
     }
-    .logo:hover {
-      transform: scale(1.05);
-      filter: drop-shadow(0 0 14px #32f89a);
+
+    .hero-content p {
+      font-size: 1.2rem;
+      color: #ccc;
     }
-    .launch-button {
-      display: inline-block;
-      background: linear-gradient(to right, #32f89a, #7dfccd);
-      color: #000;
-      font-weight: 600;
-      padding: 1rem 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 18px #32f89a80;
-      text-decoration: none;
-      animation: pulse-glow 2.5s infinite;
-      transition: all .3s;
-    }
-    .launch-button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 24px #32f89a;
-    }
-    .gradient-hover {
-      background: linear-gradient(90deg, #32f89a, #00e0ff, #ff00c8, #32f89a);
-      background-size: 300% 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: rgbPulse 6s ease infinite;
-      transition: transform 0.3s;
-    }
-    .gradient-hover:hover {
-      transform: scale(1.05);
-      filter: drop-shadow(0 0 10px rgba(50, 248, 154, 0.6));
-    }
+
     section {
       padding: 2rem;
       max-width: 900px;
-      margin: 0 auto 2rem;
+      margin: 0 auto;
       text-align: center;
       background: #1a1a1a;
       border-radius: 12px;
+      margin-bottom: 2rem;
     }
+
     .calculator {
       background: rgba(25,25,25,0.8);
       padding: 2rem;
@@ -86,12 +77,8 @@
       border: 1px solid #2affc3;
       box-shadow: 0 0 18px #32f89a50;
       backdrop-filter: blur(6px);
-      transition: transform .3s, box-shadow .3s;
     }
-    .calculator:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 24px #32f89a99;
-    }
+
     input, select {
       display: block;
       margin: 0.5rem auto;
@@ -102,6 +89,7 @@
       background: #000;
       color: #e0e0e0;
     }
+
     button {
       display: block;
       margin: 1rem auto 0;
@@ -111,21 +99,35 @@
       border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
-      transition: transform .3s, box-shadow .3s;
     }
-    button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 18px #00ff84aa;
-    }
+
     .result, #rewardOutput {
       font-weight: bold;
       color: #00ff88;
       margin-top: 1rem;
       font-size: 1.2rem;
     }
-    .glow {
-      animation: glowPulse 2s infinite ease-in-out;
+
+    .launch-button {
+      background: linear-gradient(to right, #32f89a, #7dfccd);
+      color: #000;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 18px #32f89a80;
+      text-decoration: none;
+      margin-top: 1rem;
+      display: inline-block;
     }
+
+    .gradient-hover {
+      background: linear-gradient(90deg, #32f89a, #00e0ff, #ff00c8, #32f89a);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rgbPulse 6s ease infinite;
+    }
+
     #social-links {
       display: flex;
       justify-content: center;
@@ -133,45 +135,44 @@
       gap: 2rem;
       margin-top: 2rem;
     }
+
     .social-item {
       text-decoration: none;
       color: #e0e0e0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: transform .3s, box-shadow .3s;
     }
-    .social-item:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #32f89a80;
-    }
+
     .social-item img {
       width: 48px;
       height: 48px;
       margin-bottom: 0.5rem;
     }
-    @keyframes pulse-glow {
-      0%, 100% { filter: drop-shadow(0 0 0px #32f89a); }
-      50% { filter: drop-shadow(0 0 10px #32f89a); }
-    }
-    @keyframes glowPulse {
-      0%, 100% { filter: drop-shadow(0 0 4px #00ff88); }
-      50% { filter: drop-shadow(0 0 20px #00ff88); }
-    }
+
     @keyframes rgbPulse {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
   </style>
 </head>
 <body>
-  <canvas id="particles-js"></canvas>
-  <header>
-    <img src="./hfv-logo.png" alt="HFV Logo" class="logo" />
-    <h1 class="gradient-hover">Stake HFV. Earn Rewards.</h1>
-    <p class="gradient-hover">Secure, Transparent & High-Yield Staking — Powered by Ethereum</p>
-    <a href="https://hfv-staking-dapp.netlify.app" class="launch-button">Launch DApp</a>
+  <header class="hero-vortex">
+    <canvas id="vortexCanvas"></canvas>
+    <img src="./hfv-logo.png" alt="HFV Logo" class="center-logo" />
+    <div class="hero-content">
+      <h1>HFV PROTOCOL</h1>
+      <p>Stake securely. Earn passively.</p>
+      <a href="https://hfv-staking-dapp.netlify.app" class="launch-button">Launch DApp</a>
+    </div>
   </header>
 
   <section>
@@ -228,50 +229,49 @@
     </div>
   </section>
 
-  <section>
-    <h2 class="gradient-hover">✅ Verified HFV Contracts</h2>
-    <div id="social-links">
-      <!-- Token verification -->
-      <a href="https://blockscout.com/eth/mainnet/address/0x6094425D76F9E4436CEBf2d13d588F91e65a02B3" class="social-item" target="_blank">
-        <img src="./hfv-logo.png" alt="HFV Token" class="glow" />
-        <span>Token @Blockscout</span>
-      </a>
-      <a href="https://sourcify.dev/server/contracts/full_match/1/0x6094425D76F9E4436CEBf2d13d588F91e65a02B3" class="social-item" target="_blank">
-        <img src="./hfv-logo.png" alt="HFV Token" class="glow" />
-        <span>Token @Sourcify</span>
-      </a>
-      <a href="https://routescan.io/mainnet/address/0x6094425D76F9E4436CEBf2d13d588F91e65a02B3" class="social-item" target="_blank">
-        <img src="./hfv-logo.png" alt="HFV Token" class="glow" />
-        <span>Token @Routescan</span>
-      </a>
-      <!-- Staking verification -->
-      <a href="https://blockscout.com/eth/mainnet/address/0xb13b1A04E5fbC29A036480bBc504d6fb13B1c6De" class="social-item" target="_blank">
-        <img src="./hfv-logo.png" alt="HFV Staking" class="glow" />
-        <span>Staking @Blockscout</span>
-      </a>
-      <a href="https://sourcify.dev/server/contracts/full_match/1/0xb13b1A04E5fbC29A036480bBc504d6fb13B1c6De" class="social-item" target="_blank">
-        <img src="./hfv-logo.png" alt="HFV Staking" class="glow" />
-        <span>Staking @Sourcify</span>
-      </a>
-      <a href="https://routescan.io/mainnet/address/0xb13b1A04E5fbC29A036480bBc504d6fb13B1c6De" class="social-item" target="_blank">
-        <img src="./hfv-logo.png" alt="HFV Staking" class="glow" />
-        <span>Staking @Routescan</span>
-      </a>
-    </div>
+  <section style="text-align: center; padding: 4rem 1rem;">
+    <a href="whitepaper.html" class="launch-button">📜 Read the HFV Whitepaper</a>
   </section>
-<section style="text-align: center; padding: 4rem 1rem;">
-  <a href="whitepaper.html" class="launch-button glow">📜 Read the HFV Whitepaper</a>
-</section>
+
   <footer>
     <p>© 2025 HFV Token. All rights reserved.</p>
   </footer>
 
   <script>
+    const canvas = document.getElementById('vortexCanvas');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d');
+    const dotCount = 100;
+    let angle = 0;
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < dotCount; i++) {
+        const t = i / dotCount;
+        const spiralRadius = t * canvas.width * 0.4;
+        const a = angle + t * 12 * Math.PI;
+        const x = canvas.width / 2 + spiralRadius * Math.cos(a);
+        const y = canvas.height / 2 + spiralRadius * Math.sin(a);
+        const size = 2 + 3 * Math.sin(a + performance.now() / 500);
+        ctx.beginPath();
+        ctx.arc(x, y, size, 0, 2 * Math.PI);
+        ctx.fillStyle = '#00ff88';
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = '#00ff88';
+        ctx.fill();
+      }
+      angle += 0.002;
+      requestAnimationFrame(draw);
+    }
+    draw();
+
     function updateRewards() {
       const a = parseFloat(document.getElementById('hfvAmount').value) || 0;
       const m = parseInt(document.getElementById('lockDuration').value) || 1;
       document.getElementById('rewardOutput').innerText = (a * 0.4 * 17.38 * m).toFixed(2) + ' HFV';
     }
+
     function calculateReward() {
       const a = parseFloat(document.getElementById('amount').value);
       const d = parseInt(document.getElementById('duration').value);
@@ -281,39 +281,6 @@
         document.getElementById('result').textContent = 'Please enter valid inputs.';
       }
     }
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <script>
-    particlesJS(\"particles-js\", {
-      \"particles\": {
-        \"number\": { \"value\": 80 },
-        \"color\": { \"value\": \"#00ff88\" },
-        \"shape\": { \"type\": \"circle\" },
-        \"opacity\": { \"value\": 0.5 },
-        \"size\": { \"value\": 3 },
-        \"line_linked\": {
-          \"enable\": true,
-          \"distance\": 120,
-          \"color\": \"#32f89a\",
-          \"opacity\": 0.4,
-          \"width\": 1
-        },
-        \"move\": { \"enable\": true, \"speed\": 1.6 }
-      },
-      \"interactivity\": {
-        \"detect_on\": \"canvas\",
-        \"events\": {
-          \"onhover\": { \"enable\": true, \"mode\": \"repulse\" },
-          \"onclick\": { \"enable\": true, \"mode\": \"push\" },
-          \"resize\": true
-        },
-        \"modes\": {
-          \"repulse\": { \"distance\": 80, \"duration\": 0.4 },
-          \"push\": { \"particles_nb\": 4 }
-        }
-      },
-      \"retina_detect\": true
-    });
   </script>
 </body>
 </html>
