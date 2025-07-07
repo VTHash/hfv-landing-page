@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,154 +13,154 @@
       color: #e0e0e0;
       background: #0b0b0b;
       overflow-x: hidden;
-    }
+    }header.hero-vortex {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-    header.hero-vortex {
-      position: relative;
-      height: 100vh;
-      overflow: hidden;
-      background-color: black;
-    }
+#vortexCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
 
-    #vortexCanvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-    }
+.center-logo {
+  position: relative;
+  width: 100px;
+  z-index: 3;
+}
 
-    .center-logo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 120px;
-      z-index: 3;
-    }
+.hero-content {
+  position: relative;
+  z-index: 4;
+  text-align: center;
+  margin-top: 1.5rem;
+  padding: 0 1rem;
+}
 
-    .hero-content {
-      position: relative;
-      z-index: 4;
-      text-align: center;
-      top: 55%;
-      transform: translateY(-50%);
-    }
+.hero-content h1 {
+  font-size: 2rem;
+  color: #00ff88;
+  text-shadow: 0 0 10px #00ff88;
+  margin: 0.5rem 0;
+}
 
-    .hero-content h1 {
-      font-size: 3rem;
-      color: #00ff88;
-      text-shadow: 0 0 10px #00ff88;
-    }
+.hero-content p {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 1rem;
+}
 
-    .hero-content p {
-      font-size: 1.2rem;
-      color: #ccc;
-    }
+.launch-button {
+  background: linear-gradient(to right, #32f89a, #7dfccd);
+  color: #000;
+  font-weight: 600;
+  padding: 0.8rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 12px #32f89a80;
+  text-decoration: none;
+  font-size: 1rem;
+}
 
-    section {
-      padding: 2rem;
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-      background: #1a1a1a;
-      border-radius: 12px;
-      margin-bottom: 2rem;
-    }
+section {
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto 2rem;
+  text-align: center;
+  background: #1a1a1a;
+  border-radius: 12px;
+}
 
-    .calculator {
-      background: rgba(25,25,25,0.8);
-      padding: 2rem;
-      border-radius: 16px;
-      border: 1px solid #2affc3;
-      box-shadow: 0 0 18px #32f89a50;
-      backdrop-filter: blur(6px);
-    }
+.calculator {
+  background: rgba(25,25,25,0.8);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid #2affc3;
+  box-shadow: 0 0 18px #32f89a50;
+  backdrop-filter: blur(6px);
+}
 
-    input, select {
-      display: block;
-      margin: 0.5rem auto;
-      width: 70%;
-      padding: 0.5rem;
-      border: 1px solid #2affc3;
-      border-radius: 8px;
-      background: #000;
-      color: #e0e0e0;
-    }
+input, select {
+  display: block;
+  margin: 0.5rem auto;
+  width: 70%;
+  padding: 0.5rem;
+  border: 1px solid #2affc3;
+  border-radius: 8px;
+  background: #000;
+  color: #e0e0e0;
+}
 
-    button {
-      display: block;
-      margin: 1rem auto 0;
-      padding: 0.6rem 1.5rem;
-      background: #00ff84;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+button {
+  display: block;
+  margin: 1rem auto 0;
+  padding: 0.6rem 1.5rem;
+  background: #00ff84;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-    .result, #rewardOutput {
-      font-weight: bold;
-      color: #00ff88;
-      margin-top: 1rem;
-      font-size: 1.2rem;
-    }
+.result, #rewardOutput {
+  font-weight: bold;
+  color: #00ff88;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
 
-    .launch-button {
-      background: linear-gradient(to right, #32f89a, #7dfccd);
-      color: #000;
-      font-weight: 600;
-      padding: 1rem 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 18px #32f89a80;
-      text-decoration: none;
-      margin-top: 1rem;
-      display: inline-block;
-    }
+.gradient-hover {
+  background: linear-gradient(90deg, #32f89a, #00e0ff, #ff00c8, #32f89a);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rgbPulse 6s ease infinite;
+}
 
-    .gradient-hover {
-      background: linear-gradient(90deg, #32f89a, #00e0ff, #ff00c8, #32f89a);
-      background-size: 300% 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: rgbPulse 6s ease infinite;
-    }
+#social-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
+}
 
-    #social-links {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
+.social-item {
+  text-decoration: none;
+  color: #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    .social-item {
-      text-decoration: none;
-      color: #e0e0e0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+.social-item img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 0.5rem;
+}
 
-    .social-item img {
-      width: 48px;
-      height: 48px;
-      margin-bottom: 0.5rem;
-    }
+@keyframes rgbPulse {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-    @keyframes rgbPulse {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
 
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: #666;
-    }
   </style>
 </head>
 <body>
@@ -173,9 +172,7 @@
       <p>Stake securely. Earn passively.</p>
       <a href="https://hfv-staking-dapp.netlify.app" class="launch-button">Launch DApp</a>
     </div>
-  </header>
-
-  <section>
+  </header> <section>
     <h2 class="gradient-hover">High‑Tech HFV Staking Calculator</h2>
     <div class="calculator">
       <label>Amount to Stake (HFV): <input type="number" id="amount" placeholder="e.g. 1000" /></label>
@@ -190,9 +187,7 @@
       <button onclick="calculateReward()">Calculate</button>
       <p class="result" id="result"></p>
     </div>
-  </section>
-
-  <section>
+  </section> <section>
     <h2 class="gradient-hover">Estimate Your HFV Rewards</h2>
     <div class="calculator">
       <input id="hfvAmount" type="number" placeholder="Enter amount to stake" oninput="updateRewards()" />
@@ -205,9 +200,7 @@
       <p>Estimated Reward:</p>
       <div id="rewardOutput" class="glow">0 HFV</div>
     </div>
-  </section>
-
-  <section>
+  </section> <section>
     <h2 class="gradient-hover">🌐 Follow HFV Official Channels</h2>
     <div id="social-links">
       <a href="https://discord.gg/Nq9v3JRp" class="social-item" target="_blank">
@@ -227,17 +220,11 @@
         <span>GitHub</span>
       </a>
     </div>
-  </section>
-
-  <section style="text-align: center; padding: 4rem 1rem;">
+  </section> <section style="text-align: center; padding: 4rem 1rem;">
     <a href="whitepaper.html" class="launch-button">📜 Read the HFV Whitepaper</a>
-  </section>
-
-  <footer>
+  </section> <footer>
     <p>© 2025 HFV Token. All rights reserved.</p>
-  </footer>
-
-  <script>
+  </footer> <script>
     const canvas = document.getElementById('vortexCanvas');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -247,6 +234,7 @@
 
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const pulse = 0.5 + 0.5 * Math.sin(performance.now() / 500);
       for (let i = 0; i < dotCount; i++) {
         const t = i / dotCount;
         const spiralRadius = t * canvas.width * 0.4;
@@ -256,8 +244,9 @@
         const size = 2 + 3 * Math.sin(a + performance.now() / 500);
         ctx.beginPath();
         ctx.arc(x, y, size, 0, 2 * Math.PI);
-        ctx.fillStyle = '#00ff88';
-        ctx.shadowBlur = 8;
+        const glowOpacity = 0.4 + 0.6 * pulse;
+        ctx.fillStyle = `rgba(0, 255, 136, ${glowOpacity})`;
+        ctx.shadowBlur = 12 + 6 * pulse;
         ctx.shadowColor = '#00ff88';
         ctx.fill();
       }
@@ -281,6 +270,5 @@
         document.getElementById('result').textContent = 'Please enter valid inputs.';
       }
     }
-  </script>
-</body>
+  </script></body>
 </html>
