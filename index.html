@@ -6,7 +6,18 @@
   <title>HFV Staking | Decentralized & Transparent</title>
   <link rel="icon" href="./hfv-logo.png" />
   <style>
-    body {
+ 
+  <body>
+  <canvas id="vortexTop"></canvas>
+
+<header class="vortex-header">
+  <div class="vortex-content">
+    <img src="./hfv-logo.png" alt="HFV Logo" class="vortex-logo" />
+    <h1 class="vortex-title">Stake HFV. Earn Rewards.</h1>
+    <p class="vortex-subtitle">Secure, Transparent & High-Yield Staking — Powered by Ethereum</p>
+    <a href="https://hfv-staking-dapp.netlify.app" class="launch-button glow">🚀 Launch DApp</a>
+  </div>
+</header> {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -126,24 +137,73 @@
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
+    #vortexTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+}
+
+.vortex-header {
+  position: relative;
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.vortex-content {
+  z-index: 1;
+  position: relative;
+  color: white;
+  padding: 2rem;
+}
+
+.vortex-logo {
+  width: 100px;
+  height: 100px;
+  animation: pulse-glow 2.5s infinite;
+  margin-bottom: 1rem;
+}
+
+.vortex-title {
+  font-size: 2rem;
+  background: linear-gradient(90deg, #32f89a, #00e0ff, #ff00c8, #32f89a);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rgbPulse 6s ease infinite;
+}
+
+.vortex-subtitle {
+  font-size: 1.2rem;
+  color: #7dfccd;
+  margin-top: 0.5rem;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { filter: drop-shadow(0 0 0px #32f89a); }
+  50% { filter: drop-shadow(0 0 14px #32f89a); }
+}
+
+@keyframes rgbPulse {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
   </style>
+
 </head>
 <body>
   <canvas id="vortexCanvas"></canvas>
-  <header>
-    <img src="./hfv-logo.png" alt="HFV Logo" class="logo" />
-    <h1 class="gradient-hover">Stake HFV. Earn Rewards.</h1>
-    <p class="gradient-hover">Secure, Transparent & High-Yield Staking — Powered by Ethereum</p>
-    <a href="https://hfv-staking-dapp.netlify.app" class="launch-button">Launch DApp</a>
-  </header> <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Stake HFV tokens and earn rewards securely on Ethereum. Choose your duration and calculate real-time staking APY.">
-  <title>HFV Staking | Decentralized & Transparent</title>
-  <link rel="icon" href="./hfv-logo.png" />
-  <style>
+
+  <meta charset="UTF-8
     body {
       margin: 0;
       padding: 0;
@@ -304,12 +364,6 @@
 </head>
 <body>
   <canvas id="particles-js"></canvas>
-  <header>
-    <img src="./hfv-logo.png" alt="HFV Logo" class="logo" />
-    <h1 class="gradient-hover">Stake HFV. Earn Rewards.</h1>
-    <p class="gradient-hover">Secure, Transparent & High-Yield Staking — Powered by Ethereum</p>
-    <a href="https://hfv-staking-dapp.netlify.app" class="launch-button">Launch DApp</a>
-  </header>
 
   <section>
     <h2 class="gradient-hover">High‑Tech HFV Staking Calculator</h2>
@@ -452,6 +506,43 @@
       \"retina_detect\": true
     });
   </script>
+  <script>
+  const vortex = document.getElementById('vortexTop');
+  const ctx = vortex.getContext('2d');
+  let w = vortex.width = window.innerWidth;
+  let h = vortex.height = window.innerHeight;
+  const dots = 180;
+  let angle = 0;
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    const t = Date.now() * 0.002;
+    for (let i = 0; i < dots; i++) {
+      const pct = i / dots;
+      const radius = pct * Math.min(w, h) * 0.4;
+      const a = angle + pct * Math.PI * 16;
+      const x = w / 2 + radius * Math.cos(a);
+      const y = h / 2 + radius * Math.sin(a);
+      const pulse = 0.5 + 0.5 * Math.sin(t + i * 0.3);
+      const size = 2 + 2.5 * pulse;
+      ctx.beginPath();
+      ctx.arc(x, y, size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0,255,136,${pulse})`;
+      ctx.shadowColor = '#00ff88';
+      ctx.shadowBlur = 10 * pulse;
+      ctx.fill();
+    }
+    angle += 0.0012;
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+
+  window.addEventListener('resize', () => {
+    w = vortex.width = window.innerWidth;
+    h = vortex.height = window.innerHeight;
+  });
+</script>
 </body>
 </html> <script>
     const canvas = document.getElementById('vortexCanvas');
