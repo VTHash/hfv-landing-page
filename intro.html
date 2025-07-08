@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HFV Intro - Web3 Galaxy Vortex</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background: #000;
+    }#introCanvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+}
+
+.intro-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.intro-logo {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 1rem;
+  animation: pulse-spin 6s infinite linear;
+}
+
+.intro-text {
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #00ff88, #00e0ff, #32f89a);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glowText 6s ease-in-out infinite;
+}
+
+@keyframes glowText {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse-spin {
+  0% { transform: rotate(0deg) scale(1); filter: drop-shadow(0 0 4px #00ff88); }
+  50% { transform: rotate(180deg) scale(1.1); filter: drop-shadow(0 0 20px #32f89a); }
+  100% { transform: rotate(360deg) scale(1); filter: drop-shadow(0 0 4px #00ff88); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+  </style>
+</head>
+<body>
+  <canvas id="introCanvas"></canvas>
+  <div class="intro-container">
+    <img src="./hfv-logo.png" alt="HFV Logo" class="intro-logo" />
+    <h1 class="intro-text">Revolutionizing Web3 with HFV</h1>
+  </div> <script>
+    const canvas = document.getElementById('introCanvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+    const dots = 160;
+    let angle = 0;
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+      const t = Date.now() * 0.002;
+      for (let i = 0; i < dots; i++) {
+        const pct = i / dots;
+        const radius = pct * Math.min(width, height) * 0.45;
+        const a = angle + pct * Math.PI * 12;
+        const x = width / 2 + radius * Math.cos(a);
+        const y = height / 2 + radius * Math.sin(a);
+        const pulse = 0.5 + 0.5 * Math.sin(t + i * 0.3);
+        const size = 2 + 2.5 * pulse;
+        ctx.beginPath();
+        ctx.arc(x, y, size, 0, Math.PI * 2);
+        ctx.fillStyle = `hsl(${(i * 6 + t * 40) % 360}, 100%, ${60 + 20 * pulse}%)`;
+        ctx.shadowColor = '#00ff88';
+        ctx.shadowBlur = 10 * pulse;
+        ctx.fill();
+      }
+      angle += 0.0014;
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+  </script></body>
+</html>
