@@ -2,123 +2,146 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HFV Intro</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     html, body {
-      width: 100%; height: 100%;
-      background: #000;
-      font-family: 'Segoe UI', sans-serif;
-      overflow: hidden;
-    }
-    canvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      z-index: 0;
-    }
-    .intro-content {
-      position: relative;
-      z-index: 1;
       width: 100%;
       height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      background: #000;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+    }
+
+    .intro-content {
+      z-index: 2;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       text-align: center;
-      color: #00ff88;
     }
+
     .intro-logo {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      animation: spin 12s linear infinite, glow 3s ease-in-out infinite;
+      width: 150px;
+      height: 150px;
       margin-bottom: 2rem;
+      animation: glow 3s ease-in-out infinite;
     }
+
+    @keyframes glow {
+      0%, 100% { filter: drop-shadow(0 0 0px #00ffcc); }
+      50% { filter: drop-shadow(0 0 18px #00ffcc); }
+    }
+
     .enter-btn {
-      padding: 1rem 2.5rem;
-      font-size: 1.1rem;
+      padding: 1rem 2rem;
+      font-size: 1rem;
       font-weight: bold;
-      color: #000;
-      background: linear-gradient(to right, #00ff88, #00e0ff);
+      background: linear-gradient(90deg, #00ff88, #00e0ff);
       border: none;
-      border-radius: 50px;
+      border-radius: 10px;
+      color: #000;
       cursor: pointer;
-      box-shadow: 0 0 20px #00ff88aa;
       transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 0 16px #00ff88aa;
     }
+
     .enter-btn:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 30px #00ff88cc;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    @keyframes glow {
-      0%, 100% { filter: drop-shadow(0 0 0px #00ff88); }
-      50% { filter: drop-shadow(0 0 14px #00e0ff); }
+      box-shadow: 0 0 24px #00ff88cc;
     }
   </style>
 </head>
 <body>
+  <!-- Galaxy Vortex Background -->
   <canvas id="vortex"></canvas>
+
+  <!-- Intro Content -->
   <div class="intro-content">
-    <img src="./hfv-logo.png" alt="HFV Logo" class="intro-logo" />
+    <img src="hfv-logo.png" alt="HFV Logo" class="intro-logo" />
     <button class="enter-btn" onclick="enterSite()">Enter Site</button>
-    <audio id="fusionSound" src="./fusion-transition.mp3" preload="auto"></audio>
   </div>
 
+  <!-- Audio -->
+  <audio id="introSound" src="assets/sounds/intro-sound.mp3" preload="auto"></audio>
+
+  <!-- Script -->
   <script>
-    const canvas = document.getElementById('vortex');
-    const ctx = canvas.getContext('2d');
+    const canvas = document.getElementById("vortex");
+    const ctx = canvas.getContext("2d");
     let w = canvas.width = window.innerWidth;
     let h = canvas.height = window.innerHeight;
-    const dots = 180;
-    let angle = 0;
+    let stars = [];
 
-    function draw() {
-      ctx.clearRect(0, 0, w, h);
-      const t = Date.now() * 0.002;
-      for (let i = 0; i < dots; i++) {
-        const pct = i / dots;
-        const radius = pct * Math.min(w, h) * 0.5;
-        const a = angle + pct * Math.PI * 16;
-        const x = w / 2 + radius * Math.cos(a);
-        const y = h / 2 + radius * Math.sin(a);
-        const pulse = 0.6 + 0.4 * Math.sin(t + i * 0.3);
-        const size = 2 + 2.5 * pulse;
-        ctx.beginPath();
-        ctx.arc(x, y, size, 0, Math.PI * 2);
-        ctx.fillStyle = `hsl(${(i * 10 + t * 40) % 360}, 100%, ${60 + 20 * pulse}%)`;
-        ctx.shadowColor = '#00ff88';
-        ctx.shadowBlur = 10 * pulse;
-        ctx.fill();
-      }
-      angle += 0.0015;
-      requestAnimationFrame(draw);
+    for (let i = 0; i < 600; i++) {
+      stars.push({
+        x: Math.random() * w - w / 2,
+        y: Math.random() * h - h / 2,
+        z: Math.random() * w,
+      });
     }
 
-    draw();
-    window.addEventListener('resize', () => {
+    function drawGalaxy() {
+      ctx.fillStyle = "#000";
+      ctx.fillRect(0, 0, w, h);
+
+      const cx = w / 2;
+      const cy = h / 2;
+
+      for (let i = 0; i < stars.length; i++) {
+        let star = stars[i];
+        star.z -= 2;
+        if (star.z <= 0) star.z = w;
+
+        let sx = (star.x / star.z) * 100 + cx;
+        let sy = (star.y / star.z) * 100 + cy;
+        let radius = (1 - star.z / w) * 2;
+
+        ctx.beginPath();
+        ctx.arc(sx, sy, radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${100 + radius * 50},${255 - radius * 80},255,0.8)`;
+        ctx.fill();
+      }
+
+      requestAnimationFrame(drawGalaxy);
+    }
+
+    drawGalaxy();
+
+    window.addEventListener("resize", () => {
       w = canvas.width = window.innerWidth;
       h = canvas.height = window.innerHeight;
     });
 
     function enterSite() {
-      const sound = document.getElementById('fusionSound');
+      const sound = document.getElementById("introSound");
+      sound.volume = 0.6;
       sound.play();
       setTimeout(() => {
-        window.location.href = 'index.html';
-      }, 900); // Give time for sound to play
+        window.location.href = "main.html";
+      }, 3000);
     }
+
+    // Auto-enter after 10s
+    setTimeout(() => {
+      enterSite();
+    }, 10000);
   </script>
 </body>
 </html>
-
-
-
-
-
