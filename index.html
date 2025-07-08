@@ -7,142 +7,118 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       background: #000;
       font-family: 'Segoe UI', sans-serif;
       overflow: hidden;
     }
-
     canvas {
       position: fixed;
       top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: 0;
+    }
+    .intro-content {
+      position: relative;
+      z-index: 1;
       width: 100%;
       height: 100%;
-      z-index: -1;
-    }
-
-    .intro-content {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      z-index: 10;
+      color: #00ff88;
     }
-
     .intro-logo {
       width: 120px;
       height: 120px;
-      margin-bottom: 1.5rem;
-      animation: pulse-glow 2.5s ease-in-out infinite;
+      border-radius: 50%;
+      animation: spin 12s linear infinite, glow 3s ease-in-out infinite;
+      margin-bottom: 2rem;
     }
-
     .enter-btn {
-      font-size: 1rem;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 8px;
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
       font-weight: bold;
+      color: #000;
       background: linear-gradient(to right, #00ff88, #00e0ff);
-      color: black;
-      box-shadow: 0 0 20px #00ff88aa;
+      border: none;
+      border-radius: 50px;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      box-shadow: 0 0 20px #00ff88aa;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-
     .enter-btn:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 30px #00ff88;
+      box-shadow: 0 0 30px #00ff88cc;
     }
-
-    @keyframes pulse-glow {
-      0%, 100% { filter: drop-shadow(0 0 0px #32f89a); }
-      50% { filter: drop-shadow(0 0 14px #32f89a); }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes glow {
+      0%, 100% { filter: drop-shadow(0 0 0px #00ff88); }
+      50% { filter: drop-shadow(0 0 14px #00e0ff); }
     }
   </style>
 </head>
 <body>
-
-  <!-- Galaxy Vortex -->
   <canvas id="vortex"></canvas>
-
-  <!-- Intro Content -->
   <div class="intro-content">
     <img src="./hfv-logo.png" alt="HFV Logo" class="intro-logo" />
     <button class="enter-btn" onclick="enterSite()">Enter Site</button>
+    <audio id="fusionSound" src="./fusion-transition.mp3" preload="auto"></audio>
   </div>
 
-  <!-- Sound -->
-  <audio id="introSound" src="assets/sounds/intro-sound.mp3" preload="auto"></audio>
-
-  <!-- Galaxy Vortex Animation -->
   <script>
-    const canvas = document.getElementById("vortex");
-    const ctx = canvas.getContext("2d");
+    const canvas = document.getElementById('vortex');
+    const ctx = canvas.getContext('2d');
     let w = canvas.width = window.innerWidth;
     let h = canvas.height = window.innerHeight;
-
-    let stars = [];
-    const numStars = 500;
-
-    for (let i = 0; i < numStars; i++) {
-      stars.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        z: Math.random() * w
-      });
-    }
+    const dots = 180;
+    let angle = 0;
 
     function draw() {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
-      ctx.fillRect(0, 0, w, h);
-      ctx.fillStyle = "rgba(0, 255, 136, 0.8)";
-
-      for (let i = 0; i < numStars; i++) {
-        const star = stars[i];
-        star.z -= 2;
-        if (star.z <= 0) star.z = w;
-
-        const k = 128.0 / star.z;
-        const px = (star.x - w / 2) * k + w / 2;
-        const py = (star.y - h / 2) * k + h / 2;
-
-        if (px >= 0 && px <= w && py >= 0 && py <= h) {
-          const size = (1 - star.z / w) * 3;
-          ctx.beginPath();
-          ctx.arc(px, py, size, 0, 2 * Math.PI);
-          ctx.fillStyle = `rgba(${100 + size * 50},${255 - size * 100},255, 0.5)`;
-          ctx.fill();
-        }
+      ctx.clearRect(0, 0, w, h);
+      const t = Date.now() * 0.002;
+      for (let i = 0; i < dots; i++) {
+        const pct = i / dots;
+        const radius = pct * Math.min(w, h) * 0.5;
+        const a = angle + pct * Math.PI * 16;
+        const x = w / 2 + radius * Math.cos(a);
+        const y = h / 2 + radius * Math.sin(a);
+        const pulse = 0.6 + 0.4 * Math.sin(t + i * 0.3);
+        const size = 2 + 2.5 * pulse;
+        ctx.beginPath();
+        ctx.arc(x, y, size, 0, Math.PI * 2);
+        ctx.fillStyle = `hsl(${(i * 10 + t * 40) % 360}, 100%, ${60 + 20 * pulse}%)`;
+        ctx.shadowColor = '#00ff88';
+        ctx.shadowBlur = 10 * pulse;
+        ctx.fill();
       }
-
+      angle += 0.0015;
       requestAnimationFrame(draw);
     }
 
     draw();
-
-    window.addEventListener("resize", () => {
+    window.addEventListener('resize', () => {
       w = canvas.width = window.innerWidth;
       h = canvas.height = window.innerHeight;
     });
-  </script>
 
-  <!-- Redirect + Sound Script -->
-  <script>
     function enterSite() {
-      const sound = document.getElementById("introSound");
-      sound.volume = 0.6; // Volume 0.0 to 1.0
+      const sound = document.getElementById('fusionSound');
       sound.play();
-
       setTimeout(() => {
-        window.location.href = "main.html";
-      }, 500); // Wait for sound to start before redirect
+        window.location.href = 'index.html';
+      }, 900); // Give time for sound to play
     }
-
-    // Auto redirect after 10 seconds if user doesn't click
-    setTimeout(() => {
-      if (!document.hidden) enterSite();
-    }, 10000);
   </script>
 </body>
 </html>
+
+
+
+
+
