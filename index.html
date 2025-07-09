@@ -5,170 +5,150 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HFV Intro</title>
   <style>
-    * {
+    html, body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      width: 100%;
       height: 100%;
-      background: #000;
       overflow: hidden;
+      background: #000;
       font-family: 'Segoe UI', sans-serif;
     }
 
     canvas {
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
       z-index: 0;
     }
 
     .intro-content {
+      position: relative;
       z-index: 2;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #00ffcc;
       text-align: center;
+      animation: fadeIn 2s ease forwards;
     }
 
     .intro-logo {
-      width: 150px;
-      height: 150px;
-      margin-bottom: 2rem;
-      animation: glow 3s ease-in-out infinite;
+      width: 140px;
+      height: 140px;
+      filter: drop-shadow(0 0 12px #00ff88);
+      animation: pulse-glow 2.5s ease-in-out infinite;
     }
 
-    @keyframes glow {
-      0%, 100% { filter: drop-shadow(0 0 0px #00ffcc); }
-      50% { filter: drop-shadow(0 0 18px #00ffcc); }
+    .intro-title {
+      margin-top: 1rem;
+      font-size: 2rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #00ff88, #00e0ff);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textWave 4s linear infinite;
     }
 
     .enter-btn {
-      padding: 1rem 2rem;
+      margin-top: 2rem;
+      padding: 0.8rem 2rem;
       font-size: 1rem;
       font-weight: bold;
-      background: linear-gradient(90deg, #00ff88, #00e0ff);
+      background: linear-gradient(to right, #00ff88, #00e0ff);
+      color: black;
       border: none;
-      border-radius: 10px;
-      color: #000;
+      border-radius: 12px;
       cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
       box-shadow: 0 0 16px #00ff88aa;
+      transition: all 0.3s ease;
     }
 
     .enter-btn:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 24px #00ff88cc;
+      box-shadow: 0 0 24px #00e0ffaa;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { filter: drop-shadow(0 0 4px #00ff88); }
+      50% { filter: drop-shadow(0 0 14px #00ff88); }
+    }
+
+    @keyframes textWave {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-  <!-- Galaxy Vortex Background -->
-  <canvas id="vortex"></canvas>
 
-  <!-- Intro Content -->
-  <div class="intro-content">
-    <img src="hfv-logo.png" alt="HFV Logo" class="intro-logo" />
-    <button class="enter-btn" onclick="enterSite()">Enter Site</button>
-  </div>
+<canvas id="vortexCanvas"></canvas>
 
-  <!-- Audio -->
-  <audio id="introSound" src="assets/sounds/intro-sound.mp3" preload="auto"></audio>
-
-  <!-- Script -->
-  <script>
-    const canvas = document.getElementById("vortex");
-    const ctx = canvas.getContext("2d");
-    let w = canvas.width = window.innerWidth;
-    let h = canvas.height = window.innerHeight;
-    let stars = [];
-
-    for (let i = 0; i < 600; i++) {
-      stars.push({
-        x: Math.random() * w - w / 2,
-        y: Math.random() * h - h / 2,
-        z: Math.random() * w,
-      });
-    }
-
-    function drawGalaxy() {
-      ctx.fillStyle = "#000";
-      ctx.fillRect(0, 0, w, h);
-
-      const cx = w / 2;
-      const cy = h / 2;
-
-      for (let i = 0; i < stars.length; i++) {
-        let star = stars[i];
-        star.z -= 2;
-        if (star.z <= 0) star.z = w;
-
-        let sx = (star.x / star.z) * 100 + cx;
-        let sy = (star.y / star.z) * 100 + cy;
-        let radius = (1 - star.z / w) * 2;
-
-        ctx.beginPath();
-        ctx.arc(sx, sy, radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${100 + radius * 50},${255 - radius * 80},255,0.8)`;
-        ctx.fill();
-      }
-
-      requestAnimationFrame(drawGalaxy);
-    }
-
-    drawGalaxy();
-
-    window.addEventListener("resize", () => {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
-    });
-
-    function enterSite() {
-      const sound = document.getElementById("introSound");
-      sound.volume = 0.6;
-      sound.play();
-      setTimeout(() => {
-        window.location.href = "main.html";
-      }, 3000);
-    }
-
-    // Auto-enter after 10s
-    setTimeout(() => {
-      enterSite();
-    }, 10000);
-  </script>
-<audio id="intro-audio" preload="auto">
-  <source src="intro-sound.mp3" type="audio/mpeg" />
-  Your browser does not support the audio element.
-</audio>
+<div class="intro-content">
+  <img src="hf-logo.png" alt="HFV Logo" class="intro-logo" />
+  <div class="intro-title">Revolutionary Web3 Staking</div>
+  <button class="enter-btn" onclick="enterSite()">Enter Site</button>
+</div>
 
 <script>
-  const audio = document.getElementById('intro-audio');
-  audio.volume = 0.9;
+  // Galaxy spinning canvas animation
+  const canvas = document.getElementById("vortexCanvas");
+  const ctx = canvas.getContext("2d");
 
-  function playIntroSound() {
-    if (audio.paused) {
-      audio.play().then(() => {
-        console.log('Sound started');
-        setTimeout(() => {
-          window.location.href = 'main.html';
-        }, 9000); // wait for full sound to play (9 sec)
-      }).catch((err) => {
-        console.warn('Playback failed:', err);
-      });
-    }
-    document.removeEventListener('click', playIntroSound);
-    document.removeEventListener('touchstart', playIntroSound);
+  let w = canvas.width = window.innerWidth;
+  let h = canvas.height = window.innerHeight;
+
+  const dots = 200;
+  let angle = 0;
+
+  const particles = Array.from({ length: dots }, () => ({
+    r: Math.random() * w * 0.5,
+    a: Math.random() * Math.PI * 2,
+    size: Math.random() * 2 + 0.5,
+    speed: 0.002 + Math.random() * 0.002
+  }));
+
+  function draw() {
+    ctx.fillStyle = "rgba(0,0,0,0.08)";
+    ctx.fillRect(0, 0, w, h);
+
+    particles.forEach(p => {
+      p.a += p.speed;
+      const x = w / 2 + p.r * Math.cos(p.a);
+      const y = h / 2 + p.r * Math.sin(p.a);
+
+      const grad = ctx.createRadialGradient(x, y, 0, x, y, 6);
+      grad.addColorStop(0, "#00ff88");
+      grad.addColorStop(1, "#00e0ff");
+
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(x, y, p.size, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    requestAnimationFrame(draw);
   }
 
-  document.addEventListener('click', playIntroSound);
-  document.addEventListener('touchstart', playIntroSound);
+  draw();
+
+  window.addEventListener("resize", () => {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  });
+
+  function enterSite() {
+    window.location.href = "main.html"; // or your actual landing file
+  }
 </script>
 
 </body>
