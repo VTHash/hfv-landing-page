@@ -4,6 +4,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HFV Token | Whitepaper</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+ .whitepaper-download-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.pdf-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  color: #00ff88;
+  background: linear-gradient(to right, #00ff88, #32f89a);
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 12px #00ff88aa;
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+.pdf-download:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 24px #00ff88cc;
+}
+
+.pdf-icon {
+  width: 20px;
+  height: 20px;
+  filter: drop-shadow(0 0 4px #00ff88);
+}
+
+@keyframes glowPulse {
+  0%, 100% { filter: drop-shadow(0 0 4px #00ff88); }
+  50% { filter: drop-shadow(0 0 14px #00ff88); }
+}
+</style>
+</head>
+
+<body>
+  <div class="whitepaper-download-wrapper">
+    <a href="assets/whitepaper.pdf" download class="pdf-download">
+      <img src="https://cdn.jsdelivr.net/gh/tabler/tabler-icons/icons/pdf.svg" alt="Download PDF" class="pdf-icon" />
+      Download Whitepaper
+    </a>
+  </div>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HFV Token | Whitepaper</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
    .community-invite {
   color: #7dfccd;
@@ -19,7 +72,36 @@
   box-shadow: 0 0 18px rgba(0, 255, 136, 0.2);
   animation: glowPulse 4s ease-in-out infinite;
 }
+.pdf-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  color: #00ff88;
+  background: linear-gradient(to right, #00ff88, #32f89a);
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 12px #00ff88aa;
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: glowPulse 2s ease-in-out infinite;
+}
 
+.pdf-download:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 24px #00ff88cc;
+}
+
+.pdf-icon {
+  width: 20px;
+  height: 20px;
+  filter: drop-shadow(0 0 4px #00ff88);
+}
+
+@keyframes glowPulse {
+  0%, 100% { filter: drop-shadow(0 0 4px #00ff88); }
+  50% { filter: drop-shadow(0 0 14px #00ff88); }
+}
 @keyframes glowPulse {
   0%, 100% { box-shadow: 0 0 10px #00ff88; }
   50% { box-shadow: 0 0 25px #00ff88aa; }
