@@ -1,43 +1,44 @@
 <!DOCTYPE html><html lang="en">
 <head>
   <style>
-    .whitepaper-download-wrapper {
+    .whitepaper-button-wrapper {
       display: flex;
       justify-content: center;
-      margin: 1.5rem 0;
+      margin: 2rem 0;
     }
 
-    .pdf-download {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      text-decoration: none;
+    .glowing-button {
+      font-size: 1rem;
       font-weight: bold;
-      color: #00ff88;
-      background: linear-gradient(to right, #00ff88, #32f89a);
-      padding: 0.6rem 1.2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 12px #00ff88aa;
+      padding: 0.8rem 1.6rem;
+      border: none;
+      border-radius: 12px;
+      color: black;
+      background: linear-gradient(270deg, #00ff88, #00e0ff, #ff00c8, #32f89a);
+      background-size: 800% 800%;
+      animation: rainbowGlow 6s ease infinite;
+      box-shadow: 0 0 20px rgba(50, 248, 154, 0.6);
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.3s;
     }
 
-    .pdf-download:hover {
-      box-shadow: 0 0 20px #00ff88;
+    .glowing-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(50, 248, 154, 0.8);
     }
 
-    .pdf-icon {
-      width: 20px;
-      height: 20px;
-      filter: drop-shadow(0 0 4px #00ff88);
+    @keyframes rainbowGlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
   </style>
 </head>
 
 <body>
-  <div class="whitepaper-download-wrapper">
-    <a href="assets/whitepaper.pdf" download class="pdf-download glow">
-      <img src="https://cdn.jsdelivr.net/gh/tabler/tabler-icons/icons/pdf.svg" alt="Download PDF" class="pdf-icon">
-      Download Whitepaper
-    </a>
+  <div class="whitepaper-button-wrapper">
+    <a class="glowing-button">Download Whitepaper</a>
   </div>
 </body>
 
