@@ -1,14 +1,24 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HFV Token | Whitepaper</title>
   <style>
+    body {
+      background: #0b0b0b;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
     .whitepaper-button-wrapper {
       display: flex;
       justify-content: center;
       margin: 2rem 0;
     }
+
     .glowing-button {
       font-size: 1rem;
       font-weight: bold;
@@ -24,172 +34,230 @@
       cursor: pointer;
       transition: transform 0.3s;
     }
+
     .glowing-button:hover {
       transform: scale(1.05);
       box-shadow: 0 0 25px rgba(50, 248, 154, 0.8);
     }
+
     @keyframes rainbowGlow {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
+
+    section {
+      padding: 4rem 1rem;
+      border-top: 1px solid #222;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #00ffcc;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      margin: 2rem 0 0.5rem;
+      color: #88e0ff;
+    }
+
+    p, li {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    code {
+      font-family: monospace;
+      background: #111;
+      padding: 0.2rem 0.5rem;
+      border-radius: 5px;
+      display: inline-block;
+      color: #0ff;
+    }
+
+    .highlight-box {
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 1rem;
+      padding: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .back-button {
+      font-weight: bold;
+      color: #0ff;
+      text-decoration: none;
+    }
+
+    .rgb-glow {
+      animation: glowPulse 4s ease-in-out infinite;
+      border: 1px solid rgba(0,255,200,0.15);
+      background: rgba(0, 255, 255, 0.03);
+      padding: 2rem;
+      margin: 2rem;
+      border-radius: 1rem;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 0 12px #0ff3, 0 0 24px #0ff2; }
+      50% { box-shadow: 0 0 24px #0ff6, 0 0 40px #0ff5; }
+    }
+
+    .team-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .team-card {
+      background: #121212;
+      border: 1px solid #333;
+      border-radius: 1rem;
+      padding: 1rem;
+      transition: transform 0.2s;
+    }
+
+    .team-card:hover {
+      transform: scale(1.03);
+      border-color: #0ff;
+    }
   </style>
 </head>
-
 <body>
+
   <div class="whitepaper-button-wrapper">
     <a class="glowing-button" href="whitepaper.pdf" target="_blank">Download Whitepaper</a>
   </div>
-  
-  <section>
-    <h2>Token Distribution</h2>
-    <canvas id="tokenChart"></canvas>
+
+  <section id="token-overview">
+    <div class="container">
+      <h2>Token Overview</h2>
+      <p>
+        <strong>Name:</strong> HFV Token<br>
+        <strong>Total Supply:</strong> 70,000,000 HFV<br>
+        <strong>Note:</strong> All extra supply beyond 70,000,000 HFV was permanently burned.
+      </p>
+      <div class="highlight-box">
+        <strong>Contract Address:</strong><br>
+        <code>0x339f4761FE6301455cC2B5ba281Ac177eC362D56</code>
+      </div>
+    </div>
   </section>
-</body>
-<section id="token-overview" class="py-16 border-t border-neutral-800">
-  <div class="container max-w-5xl mx-auto px-4 md:px-6 text-neutral-200">
-    <h2 class="text-4xl font-bold tracking-tight mb-6">Token Overview</h2>
-    <p class="text-base mb-6">
-      <strong>Name:</strong> HFV Token<br>
-      <strong>Total Supply:</strong> 70,000,000 HFV<br>
-      <strong>Note:</strong> All extra supply beyond 70,000,000 HFV was permanently burned.
-    </p>
-    <div class="bg-neutral-900 border border-neutral-700 rounded-xl p-4 text-sm mb-10">
-      <strong>Contract Address:</strong><br>
-      <code>0x339f4761FE6301455cC2B5ba281Ac177eC362D56</code>
+
+  <section id="token-supply-alignment">
+    <div class="container">
+      <h2>HFV Token Supply Alignment Notice</h2>
+      <p>To ensure clarity and transparency in HFV Protocol's tokenomics, this section outlines how the initial supply was manually aligned to reflect the intended total of 70 million HFV tokens.</p>
+
+      <h3>Background</h3>
+      <p>HFV Token was initially deployed with a supply of 70,000,000 tokens, but due to how Ethereum handles decimals, the on-chain supply was registered in base units (without decimals). This caused the perception of a much larger supply.</p>
+
+      <h3>Supply Correction via Manual Burn</h3>
+      <p>To correct this, HFV Protocol performed a transparent token burn by sending unneeded tokens to an inaccessible burn address. This ensures only 70 million HFV tokens remain in circulation.</p>
+
+      <h3>Burn Details</h3>
+      <div class="highlight-box">
+        <p><strong>Burn Address:</strong><br><code>0x000000000000000000000000000000000000dEaD</code></p>
+        <p>Deployer burned:<br><code>59499999945000000000000000</code></p>
+        <p>PSF Wallet burned:<br><code>10499999985000000000000000</code></p>
+      </div>
+
+      <h3>Final Token Distribution</h3>
+      <ul>
+        <li>Circulating Supply: <strong>70,000,000 HFV</strong></li>
+        <li>Deployer: <strong>55,000,000 HFV</strong></li>
+        <li>PSF (Protocol Support Fund): <strong>15,000,000 HFV</strong></li>
+        <li>Burned Forever: ~<strong>69.99993 septillion</strong> HFV units</li>
+      </ul>
+
+      <h3>Commitment to Transparency</h3>
+      <p>HFV Protocol is committed to full transparency, accurate reporting, and alignment with its original tokenomics plan. All actions are verifiable on-chain and consistent with our published whitepaper.</p>
     </div>
-  </div>
-</section><section id="token-supply-alignment" class="py-16 border-t border-neutral-800">
-  <div class="container max-w-5xl mx-auto px-4 md:px-6 text-neutral-200">
-    <h2 class="text-4xl font-bold tracking-tight mb-6">HFV Token Supply Alignment Notice</h2>
-    <p class="text-base mb-6">
-      To ensure clarity and transparency in HFV Protocol's tokenomics, this section outlines how the
-      initial supply was manually aligned to reflect the intended total of 70 million HFV tokens.
-    </p><h3 class="text-2xl font-semibold mt-10 mb-2">Background</h3>
-<p class="text-base mb-6">
-  HFV Token was initially deployed with a supply of 70,000,000 tokens, but due to how Ethereum handles decimals,
-  the on-chain supply was registered in base units (without decimals). This caused the perception of a much larger supply.
-</p>
+  </section>
 
-<h3 class="text-2xl font-semibold mt-10 mb-2">Supply Correction via Manual Burn</h3>
-<p class="text-base mb-6">
-  To correct this, HFV Protocol performed a transparent token burn by sending unneeded tokens to an inaccessible
-  burn address. This ensures only 70 million HFV tokens remain in circulation.
-</p>
+  <section>
+    <div class="container">
+      <h2>Token Distribution</h2>
+      <canvas id="tokenChart"></canvas>
+    </div>
+  </section>
 
-<h3 class="text-2xl font-semibold mt-10 mb-2">Burn Details</h3>
-<div class="bg-neutral-900 border border-neutral-700 rounded-xl p-4 mb-6 text-sm">
-  <p><strong>Burn Address:</strong><br><code>0x000000000000000000000000000000000000dEaD</code></p>
-  <p>Deployer burned:<br><code>59499999945000000000000000</code></p>
-  <p>PSF Wallet burned:<br><code>10499999985000000000000000</code></p>
-</div>
-
-<h3 class="text-2xl font-semibold mt-10 mb-2">Final Token Distribution</h3>
-<ul class="list-disc list-inside text-base mb-6">
-  <li>Circulating Supply: <strong>70,000,000 HFV</strong></li>
-  <li>Deployer: <strong>55,000,000 HFV</strong></li>
-  <li>PSF (Protocol Support Fund): <strong>15,000,000 HFV</strong></li>
-  <li>Burned Forever: ~<strong>69.99993 septillion</strong> HFV units</li>
-</ul>
-
-<h3 class="text-2xl font-semibold mt-10 mb-2">Commitment to Transparency</h3>
-<p class="text-base">
-  HFV Protocol is committed to full transparency, accurate reporting, and alignment with its original tokenomics plan.
-  All actions are verifiable on-chain and consistent with our published whitepaper.
-</p>
-
-  </div>
-</section>
-
-</section><section>
-  <h2>Token Distribution</h2>
-  <canvas id="tokenChart"></canvas>
-</section><section>
   <section class="rgb-glow">
-  <h2>🔐 Staking Mechanism</h2>
-  <p>
-    HFV uses a time-based staking structure that rewards long-term commitment with increasing APY tiers. Staking durations include 21 days, 3 months, 6 months, and 12 months. Smart contracts enforce lock durations and transparently calculate rewards based on a fixed multiplier model.
-  </p>
-  <p><strong>Formula:</strong> <code>(HFV x 0.4 x 17.38 x Tier Multiplier)</code></p>
-  <p><em>Example:</em> Staking 120 HFV for 3 months: 120 × 0.4 × 17.38 × 3 = <strong>2506.56 HFV</strong></p>
-</section><section>
-  <h2>Managed Funds (MF)</h2>
-  <p>All transaction fees are routed to Managed Funds (MF), which redistribute to the PSF. 15% of tokens are locked from the start of ICO. App, team, and marketing funds are also locked.</p>
-</section><section>
-  <h2>PSF (Protection Security Funds)</h2>
-  <p>Receives transaction fees and locked tokens. Ensures investor protection and funds for security mechanisms.</p>
-</section><section>
-  <h2>Roadmap & DAO Expansion</h2>
-  <ul>
-    <li><strong>Investment DAOs:</strong> Community-based project investment strategies</li>
-    <li><strong>Grant DAOs:</strong> Allocate funds to promising proposals</li>
-    <li><strong>Social DAOs:</strong> Organize for awareness and network growth</li>
-    <li><strong>Platform DAOs:</strong> Transparent protocol governance</li>
-  </ul>
-</section><section>
-  <h2>Team & Open Source Contributors</h2>
-  <div class="team-grid">
-    <div class="team-card">
-      <h4>AI Engineers</h4>
-      <p>Integrating machine learning insights for adaptive staking.</p>
+    <h2>🔐 Staking Mechanism</h2>
+    <p>HFV uses a time-based staking structure that rewards long-term commitment with increasing APY tiers. Staking durations include 21 days, 3 months, 6 months, and 12 months. Smart contracts enforce lock durations and transparently calculate rewards based on a fixed multiplier model.</p>
+    <p><strong>Formula:</strong> <code>(HFV x 0.4 x 17.38 x Tier Multiplier)</code></p>
+    <p><em>Example:</em> Staking 120 HFV for 3 months: 120 × 0.4 × 17.38 × 3 = <strong>2506.56 HFV</strong></p>
+  </section>
+
+  <section class="rgb-glow">
+    <h2>Managed Funds (MF)</h2>
+    <p>All transaction fees are routed to Managed Funds (MF), which redistribute to the PSF. 15% of tokens are locked from the start of ICO. App, team, and marketing funds are also locked.</p>
+  </section>
+
+  <section class="rgb-glow">
+    <h2>PSF (Protection Security Funds)</h2>
+    <p>Receives transaction fees and locked tokens. Ensures investor protection and funds for security mechanisms.</p>
+  </section>
+
+  <section class="rgb-glow">
+    <h2>Roadmap & DAO Expansion</h2>
+    <ul>
+      <li><strong>Investment DAOs:</strong> Community-based project investment strategies</li>
+      <li><strong>Grant DAOs:</strong> Allocate funds to promising proposals</li>
+      <li><strong>Social DAOs:</strong> Organize for awareness and network growth</li>
+      <li><strong>Platform DAOs:</strong> Transparent protocol governance</li>
+    </ul>
+  </section>
+
+  <section class="rgb-glow">
+    <h2>Team & Open Source Contributors</h2>
+    <div class="team-grid">
+      <div class="team-card"><h4>AI Engineers</h4><p>Integrating machine learning insights for adaptive staking.</p></div>
+      <div class="team-card"><h4>Web3 Devs</h4><p>Smart contracts, token engineering, protocol audits.</p></div>
+      <div class="team-card"><h4>DApp Builders</h4><p>Frontends, staking calculators, analytics & dashboards.</p></div>
+      <div class="team-card"><h4>Social Influencers</h4><p>Driving adoption through crypto-native education & reach.</p></div>
+      <div class="team-card"><h4>DAO Operators</h4><p>Coordinating governance, transparency, and treasury allocations.</p></div>
     </div>
-    <div class="team-card">
-      <h4>Web3 Devs</h4>
-      <p>Smart contracts, token engineering, protocol audits.</p>
-    </div>
-    <div class="team-card">
-      <h4>DApp Builders</h4>
-      <p>Frontends, staking calculators, analytics & dashboards.</p>
-    </div>
-    <div class="team-card">
-      <h4>Social Influencers</h4>
-      <p>Driving adoption through crypto-native education & reach.</p>
-    </div>
-    <div class="team-card">
-      <h4>DAO Operators</h4>
-      <p>Coordinating governance, transparency, and treasury allocations.</p>
     <div class="community-invite">
-  <p>
-    We’re always looking for passionate individuals who resonate with the <strong>HFV Protocol</strong> vision.<br>
-    If you believe this is something you’d truly love to be a part of —<br>
-    whether you’re a developer, designer, strategist, or enthusiast —<br>
-    we welcome you to join us and help build a transparent, secure, and community-driven ecosystem.<br>
-    <br>
-    <em>Let’s grow this together.</em>
-  </p>
-</div>
+      <p>We’re always looking for passionate individuals who resonate with the <strong>HFV Protocol</strong> vision. If you believe this is something you’d truly love to be a part of — we welcome you to join us and help build a transparent, secure, and community-driven ecosystem.</p>
     </div>
+  </section>
+
+  <div style="text-align:center; padding-bottom: 4rem;">
+    <a href="index.html" class="back-button">← Back to Homepage</a>
   </div>
-</section><div style="text-align:center;">
-  <a href="index.html" class="back-button">← Back to Homepage</a>
-</div><script>
-const ctx = document.getElementById('tokenChart');
-new Chart(ctx, {
-  type: 'doughnut',
-  data: {
-    labels: ['Private Sale','Presale','PSF','Team/Dev','Airdrop','ICO/Exchange'],
-    datasets: [{
-      data: [3,18,15,18,15,31],
-      backgroundColor: [
-        '#FF6B6B', // Private Sale – Red
-        '#FFD93D', // Presale – Yellow
-        '#6BCB77', // PSF – Green
-        '#4D96FF', // Team – Blue
-        '#9D4EDD', // Airdrop – Purple
-        '#FF9F1C' // ICO/Exchange – Orange
-      ],
-      borderColor: '#0b0b0b',
-      borderWidth: 2,
-      hoverOffset: 20
-    }]
-  },
-  options: {
-    responsive: true,
-    plugins: {
-      legend: { position: 'bottom', labels: { color: '#e0e0e0' } }
-    },
-    animation: { animateRotate: true, duration: 1200 }
-  }
-});
-</script></body>
+
+  <script>
+    const ctx = document.getElementById('tokenChart');
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Private Sale','Presale','PSF','Team/Dev','Airdrop','ICO/Exchange'],
+        datasets: [{
+          data: [3,18,15,18,15,31],
+          backgroundColor: ['#FF6B6B','#FFD93D','#6BCB77','#4D96FF','#9D4EDD','#FF9F1C'],
+          borderColor: '#0b0b0b',
+          borderWidth: 2,
+          hoverOffset: 20
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { color: '#e0e0e0' } }
+        },
+        animation: { animateRotate: true, duration: 1200 }
+      }
+    });
+  </script>
+
+</body>
 </html>
