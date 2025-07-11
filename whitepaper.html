@@ -199,8 +199,50 @@ section {
   <strong>Total Supply:</strong> 70,000,000 HFV<br>
   <strong>Note:</strong> All extra supply beyond 70,000,000 has been sent to a null address. The supply will remain fixed at 70,000,000 HFV as initially planned.<br>  
   <strong>Contract Address:</strong>  
-  0x339f4761FE6301455cC2B5ba281Ac177eC362D56  
+0x339f4761FE6301455cC2B5ba281Ac177eC362D56  
 </p>
+
+<section id="token-supply-alignment" class="py-16 border-t border-neutral-800">
+  <div class="container max-w-5xl mx-auto px-4 md:px-6 text-neutral-200">
+    <h2 class="text-4xl font-bold tracking-tight mb-6">HFV Token Supply Alignment Notice</h2>
+    <p class="text-base mb-6">
+      To ensure clarity and transparency in HFV Protocol's tokenomics, this section outlines how the
+      initial supply was manually aligned to reflect the intended total of 70 million HFV tokens.
+    </p><h3 class="text-2xl font-semibold mt-10 mb-2">Background</h3>
+<p class="text-base mb-6">
+  HFV Token was initially deployed with a supply of 70,000,000 tokens, but due to how Ethereum handles decimals,
+  the on-chain supply was registered in base units (without decimals). This caused the perception of a much larger supply.
+</p>
+
+<h3 class="text-2xl font-semibold mt-10 mb-2">Supply Correction via Manual Burn</h3>
+<p class="text-base mb-6">
+  To correct this, HFV Protocol performed a transparent token burn by sending unneeded tokens to an inaccessible
+  burn address. This ensures only 70 million HFV tokens remain in circulation.
+</p>
+
+<h3 class="text-2xl font-semibold mt-10 mb-2">Burn Details</h3>
+<div class="bg-neutral-900 border border-neutral-700 rounded-xl p-4 mb-6 text-sm">
+  <p><strong>Burn Address:</strong> <code>0x000000000000000000000000000000000000dEaD</code></p>
+  <p>Deployer burned: <code>59,499,999,945,000,000,000,000,000</code> tokens</p>
+  <p>PSF Wallet burned: <code>10,499,999,985,000,000,000,000,000</code> tokens</p>
+</div>
+
+<h3 class="text-2xl font-semibold mt-10 mb-2">Final Token Distribution</h3>
+<ul class="list-disc list-inside text-base mb-6">
+  <li>Circulating Supply: <strong>70,000,000 HFV</strong></li>
+  <li>Deployer: <strong>55,000,000 HFV</strong></li>
+  <li>PSF (Protocol Support Fund): <strong>15,000,000 HFV</strong></li>
+  <li>Burned Forever: ~<strong>69.99993 septillion</strong> HFV units</li>
+</ul>
+
+<h3 class="text-2xl font-semibold mt-10 mb-2">Commitment to Transparency</h3>
+<p class="text-base">
+  HFV Protocol is committed to full transparency, accurate reporting, and alignment with its original tokenomics plan.
+  All actions are verifiable on-chain and consistent with our published whitepaper.
+</p>
+
+  </div>
+</section>
 </section><section>
   <h2>Token Distribution</h2>
   <canvas id="tokenChart"></canvas>
