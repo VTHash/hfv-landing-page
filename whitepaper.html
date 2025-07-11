@@ -152,36 +152,118 @@
     </div>
   </section>
 
-  <section id="token-supply-alignment">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HFV Token | Whitepaper</title>
+  <style>
+    .whitepaper-button-wrapper {
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+    .glowing-button {
+      font-size: 1rem;
+      font-weight: bold;
+      padding: 0.8rem 1.6rem;
+      border: none;
+      border-radius: 12px;
+      color: black;
+      background: linear-gradient(270deg, #0ff88, #00e0ff, #ff00c8, #2bff00);
+      background-size: 800% 800%;
+      animation: rainbowGlow 6s ease infinite;
+      box-shadow: 0 0 20px rgba(50, 248, 154, 0.6);
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .glowing-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(50, 248, 154, 0.8);
+    }
+    @keyframes rainbowGlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .rgb-glow {
+      border: 1px solid #00ffae;
+      box-shadow: 0 0 20px rgba(0, 255, 174, 0.4);
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem auto;
+      background-color: #111827;
+      color: #d1fae5;
+      max-width: 900px;
+    }
+    .rgb-box {
+      background-color: #0f172a;
+      border: 1px solid #00ffae;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 0 12px rgba(0, 255, 174, 0.3);
+      word-break: break-word;
+    }
+  </style>
+</head><body>
+  <div class="whitepaper-button-wrapper">
+    <a class="glowing-button" href="whitepaper.pdf" target="_blank">Download Whitepaper</a>
+  </div> <section class="rgb-glow">
+    <h2 class="text-4xl font-bold tracking-tight mb-6">Token Overview</h2>
+    <p class="text-base mb-6">
+      <strong>Name:</strong> HFV Token<br>
+      <strong>Total Supply:</strong> 70,000,000 HFV<br>
+      <strong>Note:</strong> All extra supply beyond 70,000,000 HFV was permanently burned.
+    </p>
+    <div class="rgb-box">
+      <strong>Contract Address:</strong><br>
+      <code>0x339f4761FE6301455cC2B5ba281Ac177eC362D56</code>
+    </div>
+  </section> <section class="rgb-glow">
+    <h2 class="text-4xl font-bold tracking-tight mb-6">HFV Token Supply Alignment Notice</h2>
+    <p class="text-base mb-6">
+      To ensure clarity and transparency in HFV Protocol's tokenomics, this section outlines how the
+      initial supply was manually aligned to reflect the intended total of 70 million HFV tokens.
+    </p><h3 class="text-2xl font-semibold mt-10 mb-2">Background</h3>
+<p class="text-base mb-6">
+  HFV Token was initially deployed with a supply of 70,000,000 tokens, but due to how Ethereum handles decimals,
+  the on-chain supply was registered in base units (without decimals). This caused the perception of a much larger supply.
+</p>
+
+<h3 class="text-2xl font-semibold mt-10 mb-2">Supply Correction via Manual Burn</h3>
+<p class="text-base mb-6">
+  To correct this, HFV Protocol performed a transparent token burn by sending unneeded tokens to an inaccessible
+  burn address. This ensures only 70 million HFV tokens remain in circulation.
+</p>
+
+<h3 class="text-2xl font-semibold mt-10 mb-2">Burn Details</h3>
+<div class="rgb-box text-sm mb-6">
+  <p><strong>Burn Address:</strong><br><code>0x000000000000000000000000000000000000dEaD</code></p>
+  <p>Deployer burned:<br><code>59499999945000000000000000</code></p>
+  <p>PSF Wallet burned:<br><code>10499999985000000000000000</code></p>
+</div>
+
+<h3 class="text-2xl font-semibold mt-10 mb-2">Final Token Distribution</h3>
+<ul class="list-disc list-inside text-base mb-6">
+  <li>Circulating Supply: <strong>70,000,000 HFV</strong></li>
+  <li>Deployer: <strong>55,000,000 HFV</strong></li>
+  <li>PSF (Protocol Support Fund): <strong>15,000,000 HFV</strong></li>
+  <li>Burned Forever: ~<strong>69.99993 septillion</strong> HFV units</li>
+</ul>
+
+<h3 class="text-2xl font-semibold mt-10 mb-2">Commitment to Transparency</h3>
+<p class="text-base">
+  HFV Protocol is committed to full transparency, accurate reporting, and alignment with its original tokenomics plan.
+  All actions are verifiable on-chain and consistent with our published whitepaper.
+</p>
+
+  </section> <section>
     <div class="container">
-      <h2>HFV Token Supply Alignment Notice</h2>
-      <p>To ensure clarity and transparency in HFV Protocol's tokenomics, this section outlines how the initial supply was manually aligned to reflect the intended total of 70 million HFV tokens.</p>
-
-      <h3>Background</h3>
-      <p>HFV Token was initially deployed with a supply of 70,000,000 tokens, but due to how Ethereum handles decimals, the on-chain supply was registered in base units (without decimals). This caused the perception of a much larger supply.</p>
-
-      <h3>Supply Correction via Manual Burn</h3>
-      <p>To correct this, HFV Protocol performed a transparent token burn by sending unneeded tokens to an inaccessible burn address. This ensures only 70 million HFV tokens remain in circulation.</p>
-
-      <h3>Burn Details</h3>
-      <div class="highlight-box">
-        <p><strong>Burn Address:</strong><br><code>0x000000000000000000000000000000000000dEaD</code></p>
-        <p>Deployer burned:<br><code>59499999945000000000000000</code></p>
-        <p>PSF Wallet burned:<br><code>10499999985000000000000000</code></p>
-      </div>
-
-      <h3>Final Token Distribution</h3>
-      <ul>
-        <li>Circulating Supply: <strong>70,000,000 HFV</strong></li>
-        <li>Deployer: <strong>55,000,000 HFV</strong></li>
-        <li>PSF (Protocol Support Fund): <strong>15,000,000 HFV</strong></li>
-        <li>Burned Forever: ~<strong>69.99993 septillion</strong> HFV units</li>
-      </ul>
-
-      <h3>Commitment to Transparency</h3>
-      <p>HFV Protocol is committed to full transparency, accurate reporting, and alignment with its original tokenomics plan. All actions are verifiable on-chain and consistent with our published whitepaper.</p>
+      <h2>Token Distribution</h2>
+      <canvas id="tokenChart"></canvas>
     </div>
   </section>
+</body>
+</html>
 
   <section>
     <div class="container">
