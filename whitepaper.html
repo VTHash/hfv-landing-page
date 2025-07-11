@@ -260,7 +260,9 @@
 <section class="rgb-glow">
   <h2 class="text-4xl font-bold tracking-tight mb-6 text-center">Token Distribution</h2>
   <div class="rgb-box">
-    <canvas id="tokenChart" style="max-width: 600px; height: 400px; margin: auto; display: block;"></canvas>
+    <div style="display: flex; justify-content: center;">
+      <canvas id="tokenChart" style="width: 100%; max-width: 600px; height: auto;"></canvas>
+    </div>
   </div>
 </section>
 
@@ -273,12 +275,12 @@
       datasets: [{
         data: [3, 18, 15, 18, 15, 31],
         backgroundColor: [
-          '#FF6B6B', // Private Sale – Red
-          '#FFD93D', // Presale – Yellow
-          '#6BCB77', // PSF – Green
-          '#4D96FF', // Team – Blue
-          '#9D4EDD', // Airdrop – Purple
-          '#FF9F1C' // ICO/Exchange – Orange
+          '#FF6B6B',
+          '#FFD93D',
+          '#6BCB77',
+          '#4D96FF',
+          '#9D4EDD',
+          '#FF9F1C'
         ],
         borderColor: '#0b0b0b',
         borderWidth: 2,
@@ -287,10 +289,11 @@
     },
     options: {
       responsive: true,
+      maintainAspectRatio: true,
       plugins: {
         legend: {
           position: 'bottom',
-          labels: { color: '#d1fae5' } // glowing greenish label color
+          labels: { color: '#e0e0e0' }
         }
       },
       animation: {
