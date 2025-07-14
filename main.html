@@ -215,6 +215,39 @@
                         background-position: 0% 50%;
                   }
             }
+
+            @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 0 10px #a3ff59, 0 0 20px #a3ff59, 0 0 30px #6aff2d;
+    }
+    50% {
+      box-shadow: 0 0 25px #b6ff6d, 0 0 35px #96ff47, 0 0 45px #69ff29;
+    }
+  }
+
+  .button-glow-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .launch-dapp-button {
+    background-color: #6aff2d;
+    color: black;
+    font-weight: bold;
+    padding: 16px 40px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    animation: pulseGlow 2s infinite ease-in-out;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .launch-dapp-button:hover {
+    transform: scale(1.05);
+  }
+
       </style>
 </head>
 
@@ -225,8 +258,13 @@
             <h1 class="gradient-hover">Stake HFV. Earn Rewards.</h1>
             <p class="gradient-hover">Secure, Transparent & High-Yield Staking — Powered by Ethereum</p>
             <a href="https://hfv-staking-dapp.netlify.app/" target="_blank" class="launch-dapp-button">
-  Launch DApp
-</a>
+
+<<div class="relative flex justify-center items-center">
+  <div class="button-glow-container">
+  <a href="https://hfv-staking-dapp.netlify.app/" target="_blank" class="launch-dapp-button">
+      Launch Dapp
+  </a>
+</div>
       </header>
 
       <section>
