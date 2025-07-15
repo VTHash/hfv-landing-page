@@ -267,19 +267,25 @@
 
       <section>
             <h2 class="gradient-hover">High‑Tech HFV Staking Calculator</h2>
-            <div class="calculator">
-                  <label>Amount to Stake (HFV): <input type="number" id="amount" placeholder="e.g. 1000" /></label>
-                  <label>Select Duration:
-                        <select id="duration">
-                              <option value="1">21 Days</option>
-                              <option value="3">3 Months</option>
-                              <option value="6">6 Months</option>
-                              <option value="12">12 Months</option>
-                        </select>
-                  </label>
-                  <button onclick="calculateReward()">Calculate</button>
-                  <p class="result" id="result"></p>
-            </div>
+            <div class="relative rounded-xl p-1 bg-gradient-to-r from-lime-400 via-green-500 to-lime-400 animate-pulse mb-6">
+  <div class="calculator bg-black rounded-xl p-6 text-white shadow-xl">
+    <label>
+      Amount to Stake (HFV):
+      <input type="number" id="amount" placeholder="e.g. 1000" />
+    </label>
+    <label>
+      Select Duration:
+      <select id="duration">
+        <option value="1">21 Days</option>
+        <option value="3">3 Months</option>
+        <option value="6">6 Months</option>
+        <option value="12">12 Months</option>
+      </select>
+    </label>
+    <button onclick="calculateReward()">Calculate</button>
+    <p class="result" id="result"></p>
+  </div>
+</div>
       </section>
 
       <section>
