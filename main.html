@@ -312,7 +312,27 @@
 
  .partner-banner:hover .partner-track {
   animation-play-state: paused;
- }  
+ }
+ .partner-item img {
+  height: 24px;
+  width: auto;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  filter: grayscale(100%) brightness(1.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.partner-item:hover img {
+  filter: drop-shadow(0 0 4px #8fffa0) grayscale(0%);
+}
+  .partner-item span {
+  transition: all 0.3s ease-in-out;
+}
+
+.partner-item:hover span {
+  color: #ffffff;
+  text-shadow: 0 0 4px #8fffa0;
+}
   </style>
 </head>
 
