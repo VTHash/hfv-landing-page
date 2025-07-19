@@ -333,9 +333,113 @@
   color: #ffffff;
   text-shadow: 0 0 4px #8fffa0;
 }
+.disclaimer-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.disclaimer-box {
+  background: #1a1a1a;
+  border: 1px solid #8fffa0;
+  padding: 2rem;
+  max-width: 90%;
+  width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #8fffa0;
+  color: #fff;
+  text-align: center;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.disclaimer-box h2 {
+  color: #8fffa0;
+  margin-bottom: 1rem;
+}
+
+.disclaimer-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.disclaimer-buttons button {
+  padding: 0.8rem;
+  background: linear-gradient(90deg, #14532d, #22c55e);
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.disclaimer-buttons button:hover {
+  background: #8fffa0;
+  color: #111;
+  box-shadow: 0 0 10px #8fffa0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
   </style>
 </head>
 
+<div id="disclaimer-modal" class="disclaimer-modal">
+  <div class="disclaimer-box">
+    <h2>Website Disclaimer</h2>
+    <p>
+      This website is not intended for users in the United Kingdom and may not comply with the UK’s Financial Promotions Regime.
+      If you are accessing this site from the UK, we kindly request that you exit the website.
+    </p>
+    <div class="disclaimer-buttons">
+      <button onclick="leaveSite()">Leave Site</button>
+      <button onclick="continueSite()">Continue to Site</button>
+    </div>
+  </div>
+</div>
+<script>
+  function leaveSite() {
+    window.location.href = "https://www.google.com";
+  }
+
+  function continueSite() {
+    localStorage.setItem('disclaimerAccepted', 'true');
+    document.getElementById('disclaimer-modal').style.display = 'none';
+  }
+
+  window.onload = function () {
+    const accepted = localStorage.getItem('disclaimerAccepted');
+    if (accepted) {
+      document.getElementById('disclaimer-modal').style.display = 'none';
+      return;
+    }
+
+    // GeoIP check
+    fetch('https://ipapi.co/json/')
+      .then(res => res.json())
+      .then(data => {
+        const country = data.country;
+        if (country === 'GB') {
+          // Show disclaimer only if in UK and not yet accepted
+          document.getElementById('disclaimer-modal').style.display = 'flex';
+        }
+      })
+      .catch(err => {
+        console.warn('GeoIP lookup failed', err);
+      });
+  };
+</script>
 <body>
       <canvas id="particles-js"></canvas>
       <header>
