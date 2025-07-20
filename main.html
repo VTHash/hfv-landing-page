@@ -260,90 +260,33 @@
   }
 }
 
-   .footer-link {
-    color: #8fffa0;
-    text-decoration: none;
-    margin-right: 20px;
-    transition: all 0.3s ease-in-out;
-  }
+   footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem;
+  background: #111;
+  color: #aaa;
+}
 
-  .footer-link:hover {
-    color: #ffffff;
-    text-shadow: 0 0 6px #8fffa0, 0 0 12px #8fffa0;
-  }
-  .partner-banner {
-  overflow: hidden;
-  background-color: #111;
-  padding: 1rem 0;
-  border-top: 1px solid #222;
- }
-
- .partner-track {
-  display: flex;
-  width: max-content;
-  animation: scroll-left 40s linear infinite;
- }
-
- .partner-item {
-  display: flex;
-  align-items: center;
-  margin: 0 2rem;
+.footer-link {
   color: #8fffa0;
-  font-size: 1rem;
-  white-space: nowrap;
- }
-
- .partner-item img {
-  height: 24px;
-  width: auto;
-  margin-right: 0.5rem;
-  vertical-align: middle;
-  filter: drop-shadow(0 0 1px #8fffa0);
- }
-
- @keyframes scroll-left {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
- }
-
- .partner-banner:hover .partner-track {
-  animation-play-state: paused;
- }
- .partner-item img {
-  height: 24px;
-  width: auto;
-  margin-right: 0.5rem;
-  vertical-align: middle;
-  filter: drop-shadow(0 0 1px #8fffa0); /* Optional soft glow */
+  text-decoration: none;
+  margin-right: 20px;
   transition: all 0.3s ease-in-out;
 }
 
-.partner-item:hover img {
-  filter: drop-shadow(0 0 4px #8fffa0) grayscale(0%);
-}
-  .partner-item span {
-  transition: all 0.3s ease-in-out;
-}
-
-.partner-item:hover span {
+.footer-link:hover {
   color: #ffffff;
-  text-shadow: 0 0 4px #8fffa0;
+  text-shadow: 0 0 6px #8fffa0, 0 0 12px #8fffa0;
 }
-.partner-banner {
-  overflow: hidden;
-  background-color: #111;
-  padding: 1rem 0;
-  border-top: 1px solid #222;
-}
+
 .partner-track {
   display: flex;
   width: fit-content;
   animation: scroll-left 60s linear infinite;
 }
+
 .partner-item {
   display: flex;
   align-items: center;
@@ -360,6 +303,23 @@
   vertical-align: middle;
   filter: drop-shadow(0 0 1px #8fffa0);
   transition: all 0.3s ease-in-out;
+}
+
+.partner-item:hover img {
+  filter: drop-shadow(0 0 6px #8fffa0);
+}
+
+.partner-item span {
+  transition: all 0.3s ease-in-out;
+}
+
+.partner-item:hover span {
+  color: #ffffff;
+  text-shadow: 0 0 4px #8fffa0;
+}
+
+.partner-banner:hover .partner-track {
+  animation-play-state: paused;
 }
 
 @keyframes scroll-left {
