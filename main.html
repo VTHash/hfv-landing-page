@@ -392,13 +392,32 @@
 }
 .powered-by-heading {
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
   color: #8fffa0;
   margin-top: 2rem;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
+  margin-bottom: 1rem;
   letter-spacing: 1px;
-  text-shadow: 0 0 4px #8fffa0;
+  text-shadow:
+    0 0 4px #8fffa0,
+    0 0 10px #8fffa0,
+    0 0 16px #8fffa0;
+  animation: glowPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 4px #8fffa0,
+      0 0 10px #8fffa0,
+      0 0 16px #8fffa0;
+  }
+  50% {
+    text-shadow:
+      0 0 2px #8fffa0,
+      0 0 5px #8fffa0,
+      0 0 8px #8fffa0;
+  }
 }
 
   </style>
@@ -564,9 +583,7 @@
 
 <div class="partner-banner">
   <div class="partner-track">
-<div class="partner-banner">
-  <div class="partner-track">
-    <!-- 🌀 First loop -->
+  
     <div class="partner-item">
       <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/openai.svg" alt="OpenAI" />
       <span>OpenAI</span>
@@ -576,7 +593,32 @@
       <span>GitHub</span>
     </div>
     <div class="partner-item">
-      <img src="https://cdn.jsdelivr.net/gh/spothq/cryptocurrency-icons/svg/color/eth.svg"  alt="Ethereum" />
+      <img src="https://cdn.jsdelivr.net/gh/spothq/cryptocurrency-icons/svg/color/eth.svg" alt="Ethereum" />
+      <span>Ethereum</span>
+    </div>
+    <div class="partner-item">
+      <img src="https://seeklogo.com/images/M/metamask-logo-09EDE53DBD-seeklogo.com.png" alt="MetaMask" />
+      <span>MetaMask</span>
+    </div>
+    <div class="partner-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" />
+      <span>Google</span>
+    </div>
+    <div class="partner-item">
+      <img src="https://cdn.jsdelivr.net/gh/spothq/cryptocurrency-icons/svg/color/uni.svg" alt="Uniswap" />
+      <span>Uniswap</span>
+    </div>
+
+    <div class="partner-item">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/openai.svg" alt="OpenAI" />
+      <span>OpenAI</span>
+    </div>
+    <div class="partner-item">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
+      <span>GitHub</span>
+    </div>
+    <div class="partner-item">
+      <img src="https://cdn.jsdelivr.net/gh/spothq/cryptocurrency-icons/svg/color/eth.svg" alt="Ethereum" />
       <span>Ethereum</span>
     </div>
     <div class="partner-item">
@@ -593,17 +635,12 @@
     </div>
   </div>
 </div>
- 
-<div style="height: 40px;"></div>
-<footer style="text-align: center; padding: 2rem; background: #111; color: #aaa;">
+
+<footer>
   <p>© 2025 HFV Protocol. All rights reserved.</p>
   <p>
-    <a href="/privacy.html" target="_blank" rel="noopener noreferrer" class="footer-link">
-      Privacy Policy
-    </a>
-    <a href="/terms.html" target="_blank" rel="noopener noreferrer" class="footer-link" style="margin-right: 0;">
-      Terms of Service
-    </a>
+    <a href="/privacy.html" class="footer-link" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+    <a href="/terms.html" class="footer-link" target="_blank" rel="noopener noreferrer">Terms of Service</a>
   </p>
 </footer>
 
