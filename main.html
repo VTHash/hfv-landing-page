@@ -333,11 +333,44 @@
   color: #ffffff;
   text-shadow: 0 0 4px #8fffa0;
 }
+.partner-banner {
+  overflow: hidden;
+  background-color: #111;
+  padding: 1rem 0;
+  border-top: 1px solid #222;
+}
 .partner-track {
   display: flex;
   width: fit-content;
   animation: scroll-left 60s linear infinite;
 }
+.partner-item {
+  display: flex;
+  align-items: center;
+  margin: 0 2rem;
+  color: #8fffa0;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.partner-item img {
+  height: 24px;
+  width: auto;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  filter: drop-shadow(0 0 1px #8fffa0);
+  transition: all 0.3s ease-in-out;
+}
+
+@keyframes scroll-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 .disclaimer-modal {
   position: fixed;
   top: 0;
