@@ -467,6 +467,46 @@
         console.warn('GeoIP lookup failed', err);
       });
   };
+
+  .security-assessment-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px 30px;
+  border: 2px solid #00FF88;
+  border-radius: 14px;
+  color: #00FF88;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 0 18px #00FF88;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+  animation: pulseGlow 2s infinite;
+}
+
+.security-assessment-link:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 28px #00FF88, 0 0 40px #00FF88;
+  background-color: rgba(0, 255, 136, 0.1);
+}
+
+.security-assessment-logo {
+  height: 42px;
+  filter: brightness(1.6);
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 10px #00FF88;
+  }
+  50% {
+    box-shadow: 0 0 20px #00FF88, 0 0 30px #00FF88;
+  }
+  100% {
+    box-shadow: 0 0 10px #00FF88;
+  }
+}
 </script>
 <body>
       <canvas id="particles-js"></canvas>
@@ -542,6 +582,23 @@
     Security is paramount. The HFV staking contract is undergoing audits to ensure protocol integrity and protect staker assets. Audit report links will be published when complete.
   </p>
 </section>
+
+<!-- SECURITY ASSESSMENT SECTION -->
+<section id="security-assessment" style="text-align: center; padding: 60px 0;">
+  <a 
+    href="#" 
+    onclick="openSecurityReports(); return false;" 
+    class="security-assessment-link">
+    
+    <img 
+      src="https://solidityscan.com/static/media/logo.9b929d4d.svg" 
+      alt="SolidityScan Logo" 
+      class="security-assessment-logo">
+    
+    <span>Security Assessment by SolidityScan</span>
+  </a>
+</section>
+
 
 <!-- SECTION: Team -->
 <section class="glow-section" id="team">
@@ -780,6 +837,10 @@
                         document.getElementById('result').textContent = 'Please enter valid inputs.';
                   }
             }
+            function openSecurityReports() {
+    window.open('assets/HFV_SolidityScan_Report1.pdf', '_blank');
+    window.open('assets/HFV_SolidityScan_Report2.pdf', '_blank');
+  }
       </script>
       <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
       <script>
