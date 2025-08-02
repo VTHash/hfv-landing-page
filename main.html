@@ -604,14 +604,14 @@
   const contractAddress = "0xbE39EbB5DaE5292658efF152Ec4EE37Ddc558812";
   const abi = [
     "function totalSold() public view returns (uint256)",
-    "function SEED_SALE_CAP() public view returns (uint256)"
+    "function HVF_CAP() public view returns (uint256)"
   ];
 
   async function updateProgress() {
     try {
       const contract = new ethers.Contract(contractAddress, abi, provider);
       const sold = await contract.totalSold();
-      const cap = await contract.SEED_SALE_CAP();
+      const cap = await contract.HFV_CAP();
 
       const soldFormatted = ethers.utils.formatUnits(sold, 18);
       const capFormatted = ethers.utils.formatUnits(cap, 18);
