@@ -557,6 +557,79 @@
     <a href="https://github.com/VTHash/HFV_Whitepaper/raw/main/HFV_Whitepaper_v2_Final%20(1).pdf">See full details in the whitepaper</a>.
   </p>
 </section>
+
+<section id="seed-sale" class="glow-hud">
+  <div class="hud-inner">
+    <h2 class="hud-title">🚀 Seed Sale: Engage Protocol</h2>
+    
+    <p class="hud-subtext">
+      <strong>$0.99</strong> USDC/ETH (Pre-launch) → <strong>$9.99</strong> on exchange.
+    </p>
+
+    <!-- Glowing Progress Bar -->
+    <div class="glow-progress-container">
+      <div class="progress-text">
+        <span>HFV Progress</span>
+        <span id="sold-count">Loading...</span>
+      </div>
+      <div class="glow-progress-bar">
+        <div id="progress-fill" class="glow-progress-fill"></div>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <a href="https://hfvseedsale.org/" target="_blank" 
+    class="glow-action-button">
+      💰 Enter SeedSale App
+    </a>
+
+    <!-- Social -->
+    <p class="hud-subtext">📡 Share HFV Protocol on:</p>
+    <div class="glow-social-buttons">
+      <a href="https://x.com/HFVProtocol" target="_blank" class="glow-social x">X</a>
+      <a href="https://discord.gg/GS2R7kbU8M" target="_blank" class="glow-social discord">Discord</a>
+      <a href="https://t.me/HFVProtocol" target="_blank" class="glow-social telegram">Telegram</a>
+    </div>
+
+    <!-- Airdrop Highlight -->
+    <p class="hud-highlight">
+      🎁 Claim 100 HFV — Earn up to $50,000 in Airdrop Rewards!
+    </p>
+  </div>
+</section>
+
+<script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js"></script>
+<script>
+  const provider = new ethers.providers.JsonRpcProvider("https://eth-mainnet.g.alchemy.com/v2/mHscPB6KNUMzDDQHXMYvy");
+  const contractAddress = "0xbE39EbB5DaE5292658efF152Ec4EE37Ddc558812";
+  const abi = [
+    "function totalSold() public view returns (uint256)",
+    "function SEED_SALE_CAP() public view returns (uint256)"
+  ];
+
+  async function updateProgress() {
+    try {
+      const contract = new ethers.Contract(contractAddress, abi, provider);
+      const sold = await contract.totalSold();
+      const cap = await contract.SEED_SALE_CAP();
+
+      const soldFormatted = ethers.utils.formatUnits(sold, 18);
+      const capFormatted = ethers.utils.formatUnits(cap, 18);
+      const percent = Math.min((soldFormatted / capFormatted) * 100, 100).toFixed(2);
+
+      document.getElementById("sold-count").textContent = `$
+      {Number(soldFormatted).toLocaleString()} / ${Number(capFormatted).toLocaleString()}`;
+      document.getElementById("progress-fill").style.width = `${percent}%`;
+    } catch (err) {
+      document.getElementById("sold-count").textContent = "Unavailable";
+      console.error("Contract load failed:", err);
+    }
+  }
+
+  updateProgress();
+  setInterval(updateProgress, 15000);
+</script>
+
 <style>
   .glow-box {
     border: 1px solid #8fffa0;
@@ -648,7 +721,7 @@
       <section>
             <h2 class="gradient-hover">🌐 Follow HFV Official Channels</h2>
             <div id="social-links">
-                  <a href="https://discord.gg/357nQRgz" class="social-item" target="_blank">
+                  <a href="https://discord.gg/GS2R7kbU8M" class="social-item" target="_blank">
                         <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord" />
                         <span>Discord</span>
                   </a>
