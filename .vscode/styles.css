@@ -223,7 +223,7 @@ nav button {
   filter: brightness(1.6);
 }
 
-@keyframes pulseGlow {
+@keyframes pulseHUD
   0% {
     box-shadow: 0 0 10px #00FF88;
   }
@@ -275,10 +275,10 @@ nav button {
 
 @keyframes pulseHUD {
   0%, 100% {
-    box-shadow: 0 0 20px #00ff99, 0 0 50px rgba(0, 255, 153, 0.3);
+    box-shadow: 0 0 20px #00ff99, 0 0 20px rgba(0, 255, 255, 0.2);
   }
   50% {
-    box-shadow: 0 0 28px #00ffaa, 0 0 60px rgba(0, 255, 170, 0.5);
+    box-shadow: 0 0 28px #00ffaa, 0 0 60px rgba(0, 255, 255, 0.4);
   }
 }
 
