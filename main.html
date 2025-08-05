@@ -966,6 +966,68 @@
     <a href="/privacy.html" class="footer-link" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
     <a href="/terms.html" class="footer-link" target="_blank" rel="noopener noreferrer">Terms of Service</a>
   </p>
+
+      <!-- HUD Glow Notice Banner -->
+<div class="hud-notice-banner" id="hudNotice">
+    HFV Protocol is continuously improving. Loading times may be slightly longer during updates. 
+  This does not affect the app’s functionality or security.
+  <span class="close-notice" onclick="closeNotice()">✖</span>
+</div>
+
+<style>
+.hud-notice-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  color: #00ffcc;
+  font-size: 0.9rem;
+  padding: 10px 35px 10px 15px;
+  text-align: center;
+  border-top: 2px solid #00ff99;
+  box-shadow: 0 0 12px #00ffcc, inset 0 0 8px #00ff99;
+  z-index: 9999;
+  font-family: 'Orbitron', sans-serif;
+  animation: hudGlowPulse 3s ease-in-out infinite;
+}
+
+.close-notice {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #00ffcc;
+  transition: color 0.3s ease;
+}
+
+.close-notice:hover {
+  color: #ff6666;
+}
+
+@keyframes hudGlowPulse {
+  0%, 100% {
+    box-shadow: 0 0 12px #00ffcc, inset 0 0 8px #00ff99;
+  }
+  50% {
+    box-shadow: 0 0 20px #00ffaa, inset 0 0 12px #00ffcc;
+  }
+}
+</style>
+
+<script>
+function closeNotice() {
+  document.getElementById('hudNotice').style.display = 'none';
+  localStorage.setItem('hudNoticeClosed', 'true');
+}
+
+window.onload = function() {
+  if (localStorage.getItem('hudNoticeClosed') === 'true') {
+    document.getElementById('hudNotice').style.display = 'none';
+  }
+};
+</script>
 </footer>
 
       <script>
