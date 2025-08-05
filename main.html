@@ -282,10 +282,17 @@
   text-shadow: 0 0 6px #8fffa0, 0 0 12px #8fffa0;
 }
 
+.partner-banner {
+  width: 100%
+overflow: hidden;
+position: relative;
+}
+
 .partner-track {
   display: flex;
   width: fit-content;
   animation: scroll-left 60s linear infinite;
+  will-change:transform;
 }
 
 .partner-item {
@@ -319,7 +326,7 @@
   text-shadow: 0 0 4px #8fffa0;
 }
 
-.partner-banner:hover .partner-track {
+.partne-banner:hover .partner-track {
   animation-play-state: paused;
 }
 
