@@ -557,13 +557,14 @@
   </style>
 </head>
 
+<body>
+  <!-- Disclaimer Modal -->
 <div id="disclaimer-modal" class="disclaimer-modal">
   <div class="disclaimer-box">
     <h2>Website Disclaimer</h2>
-  </p>
-    <p><strong>Regulatory Notice:</strong> Participation in HFV Protocol Technologies Limited's seed sale, airdrop campaigns, staking programs, or any other token-related activities is not available to residents or citizens of the United States of America, Mainland China, or any other jurisdiction subject to comprehensive sanctions administered by the U.S. Office of Foreign Assets Control (OFAC).  
-Restricted jurisdictions include, but are not limited to: Cuba, Iran, North Korea, Syria, and the Crimea, Donetsk, and Luhansk regions of Ukraine.  
-By participating, you confirm that you are not located in or a citizen/resident of any restricted jurisdiction and are acting in compliance with all applicable laws.
+    <p><strong>Regulatory Notice:</strong> Participation in HFV Protocol Technologies Limited's seed sale, airdrop campaigns, staking programs, or any other token-related activities is not available to residents or citizens of the United States of America, Mainland China, or any jurisdiction subject to comprehensive OFAC sanctions.  
+    Restricted jurisdictions include, but are not limited to: Cuba, Iran, North Korea, Syria, and the Crimea, Donetsk, and Luhansk regions of Ukraine.  
+    By participating, you confirm that you are not located in or a citizen/resident of any restricted jurisdiction and are acting in compliance with all applicable laws.
     </p>
     <div class="disclaimer-buttons">
       <button onclick="leaveSite()">Leave Site</button>
@@ -571,33 +572,23 @@ By participating, you confirm that you are not located in or a citizen/resident 
     </div>
   </div>
 </div>
+</body>
 <script>
-  window.onload = function () {
-  const accepted = localStorage.getItem('disclaimerAccepted');
-  if (!accepted) {
-    document.getElementById('disclaimer-modal').style.display = 'flex';
+  function leaveSite() {
+    window.location.href = "https://www.google.com";
   }
-};
 
-function leaveSite() {
-  window.location.href = "https://www.google.com";
-}
+  function continueSite() {
+    localStorage.setItem('disclaimerAccepted', 'true');
+    document.getElementById('disclaimer-modal').style.display = 'none';
+  }
 
-function continueSite() {
-  localStorage.setItem('disclaimerAccepted', 'true');
-  document.getElementById('disclaimer-modal').style.display = 'none';
-}
-        
-          // Always show disclaimer if not accepted yet
-          document.getElementById('disclaimer-modal').style.display = 'flex';
-        }
-      })
-      .catch(err => {
-        console.warn('GeoIP lookup failed', err);
-      });
+  window.onload = function () {
+    const accepted = localStorage.getItem('disclaimerAccepted');
+    if (!accepted) {
+      document.getElementById('disclaimer-modal').style.display = 'flex';
+    }
   };
-
-  
 </script>
 <body>
       <canvas id="particles-js"></canvas>
