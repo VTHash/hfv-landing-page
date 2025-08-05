@@ -587,14 +587,8 @@ By participating, you confirm that you are not located in or a citizen/resident 
       document.getElementById('disclaimer-modal').style.display = 'none';
       return;
     }
-
-    // GeoIP check
-    fetch('https://ipapi.co/json/')
-      .then(res => res.json())
-      .then(data => {
-        const country = data.country;
-        if (country === 'GB') {
-          // Show disclaimer only if in UK and not yet accepted
+        
+          // Always show disclaimer if not accepted yet
           document.getElementById('disclaimer-modal').style.display = 'flex';
         }
       })
