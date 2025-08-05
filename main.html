@@ -842,38 +842,44 @@
                   <div id="rewardOutput" class="glow">0 HFV</div>
             </div>
       </section>
-      <!-- HUD Glow Notice Banner -->
-<section>
-<div class="hud-notice-banner" id="hudNotice">
-    HFV Protocol is continuously improving. Loading times may be slightly longer during updates. 
-  This does not affect the app’s functionality or security.
-  <span class="close-notice" onclick="closeNotice()">✖</span>
-</div>
+<!-- HUD Glow Notice Section -->
+<section class="hud-notice-section" id="hudNoticeSection">
+  <div class="hud-notice-content">
+    🚀 <strong>HFV Protocol</strong> is continuously improving.  
+    Loading times may be slightly longer during updates,  
+    but this does not affect the app’s functionality or security.
+    <span class="close-notice" onclick="closeNotice()">✖</span>
+  </div>
+</section>
 
 <style>
-.hud-notice-banner {
-  position: fixed;
-  bottom: 0;
-  left: 0;
+.hud-notice-section {
   width: 100%;
+  padding: 15px 20px;
   background: rgba(0, 0, 0, 0.95);
-  color: #00ffcc;
-  font-size: 0.9rem;
-  padding: 10px 35px 10px 15px;
-  text-align: center;
-  border-top: 2px solid #00ff99;
+  border: 2px solid #00ff99;
   box-shadow: 0 0 12px #00ffcc, inset 0 0 8px #00ff99;
-  z-index: 9999;
-  font-family: 'Orbitron', sans-serif;
+  border-radius: 12px;
+  margin: 30px auto;
+  max-width: 900px;
   animation: hudGlowPulse 3s ease-in-out infinite;
+  position: relative;
+}
+
+.hud-notice-content {
+  color: #00ffcc;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: center;
 }
 
 .close-notice {
   position: absolute;
-  right: 12px;
-  top: 8px;
+  right: 15px;
+  top: 12px;
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #00ffcc;
   transition: color 0.3s ease;
 }
@@ -893,18 +899,20 @@
 </style>
 
 <script>
+const hudNoticeVersion = "v1"; // Change this to force re-show for all users
+
 function closeNotice() {
-  document.getElementById('hudNotice').style.display = 'none';
-  localStorage.setItem('hudNoticeClosed', 'true');
+  document.getElementById('hudNoticeSection').style.display = 'none';
+  localStorage.setItem('hudNoticeClosedVersion', hudNoticeVersion);
 }
 
 window.onload = function() {
-  if (localStorage.getItem('hudNoticeClosed') === 'true') {
-    document.getElementById('hudNotice').style.display = 'none';
+  const closedVersion = localStorage.getItem('hudNoticeClosedVersion');
+  if (closedVersion === hudNoticeVersion) {
+    document.getElementById('hudNoticeSection').style.display = 'none';
   }
 };
 </script>
-</section>
 
       <section>
             <h2 class="gradient-hover">🌐 Follow HFV Official Channels</h2>
